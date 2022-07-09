@@ -1,8 +1,8 @@
 # ForestOn
 
-Instalación Android Studio y descarga del repo
+# Instalación Android Studio y descarga del repo
 ----------------------------------------------
-
+```
 1 - Descargar última versión de Android Studio.
 2 - Descargar última versión de Github.
 3 - Vincular Android Studio con la cuenta de Github:
@@ -12,3 +12,4 @@ Instalación Android Studio y descarga del repo
 4 - Clonar el repo en Android Studio:
     4.1 Desde el browser de Github ingresar al repo o copiar esta URL: https://github.com/Fsamassa/ForestOn.git
     4.2 Ir a Adnroid Studio y en la solapa File>>New>>Project from Version Control>> pegar la URL
+```
