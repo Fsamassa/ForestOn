@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/fondo_foreston"/>
+    <item>
+      <bitmap android:src="@mipmap/logoforeston360x360"
+              android:gravity="center"/>
+    </item>
+</layer-list>

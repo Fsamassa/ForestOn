@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "957133927613",
+    "project_id": "foreston-be3a3",
+    "storage_bucket": "foreston-be3a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957133927613:android:a2152c819012d38be9b3d4",
+        "android_client_info": {
+          "package_name": "com.example.foreston"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957133927613-2b097nasn8c352rg5jifaph5n8v01a46.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtSFF5wIvCqDLOFVZ35QOQQEuXYqjh1yM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957133927613-2b097nasn8c352rg5jifaph5n8v01a46.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
