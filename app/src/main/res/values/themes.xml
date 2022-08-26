@@ -12,9 +12,20 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
-        <item name="android:windowBackground" >@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
-    <style name="PantallaCarga" parent="Theme.ForestOn">
-        <item name="android:windowBackground" >@drawable/pantalla_carga_inicial</item>
+
+    <style name="Theme.App.Inicio" parent="Theme.SplashScreen">
+        <item name="android:windowBackground">@drawable/fondo_foreston_largo</item>
+        <item name="postSplashScreenTheme">@style/Theme.ForestOn</item>
     </style>
+
+    <style name="Theme.ForestOn.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ForestOn.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ForestOn.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

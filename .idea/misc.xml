@@ -7,9 +7,15 @@
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/pantalla_carga_inicial.xml" value="0.2265" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_auth.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_ingreso.xml" value="0.2" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_login.xml" value="0.1334853090172239" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/content_auth.xml" value="0.20742753623188406" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/fragment_first.xml" value="0.1" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/fragment_login.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/fragment_second.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/main_activity.xml" value="0.1" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.103" />
       </map>
     </option>
   </component>
