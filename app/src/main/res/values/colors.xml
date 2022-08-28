@@ -8,5 +8,7 @@
     <color name="teal_701">#00504F</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="app_bar">#CFE4D0</color>
+    <color name="barra_usuario">#334CD8</color>
     <color name="fondo_foreston">#69FFFA</color>
 </resources>

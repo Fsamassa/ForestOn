@@ -35,8 +35,7 @@
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:autofillHints="" />
+            android:minHeight="48dp" />
 
         <Space
             android:layout_width="match_parent"

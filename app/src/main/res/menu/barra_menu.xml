@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/btnItemHome"
+            android:icon="@drawable/ic_arbol"
+            android:title="Inicio" />
+
+        <item
+            android:id="@+id/btnItemScan"
+            android:icon="@drawable/ic_arbol"
+            android:title="Escanear Árbol" />
+
+        <item android:id="@+id/btnInputInfo"
+            android:title="Ingresar Información"
+            android:icon="@drawable/ic_arbol"
+            />
+        <item
+            android:id="@+id/btnItemParcelas"
+            android:icon="@drawable/ic_arbol"
+            android:title="Mi forestación" />
+
+        <item
+            android:id="@+id/btnItemReportes"
+            android:icon="@drawable/ic_arbol"
+            android:title="Mis Reportes" />
+
+        <item
+            android:id="@+id/btnItemHuella"
+            android:icon="@drawable/ic_arbol"
+            android:title="Huella de carbono" />
+
+        <item
+            android:id="@+id/btnItemBuscarSocio"
+            android:icon="@drawable/ic_arbol"
+            android:title="Buscar un socio" />
+
+    </group>
+
+
+    <item android:title="Links de interés">
+        <menu>
+            <item android:id="@+id/btnItemInfoAdicional1"
+                android:icon="@drawable/ic_arbol"
+                android:title="Url página 1" />
+            <item android:id="@+id/btnItemInfoAdicional2"
+                android:icon="@drawable/ic_arbol"
+                android:title="Url página 2" />
+        </menu>
+    </item>
+
+    <item android:title="Configuración">
+        <menu>
+            <item
+                android:id="@+id/btnItemConfig"
+                android:icon="@drawable/ic_arbol"
+                android:title="Configuración usuario" />
+            <item
+                android:id="@+id/btnItemLogout"
+                android:icon="@drawable/ic_arbol"
+                android:title="Cerrar Sesión" />
+        </menu>
+    </item>
+
+</menu>

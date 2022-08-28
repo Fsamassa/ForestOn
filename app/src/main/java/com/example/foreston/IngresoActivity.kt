@@ -16,7 +16,6 @@ class IngresoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityIngresoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         logueo()
     }
 
