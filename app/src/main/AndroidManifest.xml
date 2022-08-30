@@ -17,11 +17,6 @@
             android:name=".IngresoActivity"
             android:exported="false" />
         <activity
-            android:name=".AuthActivity"
-            android:exported="false"
-            android:label="@string/title_activity_auth"
-            android:theme="@style/Theme.ForestOn.NoActionBar" />
-        <activity
             android:name=".HomeActivity"
             android:exported="false" />
         <activity

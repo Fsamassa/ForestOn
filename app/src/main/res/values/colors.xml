@@ -9,6 +9,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_bar">#CFE4D0</color>
-    <color name="barra_usuario">#334CD8</color>
+    <color name="barra_usuario">#5E71DB</color>
     <color name="fondo_foreston">#69FFFA</color>
+    <color name="barra_menu">#08750C</color>
+    <color name="contor_general">#1A4721</color>
+    <color name="botones_inicio">#80B148</color>
+
 </resources>

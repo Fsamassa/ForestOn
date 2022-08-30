@@ -3,7 +3,7 @@
     <group>
         <item
             android:id="@+id/btnItemHome"
-            android:icon="@drawable/ic_arbol"
+            android:icon="@drawable/ic_inicio"
             android:title="Inicio" />
 
         <item
@@ -13,26 +13,26 @@
 
         <item android:id="@+id/btnInputInfo"
             android:title="Ingresar Información"
-            android:icon="@drawable/ic_arbol"
+            android:icon="@drawable/ic_subir_info"
             />
         <item
             android:id="@+id/btnItemParcelas"
-            android:icon="@drawable/ic_arbol"
+            android:icon="@drawable/ic_arboles"
             android:title="Mi forestación" />
 
         <item
             android:id="@+id/btnItemReportes"
-            android:icon="@drawable/ic_arbol"
+            android:icon="@drawable/ic_reporte"
             android:title="Mis Reportes" />
 
         <item
             android:id="@+id/btnItemHuella"
-            android:icon="@drawable/ic_arbol"
+            android:icon="@drawable/ic_co2_menu"
             android:title="Huella de carbono" />
 
         <item
             android:id="@+id/btnItemBuscarSocio"
-            android:icon="@drawable/ic_arbol"
+            android:icon="@drawable/ic_buscar_socio"
             android:title="Buscar un socio" />
 
     </group>
@@ -41,10 +41,10 @@
     <item android:title="Links de interés">
         <menu>
             <item android:id="@+id/btnItemInfoAdicional1"
-                android:icon="@drawable/ic_arbol"
+                android:icon="@drawable/ic_link_info"
                 android:title="Url página 1" />
             <item android:id="@+id/btnItemInfoAdicional2"
-                android:icon="@drawable/ic_arbol"
+                android:icon="@drawable/ic_link_info"
                 android:title="Url página 2" />
         </menu>
     </item>
@@ -53,11 +53,11 @@
         <menu>
             <item
                 android:id="@+id/btnItemConfig"
-                android:icon="@drawable/ic_arbol"
+                android:icon="@drawable/ic_settings"
                 android:title="Configuración usuario" />
             <item
                 android:id="@+id/btnItemLogout"
-                android:icon="@drawable/ic_arbol"
+                android:icon="@drawable/ic_logout"
                 android:title="Cerrar Sesión" />
         </menu>
     </item>
