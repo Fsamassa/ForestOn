@@ -1,6 +1,8 @@
 package com.example.foreston
 
+import android.content.Intent
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -17,6 +19,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var binding: ActivityHomeBinding
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
+
+    // urls test
+    private final var INTA_URL: String = "https://inta.gob.ar/sites/default/files/inta_concordia_planilla_de_precios_forestales_julio_2021.pdf"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +50,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val intent= Intent(Intent.ACTION_VIEW)
+
         when (item.itemId){
             R.id.btnItemHome -> mostrarAlerta("Implementar fragment para volver al Home")
             R.id.btnItemScan -> mostrarAlerta("Implementar fragment para escanear árbol")
@@ -53,7 +60,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes")
             R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono")
             R.id.btnItemBuscarSocio -> mostrarAlerta("Implementar fragment para buscar socio")
-            R.id.btnItemInfoAdicional1 -> mostrarAlerta("Implementar fragment para ir a un link1")
+//            R.id.btnItemInfoAdicional1 -> mostrarAlerta("Implementar fragment para ir a un link1")
+            R.id.btnItemInfoAdicional1 -> {intent.setData(Uri.parse(INTA_URL)); startActivity(intent)}
+
             R.id.btnItemInfoAdicional2 -> mostrarAlerta("Implementar fragment para ir a un link2")
             R.id.btnItemConfig -> mostrarAlerta("Implementar fragment para cambiar configuración")
             R.id.btnItemLogout -> {
