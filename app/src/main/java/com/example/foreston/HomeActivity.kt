@@ -10,6 +10,7 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.foreston.databinding.ActivityHomeBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -55,7 +56,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemInfoAdicional1 -> mostrarAlerta("Implementar fragment para ir a un link1")
             R.id.btnItemInfoAdicional2 -> mostrarAlerta("Implementar fragment para ir a un link2")
             R.id.btnItemConfig -> mostrarAlerta("Implementar fragment para cambiar configuración")
-            R.id.btnItemLogout -> mostrarAlerta("Implementar fragment para Cerrar sesión")
+            R.id.btnItemLogout -> {
+                FirebaseAuth.getInstance().signOut()
+                // ver esto, capaz hay q poner intent al IngresoActivity
+                onBackPressed()
+            }
         }
         drawer.closeDrawer(GravityCompat.START)
         return true
