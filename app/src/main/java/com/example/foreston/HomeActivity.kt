@@ -22,6 +22,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     // urls test
     private final var INTA_URL: String = "https://inta.gob.ar/sites/default/files/inta_concordia_planilla_de_precios_forestales_julio_2021.pdf"
+    private final var BONOS_URL: String = "http://www.ceads.org.ar/mercado-de-bonos-de-carbono-voluntario-vs-regulado/"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,10 +62,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes")
             R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono")
             R.id.btnItemBuscarSocio -> mostrarAlerta("Implementar fragment para buscar socio")
-//            R.id.btnItemInfoAdicional1 -> mostrarAlerta("Implementar fragment para ir a un link1")
             R.id.btnItemInfoAdicional1 -> {intent.setData(Uri.parse(INTA_URL)); startActivity(intent)}
-
-            R.id.btnItemInfoAdicional2 -> mostrarAlerta("Implementar fragment para ir a un link2")
+            R.id.btnItemInfoAdicional2 -> {intent.setData(Uri.parse(BONOS_URL)); startActivity(intent)}
             R.id.btnItemConfig -> mostrarAlerta("Implementar fragment para cambiar configuración")
             R.id.btnItemLogout -> {
                 FirebaseAuth.getInstance().signOut()
