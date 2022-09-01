@@ -1,5 +1,6 @@
 package com.example.foreston
 
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
@@ -66,6 +67,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemInfoAdicional2 -> {intent.setData(Uri.parse(BONOS_URL)); startActivity(intent)}
             R.id.btnItemConfig -> mostrarAlerta("Implementar fragment para cambiar configuración")
             R.id.btnItemLogout -> {
+                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
+                prefs.clear()
+                prefs.apply()
+
                 FirebaseAuth.getInstance().signOut()
                 // ver esto, capaz hay q poner intent al IngresoActivity
                 onBackPressed()

@@ -1,5 +1,6 @@
 package com.example.foreston
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,18 @@ class IngresoActivity : AppCompatActivity() {
         binding = ActivityIngresoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         logueo()
+        sesion()
+
+    }
+
+    private fun sesion(){
+        val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+        val email = prefs.getString("email", null)
+
+        if(email != null){
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun logueo() {
@@ -42,6 +55,11 @@ class IngresoActivity : AppCompatActivity() {
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(binding.editTextEmail.text.toString(),
                     binding.editTextPassword.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
+
+                        val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
+                        prefs.putString("email", binding.editTextEmail.text.toString())
+                        prefs.apply()
+
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                     }else{
