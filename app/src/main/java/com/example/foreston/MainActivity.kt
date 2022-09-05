@@ -25,13 +25,12 @@ class MainActivity : AppCompatActivity() {
         val analytics = FirebaseAnalytics.getInstance(this)
         val bundle = Bundle()
         bundle.putString("mensaje", "Integración con Firebase completa")
-        analytics.logEvent("InitScreen", bundle)
+        analytics.logEvent("Ingreso_a_MainActivity_Foreston", bundle)
 
         // Voy directo a la activity de autorización
         val intent = Intent(this, IngresoActivity::class.java)
         startActivity(intent)
 
         finish()
-
     }
 }

@@ -11,4 +11,9 @@
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
     <string name="archivo_preferencias">com.example.foreston.PREFERENCE_FILE_KEY</string>
+    <!-- Strings para logueo de cuentas demo Facebook -->
+    <string name="facebook_app_id">747133306584352</string>
+    <string name="fb_login_protocol_scheme">fb747133306584352</string>
+    <string name="facebook_client_token">bc4d00513478cfb8b211b6ac5a1f908b</string>
+
 </resources>

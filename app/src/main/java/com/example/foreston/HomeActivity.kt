@@ -7,11 +7,14 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.foreston.databinding.ActivityHomeBinding
+import com.facebook.login.Login
+import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 
@@ -50,6 +53,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, HomeFragment())
         fragmentTransaction.commit()
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -67,12 +71,17 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemInfoAdicional2 -> {intent.setData(Uri.parse(BONOS_URL)); startActivity(intent)}
             R.id.btnItemConfig -> mostrarAlerta("Implementar fragment para cambiar configuración")
             R.id.btnItemLogout -> {
-                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                prefs.clear()
-                prefs.apply()
+                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+                val proveedor = prefs.getString("Proveedor", null)
+                val prefsClose = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
+                prefsClose.clear()
+                prefsClose.apply()
 
-                FirebaseAuth.getInstance().signOut()
-                // ver esto, capaz hay q poner intent al IngresoActivity
+                if(proveedor == ProveedorLogin.FACEBOOK.toString()){
+                    LoginManager.getInstance().logOut()
+                }else{
+                    FirebaseAuth.getInstance().signOut()
+                }
                 onBackPressed()
             }
         }
