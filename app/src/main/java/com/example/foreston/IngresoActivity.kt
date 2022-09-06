@@ -40,7 +40,7 @@ class IngresoActivity : AppCompatActivity() {
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if(it.isSuccessful){
                             val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                            prefs.putString("email", account.email)
+                            prefs.putString("Email", account.email)
                             prefs.putString("Proveedor", ProveedorLogin.GOOGLE.toString())
                             prefs.apply()
                             val intent = Intent(this, HomeActivity::class.java)
@@ -68,12 +68,9 @@ class IngresoActivity : AppCompatActivity() {
 
     private fun sesion(){
         val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
-        val email = prefs.getString("email", null)
-        val proveedor = prefs.getString("Proveedor", null)
+        val email = prefs.getString("Email", null)
 
-        println("Email: "+email+" Proveedor: "+proveedor)
-
-        if(email != ""){
+        if(email != null){
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
@@ -87,7 +84,7 @@ class IngresoActivity : AppCompatActivity() {
                     binding.editTextPassword.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
                         val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                        prefs.putString("email", binding.editTextEmail.text.toString())
+                        prefs.putString("Email", binding.editTextEmail.text.toString())
                         prefs.putString("Proveedor", ProveedorLogin.BASICO.toString())
                         prefs.apply()
 
@@ -109,7 +106,7 @@ class IngresoActivity : AppCompatActivity() {
                     binding.editTextPassword.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
                         val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                        prefs.putString("email", binding.editTextEmail.text.toString())
+                        prefs.putString("Email", binding.editTextEmail.text.toString())
                         prefs.putString("Proveedor", ProveedorLogin.BASICO.toString())
                         prefs.apply()
                         val intent = Intent(this, HomeActivity::class.java)
@@ -146,7 +143,7 @@ class IngresoActivity : AppCompatActivity() {
                         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                             if(it.isSuccessful){
                                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                                prefs.putString("email", it.result?.user?.email)
+                                prefs.putString("Email", it.result?.user?.email)
                                 prefs.putString("Proveedor", ProveedorLogin.FACEBOOK.toString())
                                 prefs.apply()
                                 val intent = Intent(this@IngresoActivity, HomeActivity::class.java)

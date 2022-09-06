@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -54,10 +55,23 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fragmentTransaction.replace(R.id.frameLayout, HomeFragment())
         fragmentTransaction.commit()
 
+        val headerView = navigationView.getHeaderView(0)
+        val drawerLoggedUser = headerView.findViewById<TextView>(R.id.drawerLoggedUser)
+
+        // Setear la imagen del usuario en la la cabecera del Menu
+     //   val drawerImageUser = headerView.findViewById<TextView>(R.id.drawerImageUser)
+     //   drawerImageUser.background = "Setear imagen o foto del usuario"
+        val prefsEmail = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+        drawerLoggedUser.text = prefsEmail.getString("Email", null)
+        val navMenu: Menu = navigationView.menu
+        // Acá se podria poner un Alias descriptivo en vez de las URL
+        navMenu.findItem(R.id.btnItemInfoAdicional1).setTitle(INTA_URL)
+        navMenu.findItem(R.id.btnItemInfoAdicional2).setTitle(BONOS_URL)
+
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        val intent= Intent(Intent.ACTION_VIEW)
+        val intent = Intent(Intent.ACTION_VIEW)
 
         when (item.itemId){
             R.id.btnItemHome -> mostrarAlerta("Implementar fragment para volver al Home")
@@ -67,8 +81,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes")
             R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono")
             R.id.btnItemBuscarSocio -> mostrarAlerta("Implementar fragment para buscar socio")
-            R.id.btnItemInfoAdicional1 -> {intent.setData(Uri.parse(INTA_URL)); startActivity(intent)}
-            R.id.btnItemInfoAdicional2 -> {intent.setData(Uri.parse(BONOS_URL)); startActivity(intent)}
+            R.id.btnItemInfoAdicional1 -> {
+                intent.setData(Uri.parse(INTA_URL))
+                startActivity(intent)}
+            R.id.btnItemInfoAdicional2 -> {
+                intent.setData(Uri.parse(BONOS_URL))
+                startActivity(intent)}
             R.id.btnItemConfig -> mostrarAlerta("Implementar fragment para cambiar configuración")
             R.id.btnItemLogout -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
