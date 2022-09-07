@@ -90,6 +90,8 @@ class IngresoActivity : AppCompatActivity() {
 
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
+
+
                     }else{
                         mostrarAlerta("Logueo fallido. Revise credenciales.")
                     }
@@ -176,5 +178,6 @@ class IngresoActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
+
 
 }

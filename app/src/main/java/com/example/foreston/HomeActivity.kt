@@ -74,7 +74,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val intent = Intent(Intent.ACTION_VIEW)
 
         when (item.itemId){
-            R.id.btnItemHome -> mostrarAlerta("Implementar fragment para volver al Home")
+            R.id.btnItemHome -> {
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.frameLayout, HomeFragment())
+                fragmentTransaction.commit()
+            }
             R.id.btnItemScan -> mostrarAlerta("Implementar fragment para escanear árbol")
             R.id.btnInputInfo -> mostrarAlerta("Implementar fragment para Cargar Información")
             R.id.btnItemParcelas -> mostrarAlerta("Implementar fragment para ver parcelas")
@@ -87,7 +91,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemInfoAdicional2 -> {
                 intent.setData(Uri.parse(BONOS_URL))
                 startActivity(intent)}
-            R.id.btnItemConfig -> mostrarAlerta("Implementar fragment para cambiar configuración")
+            R.id.btnItemConfig -> {
+                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+                println(prefs.toString())
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.frameLayout, perfilFragment())
+                fragmentTransaction.commit()
+
+
+            }
             R.id.btnItemLogout -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
                 val proveedor = prefs.getString("Proveedor", null)
