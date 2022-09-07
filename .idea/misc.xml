@@ -3,15 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/facun/.gradle/caches/transforms-3/ce0e067da56556725c8040e5ccde18c3/transformed/play-services-base-17.1.0/res/drawable/common_google_signin_btn_icon_light_focused.xml" value="0.2135" />
-        <entry key="..\:/Users/facun/.gradle/caches/transforms-3/ce0e067da56556725c8040e5ccde18c3/transformed/play-services-base-17.1.0/res/drawable/common_google_signin_btn_text_disabled.xml" value="0.2135" />
+        <entry key="..\:/Users/af818qm/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_home.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/af818qm/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_ingreso.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/af818qm/AndroidStudioProjects/ForestOn/app/src/main/res/layout/app_bar.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/af818qm/AndroidStudioProjects/ForestOn/app/src/main/res/layout/fragment_home.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/af818qm/AndroidStudioProjects/ForestOn/app/src/main/res/layout/fragment_perfil.xml" value="0.22" />
+        <entry key="..\:/Users/af818qm/AndroidStudioProjects/ForestOn/app/src/main/res/layout/main_activity.xml" value="0.14130434782608695" />
+        <entry key="..\:/Users/af818qm/AndroidStudioProjects/ForestOn/app/src/main/res/layout/nav_header.xml" value="0.14130434782608695" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2265" />
-        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/custom_button_inicio.xml" value="0.1735" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/pantalla_carga_inicial.xml" value="0.2265" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_auth.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_home.xml" value="0.264" />
-        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_ingreso.xml" value="0.264" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_ingreso.xml" value="0.1" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_login.xml" value="0.1334853090172239" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/app_bar.xml" value="0.27447916666666666" />
@@ -37,7 +41,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.27447916666666666" />
+        <option name="scale" value="0.264" />
       </ProjectState>
     </option>
   </component>

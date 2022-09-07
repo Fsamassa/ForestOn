@@ -16,4 +16,18 @@
     <string name="fb_login_protocol_scheme">fb747133306584352</string>
     <string name="facebook_client_token">bc4d00513478cfb8b211b6ac5a1f908b</string>
 
+    <string name="MisDatosTXT">Mis Datos Personales</string>
+    <string name="UiDato">UID</string>
+    <string name="Nombresdato">NOMBRES</string>
+    <string name="Apellidodato">APELLIDOS</string>
+    <string name="CorreoDato">CORREO</string>
+    <string name="PasswordDato">PASSWORD</string>
+    <string name="EdadDato">EDAD</string>
+    <string name="DireccionDato">DIRECCION</string>
+    <string name="TELEFONOdato">TELEFONO</string>
+    <string name="botonActDa">Actualizar Datos</string>
+    <string name="botonActPass">Actualizar Pass</string>
+
+
+
 </resources>
