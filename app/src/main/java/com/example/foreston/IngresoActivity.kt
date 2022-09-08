@@ -87,7 +87,7 @@ class IngresoActivity : AppCompatActivity() {
                         prefs.putString("Email", binding.editTextEmail.text.toString())
                         prefs.putString("Proveedor", ProveedorLogin.BASICO.toString())
                         prefs.apply()
-
+                        limpiarCamposLogueo()
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
 
@@ -111,6 +111,7 @@ class IngresoActivity : AppCompatActivity() {
                         prefs.putString("Email", binding.editTextEmail.text.toString())
                         prefs.putString("Proveedor", ProveedorLogin.BASICO.toString())
                         prefs.apply()
+                        limpiarCamposLogueo()
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
                     }else{
@@ -177,6 +178,10 @@ class IngresoActivity : AppCompatActivity() {
         builder.setPositiveButton("Aceptar", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+    private fun limpiarCamposLogueo(){
+        binding.editTextEmail.setText(null)
+        binding.editTextPassword.setText(null)
     }
 
 

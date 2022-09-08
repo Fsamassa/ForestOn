@@ -104,7 +104,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragmentTransaction.replace(R.id.frameLayout, perfilFragment())
                 fragmentTransaction.commit()
 
-
             }
             R.id.btnItemLogout -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
