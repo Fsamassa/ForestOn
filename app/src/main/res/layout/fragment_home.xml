@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment"
-    android:background="@color/white">
+    tools:context=".HomeFragment">
 
     <Button
         android:id="@+id/btnScanArbol"
@@ -16,7 +15,8 @@
         android:paddingStart="20dp"
         android:textSize="24sp"
         android:textAlignment="center"
-        android:background="@color/white"
+        android:background="@drawable/custom_button_inicio"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,12 +28,13 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textAlignment="center"
-        android:background="@color/white"
         android:text="Buscar Socios"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnScanArbol"/>
+        app:layout_constraintTop_toBottomOf="@id/btnScanArbol"
+        android:background="@drawable/custom_button_inicio"
+        app:backgroundTint="@null"/>
 
     <Button
         android:id="@+id/btnInfo"
@@ -41,7 +42,8 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textAlignment="center"
-        android:background="@color/white"
+        android:background="@drawable/custom_button_inicio"
+        app:backgroundTint="@null"
         android:text="Cargar Informacion"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +55,8 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:textAlignment="center"
-        android:background="@color/white"
+        android:background="@drawable/custom_button_inicio"
+        app:backgroundTint="@null"
         android:text="Mis Reportes"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"

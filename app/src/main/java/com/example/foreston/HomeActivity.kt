@@ -1,5 +1,9 @@
 package com.example.foreston
 
+import android.graphics.Color
+import android.Manifest
+import androidx.core.app.ActivityCompat
+import android.content.pm.PackageManager
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
@@ -9,21 +13,23 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.foreston.databinding.ActivityHomeBinding
-import com.facebook.login.Login
 import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import androidx.core.content.ContextCompat
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
+    private val CAMERA_REQUEST_CODE = 0
 
     // urls test
     private final var INTA_URL: String = "https://inta.gob.ar/sites/default/files/inta_concordia_planilla_de_precios_forestales_julio_2021.pdf"
@@ -50,6 +56,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
+        navigationView.setBackgroundColor(Color.WHITE)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, HomeFragment())
@@ -67,7 +74,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Acá se podria poner un Alias descriptivo en vez de las URL
         navMenu.findItem(R.id.btnItemInfoAdicional1).setTitle(INTA_URL)
         navMenu.findItem(R.id.btnItemInfoAdicional2).setTitle(BONOS_URL)
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -79,12 +85,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragmentTransaction.replace(R.id.frameLayout, HomeFragment())
                 fragmentTransaction.commit()
             }
-            R.id.btnItemScan -> mostrarAlerta("Implementar fragment para escanear árbol")
-            R.id.btnInputInfo -> mostrarAlerta("Implementar fragment para Cargar Información")
-            R.id.btnItemParcelas -> mostrarAlerta("Implementar fragment para ver parcelas")
-            R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes")
-            R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono")
-            R.id.btnItemBuscarSocio -> mostrarAlerta("Implementar fragment para buscar socio")
+            R.id.btnItemScan -> {checkearPermisosCamera()}
+            R.id.btnInputInfo -> mostrarAlerta("Implementar fragment para Cargar Información","Ingresar Informacion")
+            R.id.btnItemParcelas -> mostrarAlerta("Implementar fragment para ver parcelas","Mis Parcelas")
+            R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes","Reportes")
+            R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono","Huella de Carbono")
+            R.id.btnItemBuscarSocio -> mostrarAlerta("Implementar fragment para buscar socio","Buscar Socio")
             R.id.btnItemInfoAdicional1 -> {
                 intent.setData(Uri.parse(INTA_URL))
                 startActivity(intent)}
@@ -133,15 +139,58 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (toggle.onOptionsItemSelected(item)){
             return true
         }
-
         return super.onOptionsItemSelected(item)
     }
 
-    private fun mostrarAlerta(mensaje: String ){
+    private fun checkearPermisosCamera(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            //El permiso no está estaba aceptado o no tuvo
+            solicitarPermisosParaCamara()
+        } else {
+            //El permiso estaba aceptado, hacer algo.
+            Toast.makeText(this, "Ingresando al scan de árboles...", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, ScanArbolActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+
+    private fun solicitarPermisosParaCamara() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+            //El usuario ya ha rechazado el permiso anteriormente, debemos informarle que vaya a ajustes.
+            mostrarAlerta("Has denegado el uso de la cámara anteriormente. Para acceder al scan deberas dar permisos manualmente.",
+                            "Permisos Cámara")
+        } else {
+            //El usuario nunca ha aceptado ni rechazado, así que le pedimos que acepte el permiso.
+            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.CAMERA),CAMERA_REQUEST_CODE)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            CAMERA_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    //El usuario ha aceptado el permiso, no tiene porqué darle de nuevo al botón, podemos lanzar la funcionalidad desde aquí.
+                    val intent = Intent(this, ScanArbolActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    //El usuario ha rechazado el permiso, podemos desactivar la funcionalidad o mostrar una vista/diálogo.
+                    mostrarAlerta("Has denegado el uso de la camara para scaneo. Para habilitarlo debes cambiarlo manualmente", "Permisos Cámara")
+                }
+                return
+            }
+            else -> {
+                // Este else lo dejamos por si sale un permiso que no teníamos controlado.
+            }
+        }
+    }
+
+    private fun mostrarAlerta(mensaje: String, titulo: String ){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("Implementar!")
+        builder.setTitle(titulo)
         builder.setMessage(mensaje)
-        builder.setPositiveButton("Enterado!", null)
+        builder.setPositiveButton("¡Entendido!", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }

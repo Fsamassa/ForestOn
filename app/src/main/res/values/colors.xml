@@ -14,4 +14,7 @@
     <color name="barra_menu">#08750C</color>
     <color name="contor_general">#1A4721</color>
     <color name="botones_inicio">#80B148</color>
+    <color name="color_hint">#ACBC9A</color>
+    <color name="texto_inicio">#3F51B5</color>
+
 </resources>

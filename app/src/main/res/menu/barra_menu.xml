@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
     <group>
         <item
             android:id="@+id/btnItemHome"
             android:icon="@drawable/ic_inicio"
-            android:title="Inicio" />
+            android:title="Inicio"/>
 
         <item
             android:id="@+id/btnItemScan"
@@ -36,7 +38,6 @@
             android:title="Buscar un socio" />
 
     </group>
-
 
     <item android:title="Links de interés">
         <menu>

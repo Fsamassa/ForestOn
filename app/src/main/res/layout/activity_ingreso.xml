@@ -33,8 +33,12 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/email"
+            android:textColorHint="@color/color_hint"
             android:inputType="textEmailAddress"
-            android:minHeight="48dp" />
+            android:textColor="@color/barra_menu"
+            android:textStyle="italic"
+            android:minHeight="48dp"
+            android:backgroundTint="@color/botones_inicio"/>
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -42,8 +46,12 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/contraseña"
+            android:textColorHint="@color/color_hint"
             android:inputType="textPassword"
-            android:minHeight="48dp" />
+            android:textColor="@color/barra_menu"
+            android:textStyle="italic"
+            android:minHeight="48dp"
+            android:backgroundTint="@color/botones_inicio"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -82,9 +90,17 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginTop="80dp">
+            android:layout_marginTop="60dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="O ingresá usando tus cuentas asociadas"
+                android:textAlignment="center"
+                android:textColor="@color/texto_inicio"/>
 
             <Button
                 android:id="@+id/buttonGoogle"
@@ -134,7 +150,6 @@
                 android:textSize="22sp"
                 android:textStyle="bold|italic"
                 app:cornerRadius="20dp"
-                app:icon="@drawable/common_google_signin_btn_icon_light_focused"
                 app:iconGravity="textEnd|end|textStart"
                 app:strokeColor="#8B0050C8"
                 app:strokeWidth="1dp" />

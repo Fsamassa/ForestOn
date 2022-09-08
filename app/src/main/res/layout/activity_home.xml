@@ -23,6 +23,8 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/barra_menu"
-        app:menu="@menu/barra_menu" />
+        app:itemTextColor="@color/black"
+        app:subheaderColor="@color/black"
+        app:menu="@menu/barra_menu"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
