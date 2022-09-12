@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
     android:background="#FFF"
@@ -31,14 +32,27 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="8dp" />
-
+        <!--
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imagen_dato"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
-            android:src="@drawable/app_foreston_mano" />
+            android:src="@drawable/app_foreston_mano" /> -->
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagen_perfil"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/app_foreston_mano"
+
+            />
+
+
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="8dp" />
@@ -125,7 +139,8 @@
             android:layout_marginTop="3dp"
             android:hint="Telefono"
             android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:inputType="number"/>
         <Space
             android:layout_width="match_parent"
             android:layout_height="24dp" />
@@ -156,14 +171,6 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/Getbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="Recuperar" />
 
         </LinearLayout>
 
@@ -193,6 +200,8 @@
                         android:layout_height="8dp"
                         android:layout_weight="1" />
 
-                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
             </ScrollView>
