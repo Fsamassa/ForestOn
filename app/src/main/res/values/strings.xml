@@ -6,7 +6,8 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="email">Email</string>
+    <string name="Email">Email</string>
+    <string name="Proveedor">Proveedor</string>
     <string name="contraseña">Contraseña</string>
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
@@ -27,6 +28,7 @@
     <string name="TELEFONOdato">TELEFONO</string>
     <string name="botonActDa">Actualizar Datos</string>
     <string name="botonActPass">Actualizar Pass</string>
-
+    <string name="big_lamp">Big Lamp</string>
+    <string name="small_table">small table</string>
 
 </resources>

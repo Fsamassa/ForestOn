@@ -23,6 +23,7 @@ import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import androidx.core.content.ContextCompat
+import com.example.foreston.utils.UtilsAuth
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -69,7 +70,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
      //   val drawerImageUser = headerView.findViewById<TextView>(R.id.drawerImageUser)
      //   drawerImageUser.background = "Setear imagen o foto del usuario"
         val prefsEmail = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
-        drawerLoggedUser.text = prefsEmail.getString("Email", null)
+        drawerLoggedUser.text = prefsEmail.getString(getString(R.string.Email), null)
         val navMenu: Menu = navigationView.menu
         // Acá se podria poner un Alias descriptivo en vez de las URL
         navMenu.findItem(R.id.btnItemInfoAdicional1).setTitle(INTA_URL)
@@ -107,12 +108,12 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.btnItemLogout -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
-                val proveedor = prefs.getString("Proveedor", null)
+                val proveedor = prefs.getString(getString(R.string.Proveedor), null)
                 val prefsClose = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
                 prefsClose.clear()
                 prefsClose.apply()
 
-                if(proveedor == ProveedorLogin.FACEBOOK.toString()){
+                if(proveedor == UtilsAuth.ProveedorLogin.FACEBOOK.toString()){
                     LoginManager.getInstance().logOut()
                 }else{
                     FirebaseAuth.getInstance().signOut()

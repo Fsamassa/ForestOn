@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.appcompat.app.AlertDialog
 import com.example.foreston.databinding.ActivityIngresoBinding
+import com.example.foreston.utils.*
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -19,11 +20,7 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
-enum class ProveedorLogin {
-    BASICO,
-    GOOGLE,
-    FACEBOOK
-}
+
 
 class IngresoActivity : AppCompatActivity() {
 
@@ -40,8 +37,8 @@ class IngresoActivity : AppCompatActivity() {
                     FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                         if(it.isSuccessful){
                             val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                            prefs.putString("Email", account.email)
-                            prefs.putString("Proveedor", ProveedorLogin.GOOGLE.toString())
+                            prefs.putString(getString(R.string.Email), account.email)
+                            prefs.putString(getString(R.string.Proveedor), UtilsAuth.ProveedorLogin.GOOGLE.toString())
                             prefs.apply()
                             val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
@@ -68,7 +65,7 @@ class IngresoActivity : AppCompatActivity() {
 
     private fun sesion(){
         val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
-        val email = prefs.getString("Email", null)
+        val email = prefs.getString(getString(R.string.Email), null)
 
         if(email != null){
             val intent = Intent(this, HomeActivity::class.java)
@@ -84,8 +81,8 @@ class IngresoActivity : AppCompatActivity() {
                     binding.editTextPassword.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
                         val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                        prefs.putString("Email", binding.editTextEmail.text.toString())
-                        prefs.putString("Proveedor", ProveedorLogin.BASICO.toString())
+                        prefs.putString(getString(R.string.Email), binding.editTextEmail.text.toString())
+                        prefs.putString(getString(R.string.Proveedor), UtilsAuth.ProveedorLogin.BASICO.toString())
                         prefs.apply()
                         limpiarCamposLogueo()
                         val intent = Intent(this, HomeActivity::class.java)
@@ -102,14 +99,17 @@ class IngresoActivity : AppCompatActivity() {
 
         }
         binding.buttonSignUp.setOnClickListener{
-            if(binding.editTextEmail.text.isNotEmpty() && binding.editTextPassword.text.isNotEmpty()){
+            val emailNuevo = binding.editTextEmail.text
+            val passwordNuevo = binding.editTextPassword.text
 
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(binding.editTextEmail.text.toString(),
-                    binding.editTextPassword.text.toString()).addOnCompleteListener {
+            if(emailNuevo.isNotEmpty() && passwordNuevo.isNotEmpty()){
+                if (UtilsAuth.tieneDominioValido(emailNuevo.toString())){
+                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailNuevo.toString(),
+                        passwordNuevo.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
                         val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                        prefs.putString("Email", binding.editTextEmail.text.toString())
-                        prefs.putString("Proveedor", ProveedorLogin.BASICO.toString())
+                        prefs.putString(getString(R.string.Email), emailNuevo.toString())
+                        prefs.putString(getString(R.string.Proveedor), UtilsAuth.ProveedorLogin.BASICO.toString())
                         prefs.apply()
                         limpiarCamposLogueo()
                         val intent = Intent(this, HomeActivity::class.java)
@@ -117,6 +117,9 @@ class IngresoActivity : AppCompatActivity() {
                     }else{
                         mostrarAlerta("Creacion de usuario fallido. Contactese con Admin.")
                     }
+                    }
+                }else{
+                    mostrarAlerta("Dominio de email no permitido. Revise los datos ingresados.")
                 }
             }else{
                 mostrarAlerta("Datos incompletos. No se admiten espacios en blanco.")
@@ -146,8 +149,8 @@ class IngresoActivity : AppCompatActivity() {
                         FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener {
                             if(it.isSuccessful){
                                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                                prefs.putString("Email", it.result?.user?.email)
-                                prefs.putString("Proveedor", ProveedorLogin.FACEBOOK.toString())
+                                prefs.putString(getString(R.string.Email), it.result?.user?.email)
+                                prefs.putString(getString(R.string.Proveedor), UtilsAuth.ProveedorLogin.FACEBOOK.toString())
                                 prefs.apply()
                                 val intent = Intent(this@IngresoActivity, HomeActivity::class.java)
                                 startActivity(intent)
@@ -180,8 +183,8 @@ class IngresoActivity : AppCompatActivity() {
         dialog.show()
     }
     private fun limpiarCamposLogueo(){
-        binding.editTextEmail.setText(null)
-        binding.editTextPassword.setText(null)
+        binding.editTextEmail.text = null
+        binding.editTextPassword.text = null
     }
 
 

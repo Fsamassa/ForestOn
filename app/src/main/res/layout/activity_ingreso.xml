@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/email"
+            android:hint="@string/Email"
             android:textColorHint="@color/color_hint"
             android:inputType="textEmailAddress"
             android:textColor="@color/barra_menu"
