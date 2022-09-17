@@ -11,6 +11,8 @@ object UtilsAuth {
         "@yahoo.com.ar",
         "@gmail.com",
         "@hotmail.com",
+        "@live.com",
+        "@live.com.ar",
         "@frba.utn.edu.ar",
         "@tfbnw.net",
         "@forestonapp.app.com")

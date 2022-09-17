@@ -52,7 +52,7 @@ class perfilFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-            }
+    }
 
 
 
@@ -105,7 +105,9 @@ class perfilFragment : Fragment() {
                 && binding.NombreDato.text.toString() !=""
                 && binding.DireccionDato.text.toString() !=""
                 && binding.TelefonoDato.text.toString() !="") {
-                db.collection("users").document(email).set(hashMapOf("nombre" to binding.NombreDato.text.toString(),
+                db.collection("users").document(email).
+                set(hashMapOf(
+                    "nombre" to binding.NombreDato.text.toString(),
                     "apellido" to binding.ApellidoDato.text.toString(),
                     "direccion" to binding.DireccionDato.text.toString(),
                     "telefono" to binding.TelefonoDato.text.toString()))

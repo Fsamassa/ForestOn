@@ -23,6 +23,7 @@ import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import androidx.core.content.ContextCompat
+import com.example.foreston.recyclerAsociados.RecyclerAsociadosActivity
 import com.example.foreston.utils.UtilsAuth
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -91,7 +92,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemParcelas -> mostrarAlerta("Implementar fragment para ver parcelas","Mis Parcelas")
             R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes","Reportes")
             R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono","Huella de Carbono")
-            R.id.btnItemBuscarSocio -> mostrarAlerta("Implementar fragment para buscar socio","Buscar Socio")
+            R.id.btnItemBuscarSocio -> {
+                val intent = Intent(this, RecyclerAsociadosActivity::class.java)
+                startActivity(intent)
+            }
             R.id.btnItemInfoAdicional1 -> {
                 intent.setData(Uri.parse(INTA_URL))
                 startActivity(intent)}

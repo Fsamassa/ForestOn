@@ -105,19 +105,18 @@ class IngresoActivity : AppCompatActivity() {
             if(emailNuevo.isNotEmpty() && passwordNuevo.isNotEmpty()){
                 if (UtilsAuth.tieneDominioValido(emailNuevo.toString())){
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailNuevo.toString(),
-                        passwordNuevo.toString()).addOnCompleteListener {
-                    if(it.isSuccessful){
-                        val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
-                        prefs.putString(getString(R.string.Email), emailNuevo.toString())
-                        prefs.putString(getString(R.string.Proveedor), UtilsAuth.ProveedorLogin.BASICO.toString())
-                        prefs.apply()
-                        limpiarCamposLogueo()
-                        val intent = Intent(this, HomeActivity::class.java)
-                        startActivity(intent)
-                    }else{
-                        mostrarAlerta("Creacion de usuario fallido. Contactese con Admin.")
-                    }
-                    }
+                        passwordNuevo.toString()).addOnCompleteListener { if(it.isSuccessful){
+                            val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
+                            prefs.putString(getString(R.string.Email), emailNuevo.toString())
+                            prefs.putString(getString(R.string.Proveedor), UtilsAuth.ProveedorLogin.BASICO.toString())
+                            prefs.apply()
+                            limpiarCamposLogueo()
+                            val intent = Intent(this, HomeActivity::class.java)
+                            startActivity(intent)
+                        }else{
+                            mostrarAlerta("Creacion de usuario fallido. Contactese con Admin.")
+                        }
+                        }
                 }else{
                     mostrarAlerta("Dominio de email no permitido. Revise los datos ingresados.")
                 }

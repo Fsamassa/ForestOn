@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp"
+    app:cardBackgroundColor="#E6E9F3"
+    app:barrierMargin="20dp"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto">
+
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/progress_wheel"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ivAsociadoFoto"
+        app:layout_constraintStart_toStartOf="@+id/ivAsociadoFoto"
+        app:layout_constraintTop_toTopOf="parent"
+        wheel:matProg_barColor="@color/botones_inicio"
+        wheel:matProg_barSpinCycleTime="1500"
+        wheel:matProg_fillRadius="true"
+        wheel:matProg_progressIndeterminate="true" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivAsociadoFoto"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDatosAsociado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datos del Asociado"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvDatosAsociado"
+        tools:text="Nombre" />
+
+    <TextView
+        android:id="@+id/tvEspacio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text= "  "
+        app:layout_constraintStart_toEndOf="@+id/tvNombre"
+        app:layout_constraintTop_toBottomOf="@+id/tvDatosAsociado"
+        tools:text="  " />
+
+    <TextView
+        android:id="@+id/tvApellido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tvEspacio"
+        app:layout_constraintTop_toBottomOf="@+id/tvDatosAsociado"
+        tools:text="Apellido" />
+
+    <TextView
+        android:id="@+id/tvUbicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombre"
+        android:text="Ubicación"
+        android:textStyle="bold"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/tvDomicilio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvUbicacion"
+        tools:text="Domicilio" />
+
+    <TextView
+        android:id="@+id/tvCantCamposLeyenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvDomicilio"
+        android:text="Cantidad campos: "
+        tools:text="Cantidad campos: "   />
+
+    <TextView
+        android:id="@+id/tvCantCampos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tvCantCamposLeyenda"
+        app:layout_constraintTop_toBottomOf="@+id/tvDomicilio"
+        tools:text="10" />
+
+    <TextView
+        android:id="@+id/tvDatosContacto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvCantCampos"
+        android:text="Datos de contacto"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        tools:text="Datos de contacto"  />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvDatosContacto"
+        tools:text="Email" />
+
+    <TextView
+        android:id="@+id/tvTelefonoLeyenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+        android:text="Teléfono: "
+        tools:text="Telefono: " />
+
+    <TextView
+        android:id="@+id/tvTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@+id/tvTelefonoLeyenda"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+        tools:text="Teléfono" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
+
+
