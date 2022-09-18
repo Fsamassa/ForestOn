@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
-import com.example.foreston.R
 import com.example.foreston.databinding.ItemAsociadoBinding
 import com.example.foreston.recyclerAsociados.Asociado
 import com.google.firebase.storage.FirebaseStorage

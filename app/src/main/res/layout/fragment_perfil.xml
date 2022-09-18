@@ -16,7 +16,6 @@
         android:orientation="vertical">
 
 
-
         <Space
             android:layout_width="wrap_content"
             android:layout_height="8dp" />
@@ -27,7 +26,8 @@
             android:layout_gravity="center"
             android:text="@string/MisDatosTXT"
             android:textColor="#000"
-            android:textSize="25sp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <Space
             android:layout_width="match_parent"
@@ -47,11 +47,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/app_foreston_mano"
-
-            />
-
-
+            android:src="@drawable/app_foreston_mano" />
 
         <Space
             android:layout_width="match_parent"
@@ -60,12 +56,12 @@
         <TextView
             android:id="@+id/CorreoDato"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="3dp"
             android:hint="Correo"
             android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -74,12 +70,12 @@
         <EditText
             android:id="@+id/NombreDato"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="3dp"
             android:hint="Nombre"
             android:textColor="#000"
-            android:textSize="18sp"
+            android:textSize="20sp"
             tools:ignore="TextContrastCheck" />
 
         <Space
@@ -89,29 +85,27 @@
         <EditText
             android:id="@+id/ApellidoDato"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="3dp"
             android:hint="Apellido"
             android:textColor="#000"
-            android:textSize="18sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="8dp" />
-
-
+            android:textSize="20sp" />
         <!--
-        <EditText
-            android:id="@+id/PasswordDato"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:hint="Password"
-            android:textColor="#000"
-            android:textSize="18sp" />
-        -->
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp" />
+
+                <EditText
+                    android:id="@+id/PasswordDato"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="3dp"
+                    android:hint="Password"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+                -->
 
         <Space
             android:layout_width="match_parent"
@@ -120,12 +114,12 @@
         <EditText
             android:id="@+id/DireccionDato"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="3dp"
             android:hint="Direccion"
             android:textColor="#000"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -134,12 +128,12 @@
         <EditText
             android:id="@+id/TelefonoDato"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="3dp"
             android:hint="Telefono"
             android:textColor="#000"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:inputType="number"/>
         <Space
             android:layout_width="match_parent"
@@ -154,9 +148,11 @@
                 android:id="@+id/Savebutton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
                 android:layout_weight="1"
+                android:background="@drawable/custom_button_inicio"
+                app:backgroundTint="@null"
                 android:text="Guardar" />
 
         </LinearLayout>

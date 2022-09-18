@@ -7,11 +7,14 @@ import android.content.pm.PackageManager
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -23,14 +26,23 @@ import com.facebook.login.LoginManager
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import androidx.core.content.ContextCompat
+import androidx.core.view.isGone
 import com.example.foreston.recyclerAsociados.RecyclerAsociadosActivity
 import com.example.foreston.utils.UtilsAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.File
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var drawer: DrawerLayout
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var storage: StorageReference
+    private val db  = FirebaseFirestore.getInstance()
+    private val dbS = FirebaseStorage.getInstance()
+
     private val CAMERA_REQUEST_CODE = 0
 
     // urls test
@@ -65,13 +77,39 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         fragmentTransaction.commit()
 
         val headerView = navigationView.getHeaderView(0)
+
+        val drawerImageUser = headerView.findViewById<ImageView>(R.id.drawerImageUser)
+        val drawerNameUser = headerView.findViewById<TextView>(R.id.drawerNameUuser)
         val drawerLoggedUser = headerView.findViewById<TextView>(R.id.drawerLoggedUser)
 
-        // Setear la imagen del usuario en la la cabecera del Menu
-     //   val drawerImageUser = headerView.findViewById<TextView>(R.id.drawerImageUser)
-     //   drawerImageUser.background = "Setear imagen o foto del usuario"
-        val prefsEmail = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
-        drawerLoggedUser.text = prefsEmail.getString(getString(R.string.Email), null)
+        val prefsEmail = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).getString(getString(R.string.Email), null)
+        drawerLoggedUser.text = prefsEmail
+
+        db.collection("users").document(prefsEmail!!).get().addOnSuccessListener {
+            val imagen_url = it.get("imagen_foto_url") as String?
+            val nombre = it.get("nombre") as String?
+            val apellido = it.get("apellido") as String?
+
+
+            if (nombre.isNullOrBlank() && apellido.isNullOrBlank()) {
+                drawerNameUser.isGone
+            }else{
+                drawerNameUser.text = nombre + " " + apellido
+            }
+
+            if (imagen_url != ""){
+                storage = dbS.getReference("Users/" + imagen_url)
+            }else{
+                storage = dbS.getReference("Users/perfil_generico_3.png")
+            }
+
+            val localfile = File.createTempFile("tempImage","jpg")
+            storage.getFile(localfile).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeFile(localfile.absolutePath)
+                drawerImageUser.setImageBitmap(bitmap)
+            }
+        }
+
         val navMenu: Menu = navigationView.menu
         // Acá se podria poner un Alias descriptivo en vez de las URL
         navMenu.findItem(R.id.btnItemInfoAdicional1).setTitle(INTA_URL)

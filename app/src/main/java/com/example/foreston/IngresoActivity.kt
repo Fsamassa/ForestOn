@@ -19,13 +19,14 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class IngresoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityIngresoBinding
     private val callbackManager = CallbackManager.Factory.create()
+    private val db  = FirebaseFirestore.getInstance()
     private val respuestaLogueoGoogle = registerForActivityResult(StartActivityForResult()){ activityResult ->
         if (activityResult.resultCode == RESULT_OK){
             val task = GoogleSignIn.getSignedInAccountFromIntent(activityResult.data)
@@ -40,6 +41,8 @@ class IngresoActivity : AppCompatActivity() {
                             prefs.putString(getString(R.string.Email), account.email)
                             prefs.putString(getString(R.string.Proveedor), UtilsAuth.ProveedorLogin.GOOGLE.toString())
                             prefs.apply()
+                            iniciarCamposBasicosDBS(account.email!!.toString())
+
                             val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
                         }else{
@@ -105,14 +108,18 @@ class IngresoActivity : AppCompatActivity() {
             if(emailNuevo.isNotEmpty() && passwordNuevo.isNotEmpty()){
                 if (UtilsAuth.tieneDominioValido(emailNuevo.toString())){
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailNuevo.toString(),
-                        passwordNuevo.toString()).addOnCompleteListener { if(it.isSuccessful){
+                        passwordNuevo.toString()).addOnCompleteListener {
+
+                        if(it.isSuccessful){
                             val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).edit()
                             prefs.putString(getString(R.string.Email), emailNuevo.toString())
                             prefs.putString(getString(R.string.Proveedor), UtilsAuth.ProveedorLogin.BASICO.toString())
                             prefs.apply()
                             limpiarCamposLogueo()
+                            iniciarCamposBasicosDBS(emailNuevo.toString())
                             val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
+
                         }else{
                             mostrarAlerta("Creacion de usuario fallido. Contactese con Admin.")
                         }
@@ -151,6 +158,8 @@ class IngresoActivity : AppCompatActivity() {
                                 prefs.putString(getString(R.string.Email), it.result?.user?.email)
                                 prefs.putString(getString(R.string.Proveedor), UtilsAuth.ProveedorLogin.FACEBOOK.toString())
                                 prefs.apply()
+                                iniciarCamposBasicosDBS(it.result?.user?.email!!)
+
                                 val intent = Intent(this@IngresoActivity, HomeActivity::class.java)
                                 startActivity(intent)
                             }else{
@@ -184,6 +193,17 @@ class IngresoActivity : AppCompatActivity() {
     private fun limpiarCamposLogueo(){
         binding.editTextEmail.text = null
         binding.editTextPassword.text = null
+    }
+    private fun iniciarCamposBasicosDBS(email: String){
+        db.collection("users").document(email).get().addOnSuccessListener {
+            val teniaMailCargado = it.get("email") as String?
+            if (teniaMailCargado.isNullOrBlank()){
+                db.collection("users").document(email).set(hashMapOf(
+                    "email" to email,
+                    "imagen_foto_url" to "",
+                    "campos" to 0))
+            }
+        }
     }
 
 

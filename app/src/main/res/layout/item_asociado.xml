@@ -34,21 +34,23 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivAsociadoFoto"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:civ_border_width="5dp"
+        app:civ_border_color="#3F51B5"/>
 
     <TextView
         android:id="@+id/tvDatosAsociado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Datos del Asociado"
+        android:text="Datos Personales"
         android:textStyle="bold"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -82,9 +84,9 @@
         android:id="@+id/tvUbicacion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
         app:layout_constraintTop_toBottomOf="@+id/tvNombre"
+        android:layout_marginStart="20dp"
         android:text="Ubicación"
         android:textStyle="bold"
         android:textSize="18sp"/>
@@ -93,7 +95,7 @@
         android:id="@+id/tvDomicilio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
         app:layout_constraintTop_toBottomOf="@+id/tvUbicacion"
         tools:text="Domicilio" />
@@ -102,7 +104,7 @@
         android:id="@+id/tvCantCamposLeyenda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
         app:layout_constraintTop_toBottomOf="@+id/tvDomicilio"
         android:text="Cantidad campos: "
@@ -120,9 +122,9 @@
         android:id="@+id/tvDatosContacto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
         app:layout_constraintTop_toBottomOf="@+id/tvCantCampos"
+        android:layout_marginStart="20dp"
         android:text="Datos de contacto"
         android:textStyle="bold"
         android:textSize="18sp"
@@ -132,7 +134,7 @@
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
         app:layout_constraintTop_toBottomOf="@+id/tvDatosContacto"
         tools:text="Email" />
