@@ -126,7 +126,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragmentTransaction.commit()
             }
             R.id.btnItemScan -> {checkearPermisosCamera()}
-            R.id.btnInputInfo -> mostrarAlerta("Implementar fragment para Cargar Información","Ingresar Informacion")
+            R.id.btnInputInfo -> {
+
+                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+                val intento1= Intent(this,InformacionActivity::class.java)
+                startActivity(intento1)
+
+            }
+
             R.id.btnItemParcelas -> mostrarAlerta("Implementar fragment para ver parcelas","Mis Parcelas")
             R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes","Reportes")
             R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono","Huella de Carbono")
@@ -140,6 +147,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemInfoAdicional2 -> {
                 intent.setData(Uri.parse(BONOS_URL))
                 startActivity(intent)}
+
             R.id.btnItemConfig -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
                 println(prefs.toString())

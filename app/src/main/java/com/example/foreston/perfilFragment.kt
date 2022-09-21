@@ -1,6 +1,7 @@
 package com.example.foreston
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.ResultReceiver
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -82,7 +84,17 @@ class perfilFragment : Fragment() {
                 binding.ApellidoDato.setText(it.get("apellido")as String?)
                 binding.DireccionDato.setText(it.get("direccion")as String?)
                 binding.TelefonoDato.setText(it.get("telefono")as String?)
+
+
             }
+
+      /*      db.collection("users").document(email).collection("parcelas").get().addOnSuccessListener { task ->
+
+                for (document in task){
+
+                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+            }}*/
+
         }
 
         storageReference=FirebaseStorage.getInstance().getReference("Users/"+auten.currentUser?.uid)
