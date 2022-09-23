@@ -30,9 +30,6 @@
             android:name=".recyclerAsociados.RecyclerAsociadosActivity"
             android:exported="false" />
         <activity
-            android:name=".ScanArbolActivity"
-            android:exported="false" />
-        <activity
             android:name=".IngresoActivity"
             android:exported="false" />
         <activity
