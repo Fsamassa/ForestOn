@@ -1,5 +1,7 @@
 package com.example.foreston
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,12 +40,16 @@ class HomeFragment : Fragment() {
             dialog.show()
         }
         binding.btnInfo.setOnClickListener{
-            val builder = AlertDialog.Builder(binding.btnInfo.context)
+           // val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+            val intento1= Intent(binding.btnInfo.context,InformacionActivity::class.java)
+            startActivity(intento1)
+
+          /*  val builder = AlertDialog.Builder(binding.btnInfo.context)
             builder.setTitle("Pendiente!")
             builder.setMessage("Implementar fragment para ingresar info")
             builder.setPositiveButton("Sorry Bro!", null)
             val dialog: AlertDialog = builder.create()
-            dialog.show()
+            dialog.show()*/
         }
         binding.btnReportes.setOnClickListener{
             val builder = AlertDialog.Builder(binding.btnReportes.context)

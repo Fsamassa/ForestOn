@@ -10,8 +10,13 @@
 
         <item
             android:id="@+id/btnItemScan"
+            android:icon="@drawable/augmented_reality_icon"
+            android:title="Escanear Árbol (R.A.)" />
+
+        <item
+            android:id="@+id/btnItemSimularArbol"
             android:icon="@drawable/ic_arbol"
-            android:title="Escanear Árbol" />
+            android:title="Simular forestación (R.A.)" />
 
         <item android:id="@+id/btnInputInfo"
             android:title="Ingresar Información"

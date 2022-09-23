@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/app_bar"
-            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_scrollFlags="enterAlways"
             >
             <ImageView
                 android:id="@+id/imageViewLogo"

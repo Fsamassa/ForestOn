@@ -6,4 +6,125 @@
     android:layout_height="match_parent"
     tools:context=".ScanArbol2DActivity">
 
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.google.ar.sceneform.ux.ArFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />" />
+
+    <Button
+        android:id="@+id/btnCamara"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginBottom="160dp"
+        android:background="@drawable/ic_button_camera"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/fragment"
+        app:layout_constraintStart_toStartOf="@+id/fragment" />
+
+
+    <LinearLayout
+        android:id="@+id/llBotonesAltura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/llBotonesDiametro">
+
+        <Button
+            android:id="@+id/btn1MTR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/barra_menu"
+            android:text="1m" />
+
+        <Button
+            android:id="@+id/btn2MTR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#8B4AFF"
+            android:text="2m" />
+
+        <Button
+            android:id="@+id/btn3MTR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#002CB3"
+            android:text="3m" />
+
+        <Button
+            android:id="@+id/btn4MTR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#FFEB3B"
+            android:text="4m"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn5MTR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#D80000"
+            android:text="5m" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llBotonesDiametro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment"
+        tools:layout_editor_absoluteX="8dp">
+
+        <Button
+            android:id="@+id/btn5CM"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/barra_menu"
+            android:text="5 CM" />
+
+        <Button
+            android:id="@+id/btn10CM"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#8B4AFF"
+            android:text="10 CM" />
+
+        <Button
+            android:id="@+id/btn15CM"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#002CB3"
+            android:text="15 CM" />
+
+        <Button
+            android:id="@+id/btn20CM"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#FFEB3B"
+            android:text="20 CM"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn25CM"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="#D80000"
+            android:text="25 CM" />
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
