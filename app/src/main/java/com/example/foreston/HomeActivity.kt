@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -44,6 +45,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val dbS = FirebaseStorage.getInstance()
 
     private val CAMERA_REQUEST_CODE = 0
+    private val ESCANEO_ARBOL = 1
+    private val SIMULADOR_ARBOL = 2
+    private var ingresoSeleccionado = 1
 
     // urls test
     private final var INTA_URL: String = "https://inta.gob.ar/sites/default/files/inta_concordia_planilla_de_precios_forestales_julio_2021.pdf"
@@ -90,7 +94,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val nombre = it.get("nombre") as String?
             val apellido = it.get("apellido") as String?
 
-
             if (nombre.isNullOrBlank() && apellido.isNullOrBlank()) {
                 drawerNameUser.isGone
             }else{
@@ -125,15 +128,19 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragmentTransaction.replace(R.id.frameLayout, HomeFragment())
                 fragmentTransaction.commit()
             }
-            R.id.btnItemScan -> {checkearPermisosCamera()}
+            R.id.btnItemScan -> {
+                ingresoSeleccionado = 1
+                checkearPermisosCamera(ingresoSeleccionado)}
+            R.id.btnItemSimularArbol -> {
+                ingresoSeleccionado = 2
+                checkearPermisosCamera(ingresoSeleccionado)}
             R.id.btnInputInfo -> mostrarAlerta("Implementar fragment para Cargar Información","Ingresar Informacion")
             R.id.btnItemParcelas -> mostrarAlerta("Implementar fragment para ver parcelas","Mis Parcelas")
             R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes","Reportes")
             R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono","Huella de Carbono")
             R.id.btnItemBuscarSocio -> {
                 val intent = Intent(this, RecyclerAsociadosActivity::class.java)
-                startActivity(intent)
-            }
+                startActivity(intent)}
             R.id.btnItemInfoAdicional1 -> {
                 intent.setData(Uri.parse(INTA_URL))
                 startActivity(intent)}
@@ -171,12 +178,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onPostCreate(savedInstanceState)
         toggle.syncState()
     }
-
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         toggle.onConfigurationChanged(newConfig)
     }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item)){
             return true
@@ -184,18 +189,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onOptionsItemSelected(item)
     }
 
-    private fun checkearPermisosCamera(){
+    private fun checkearPermisosCamera(ingresoElegido: Int){
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             //El permiso no está estaba aceptado o no tuvo
             solicitarPermisosParaCamara()
         } else {
             //El permiso estaba aceptado, hacer algo.
-            Toast.makeText(this, "Ingresando al scan de árboles...", Toast.LENGTH_LONG).show()
-            val intent = Intent(this, ScanArbolActivity::class.java)
-            startActivity(intent)
+            ingresoASimuladores(ingresoElegido)
         }
     }
-
 
     private fun solicitarPermisosParaCamara() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
@@ -214,8 +216,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             CAMERA_REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     //El usuario ha aceptado el permiso, no tiene porqué darle de nuevo al botón, podemos lanzar la funcionalidad desde aquí.
-                    val intent = Intent(this, ScanArbolActivity::class.java)
-                    startActivity(intent)
+                    ingresoASimuladores(ingresoSeleccionado)
                 } else {
                     //El usuario ha rechazado el permiso, podemos desactivar la funcionalidad o mostrar una vista/diálogo.
                     mostrarAlerta("Has denegado el uso de la camara para scaneo. Para habilitarlo debes cambiarlo manualmente", "Permisos Cámara")
@@ -235,5 +236,24 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         builder.setPositiveButton("¡Entendido!", null)
         val dialog: AlertDialog = builder.create()
         dialog.show()
+    }
+
+    private fun ingresoASimuladores(ingresoElegido : Int){
+        when(ingresoElegido){
+            ESCANEO_ARBOL -> {
+                val mensajeToast = Toast.makeText(this, "Ingresando al scan de árboles...", Toast.LENGTH_SHORT)
+                mensajeToast.setGravity(Gravity.CENTER,0 ,0)
+                mensajeToast.show()
+                val intent = Intent(this, ScanArbol2DfijoActivity::class.java)
+                startActivity(intent)
+            }
+            SIMULADOR_ARBOL -> {
+                val mensajeToast = Toast.makeText(this, "Ingresando al simulador de árboles...", Toast.LENGTH_SHORT)
+                mensajeToast.setGravity(Gravity.CENTER,0 ,0)
+                mensajeToast.show()
+                val intent = Intent(this, ScanArbol2DActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 }

@@ -8,6 +8,7 @@
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2265" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/custom_background_home.xml" value="0.1625" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/custom_button_inicio.xml" value="0.1735" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/ic_baseline_camera_24.xml" value="0.2095" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/drawable/pantalla_carga_inicial.xml" value="0.2265" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_auth.xml" value="0.22826086956521738" />
@@ -17,7 +18,10 @@
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_main2.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_recycler_asociados.xml" value="0.4" />
-        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_scan_arbol.xml" value="0.1" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_scan_arbol.xml" value="0.264" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_scan_arbol2_dactivity.xml" value="0.2" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_scan_arbol2_dfijo.xml" value="0.2" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/activity_scan_arbol_plano_horizontal.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/app_bar.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/barra_menu.xml" value="0.2734375" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/content_auth.xml" value="0.20742753623188406" />
@@ -27,9 +31,10 @@
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/fragment_login.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/fragment_perfil.xml" value="0.2" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/fragment_second.xml" value="0.20742753623188406" />
-        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/item_asociado.xml" value="0.4" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/item_asociado.xml" value="0.264" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/main_activity.xml" value="0.1" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/nav_header.xml" value="0.264" />
+        <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/layout/scan_camara.xml" value="0.27447916666666666" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/menu/barra_menu.xml" value="0.4" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.103" />
         <entry key="..\:/Users/facun/AndroidStudioProjects/ForestOn/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.114" />
@@ -45,7 +50,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.2" />
+        <option name="scale" value="0.264" />
       </ProjectState>
     </option>
   </component>
