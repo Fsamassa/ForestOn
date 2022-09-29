@@ -17,4 +17,8 @@
     <color name="color_hint">#ACBC9A</color>
     <color name="texto_inicio">#3F51B5</color>
 
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="blue_semi_transparent">#805677fc</color>
+    <color name="blue_semi_transparent_pressed">#80738ffe</color>
+
 </resources>

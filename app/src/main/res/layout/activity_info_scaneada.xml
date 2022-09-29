@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="390dp"
+        android:layout_height="300dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        app:barrierMargin="20dp"
+        app:cardBackgroundColor="#8B4CAF50"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivFotoScaneada"
+                android:layout_width="120dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tvDatosAsociado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Datos Generales Árbol"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNombreComun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/tvDatosAsociado"
+                android:text="Eucalipto / Eucalyptus" />
+
+            <TextView
+                android:id="@+id/etEspecie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombreComun"
+                android:text="Eucalyptus grandis" />
+
+            <TextView
+                android:id="@+id/tvMedidasScaneadas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Medidas Escaneados"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/etEspecie" />
+
+            <TextView
+                android:id="@+id/etDiametro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Diametro: "
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/tvMedidasScaneadas" />
+
+            <TextView
+                android:id="@+id/tvDatosEstimados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Datos Estimados"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/etDiametro" />
+
+            <TextView
+                android:id="@+id/etAltura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Altura: "
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/tvDatosEstimados" />
+
+            <TextView
+                android:id="@+id/etPeso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Peso: "
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/etAltura" />
+
+            <TextView
+                android:id="@+id/etVolumen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Volumen: "
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/etPeso" />
+            <TextView
+                android:id="@+id/etCircunferencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Circunferencia: "
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/etVolumen" />
+            <TextView
+                android:id="@+id/etOxigeno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Oxigeno: "
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/etCircunferencia" />
+            <TextView
+                android:id="@+id/etCarbono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Carbono: "
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/etOxigeno" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

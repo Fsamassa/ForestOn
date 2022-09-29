@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foreston.R
 import com.example.foreston.recyclerAsociados.Asociado
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 
 class AsociadoAdapter(private val asociadosList:ArrayList<Asociado>) : RecyclerView.Adapter<AsociadoViewHolder>() {

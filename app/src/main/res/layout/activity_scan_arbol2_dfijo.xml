@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ScanArbol2DfijoActivity">
-
 
 
     <fragment
@@ -16,7 +16,20 @@
         app:layout_constraintBottom_toTopOf="@id/llBotones"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread"
-        app:layout_constraintVertical_weight="9" />
+        app:layout_constraintVertical_weight="9"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <Button
+        android:id="@+id/btnCompartirImagen"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="1"
+        android:background="?attr/actionModeShareDrawable"
+        android:backgroundTint="#171616"
+        app:layout_constraintBottom_toTopOf="@+id/btnTransparente"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnCamara"
@@ -24,7 +37,7 @@
         android:layout_height="90dp"
         android:background="@drawable/ic_button_camera"
         app:backgroundTint="@null"
-        android:layout_marginBottom="160dp"
+        android:layout_marginBottom="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/fragmentFijo"
         app:layout_constraintStart_toStartOf="@+id/fragmentFijo" />
@@ -39,7 +52,6 @@
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="@+id/fragmentFijo"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -103,6 +115,7 @@
         android:id="@+id/vHorizontal"
         android:layout_width="72dp"
         android:layout_height="4dp"
+        android:layout_marginBottom="45dp"
         android:background="@color/botones_inicio"
         app:layout_constraintBottom_toBottomOf="@+id/llBotones"
         app:layout_constraintEnd_toEndOf="parent"
@@ -113,6 +126,7 @@
         android:id="@+id/vVertical"
         android:layout_width="4dp"
         android:layout_height="72dp"
+        android:layout_marginBottom="45dp"
         android:background="@color/botones_inicio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/fragmentFijo"
@@ -164,12 +178,12 @@
             android:textColor="@color/black" />
 
         <Button
-            android:id="@+id/btn50CM"
+            android:id="@+id/btn30CM"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="#D80000"
-            android:text="50 CM" />
+            android:text="30 CM" />
     </LinearLayout>
 
 

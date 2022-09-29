@@ -1,9 +1,10 @@
 package com.example.foreston
 
-import android.content.Context
+import android.content.ContentValues
+import android.content.Intent
+import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.View
 import com.example.foreston.databinding.ActivityScanArbol2DfijoBinding
 import com.google.ar.sceneform.Camera
@@ -13,6 +14,23 @@ import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.*
 import com.google.ar.sceneform.ux.ArFragment
 import java.text.DecimalFormat
+import android.net.Uri
+import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
+import android.text.format.DateFormat
+import android.view.Gravity
+import android.widget.Toast
+import androidx.core.content.FileProvider
+import com.example.foreston.utils.GeneralUtils
+import com.google.ar.sceneform.rendering.Color
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import java.io.File
+import java.io.FileOutputStream
+import java.io.OutputStream
+import java.util.*
+import kotlin.math.roundToInt
 
 class ScanArbol2DfijoActivity : AppCompatActivity() {
 
@@ -23,19 +41,23 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
     private var color = Color(android.graphics.Color.GREEN)
     private var node : Node = Node()
     private lateinit var renderable : ModelRenderable
+    private lateinit var file: File
+    private lateinit var bitmapGlobal: Bitmap
+    private lateinit var uriGlobal: Uri
 
     private val TEXTURA_TRANSLUCIDA = 1
     private val TEXTURA_OPACO = 2
     private val TEXTURA_EUCALIPTO = 3
     private val TEXTURA_TRANSPARENTE = 4
     private var texturaElegida = 1
+    private val dbS = FirebaseStorage.getInstance()
+    private lateinit var storageReference: StorageReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityScanArbol2DfijoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.tvDistancia.visibility = View.GONE
         arFragment = supportFragmentManager.findFragmentById(R.id.fragmentFijo) as ArFragment
 
@@ -142,8 +164,8 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
                 }
             }
         }
-        binding.btn50CM.setOnClickListener {
-            diametro = 0.35f
+        binding.btn30CM.setOnClickListener {
+            diametro = 0.30f
             arFragment.arSceneView.scene.removeChild(node)
 
             when (texturaElegida) {
@@ -164,6 +186,7 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
                 }
             }
         }
+
         binding.btnDistancia.setOnClickListener {
 
             binding.vHorizontal.setBackgroundColor(android.graphics.Color.RED)
@@ -184,6 +207,50 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
 
                 distancia *= -1
 
+            }
+        }
+
+        binding.btnCamara.setOnClickListener {
+            arFragment.arSceneView.planeRenderer.isEnabled = false
+            tomarCapturaPantalla()
+
+            GeneralUtils.mostrarAlertaDecision(
+                this,
+                "Medición tomada exitosamente! ¿Ver información detallada?",
+                null, "Seguir escaneando",
+                positiveAction = {
+
+                    val diametroEnCM = diametro * 100
+                    val df = DecimalFormat("##.##")
+                    val diametroSinDecimal = df.format(diametroEnCM)
+
+                    val intent = Intent(this, InfoScaneadaActivity::class.java)
+                    intent.putExtra("diametro", diametroSinDecimal.toString())
+                    intent.putExtra("imagen", uriGlobal)
+                    startActivity(intent)
+                },
+                negativeAction = null)
+            arFragment.arSceneView.planeRenderer.isEnabled = true
+
+        }
+        binding.btnCompartirImagen.setOnClickListener {
+            val view = arFragment.getArSceneView()
+            GeneralUtils.usePixelCopy(view) { bitmap: Bitmap? ->
+                val now = Date()
+                DateFormat.format("yyyy-mm-dd_hh:mm:ss", now)
+                val path = getExternalFilesDir(null)!!.absolutePath + "/"+now+".jpg"
+                val imageFile = File(path)
+                val outputStream = FileOutputStream(imageFile)
+                bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+                outputStream.flush()
+                outputStream.close()
+                val URI = FileProvider.getUriForFile(this,"com.e.capturescreenshot.android.fileprovider", imageFile)
+                val intent = Intent()
+                intent.action = Intent.ACTION_SEND
+                intent.putExtra(Intent.EXTRA_TEXT, "Titulo envio"+ "\n"+ "Descripción mensaje")
+                intent.putExtra(Intent.EXTRA_STREAM,URI)
+                intent.type = "text/plain"
+                startActivity(intent)
             }
         }
 
@@ -246,9 +313,98 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
         }
     }
 
+    private fun guardarRepositorioRemoto(){
+        val view = arFragment.getArSceneView()
+        GeneralUtils.usePixelCopy(view) { bitmap: Bitmap? ->
+            val now = Date()
+            DateFormat.format("yyyy-mm-dd_hh:mm:ss", now)
+            val path = getExternalFilesDir(null)!!.absolutePath + "/"+now+".jpg"
+            val imageFile = File(path)
+            val outputStream = FileOutputStream(imageFile)
+
+            bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            outputStream.flush()
+            outputStream.close()
+
+            val URI = FileProvider.getUriForFile(this,"com.e.capturescreenshot.android.fileprovider", imageFile)
+
+            uriGlobal = URI
+            // Ver de borrar el archivo generado en "path" TODO
+
+            storageReference = dbS.getReference("Users/ImagenDeCapturaPantalla.JPEG")
+            storageReference.putFile(URI)
+                .addOnSuccessListener {
+                    val mensajeToast = Toast.makeText(
+                        this,
+                        "Imagen cargada en la Base de Datos de Foreston...",
+                        Toast.LENGTH_SHORT)
+                    mensajeToast.setGravity(Gravity.TOP,0 ,0)
+                    mensajeToast.show() }
+                .addOnFailureListener {
+                    val mensajeToast = Toast.makeText(
+                        this,
+                        "Error al querer cagar imagen en la Base de Datos de Foreston...",
+                        Toast.LENGTH_SHORT)
+                    mensajeToast.setGravity(Gravity.TOP,0 ,0)
+                    mensajeToast.show()
+                }
+        }
+    }
+
+    private fun tomarCapturaPantalla() {
+        val view = arFragment.getArSceneView()
+        GeneralUtils.usePixelCopy(view) { bitmap: Bitmap? ->
+            bitmapGlobal = bitmap!!
+            guardarLocalmente()
+        }
+        val mensajeToast = Toast.makeText(this, "Imagen guardada exitosamente en Galeria...", Toast.LENGTH_SHORT)
+        mensajeToast.setGravity(Gravity.TOP,0 ,0)
+        mensajeToast.show()
+    }
+    private fun guardarLocalmente()  {
+        val content = createContent()
+
+        val uri = save(content)
+
+        uriGlobal = uri
+        clearContents(content,uri)
+    }
+    private fun createContent(): ContentValues {
+        val dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        file = File.createTempFile("IMG_${System.currentTimeMillis()}_",".jpg",dir)
+        val fileName = file.name
+        val fileType = "image/jpg"
+        return ContentValues().apply {
+            put(MediaStore.MediaColumns.DISPLAY_NAME,fileName)
+            put(MediaStore.Files.FileColumns.MIME_TYPE,fileType)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
+                put(MediaStore.MediaColumns.IS_PENDING,1)
+            }
+        }
+    }
+    private fun save(content: ContentValues): Uri {
+        var outputStream2 : OutputStream?
+        var uri : Uri?
+        application.contentResolver.also { resolver ->
+            uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,content)
+            outputStream2 = resolver.openOutputStream(uri!!)
+        }
+        outputStream2.use { outPut ->
+            bitmapGlobal.compress(Bitmap.CompressFormat.JPEG, 100, outPut)
+
+        }
+        return uri!!
+    }
+    private fun clearContents(content: ContentValues, uri: Uri) {
+        content.clear()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            content.put(MediaStore.MediaColumns.IS_PENDING,0)
+        }
+        contentResolver.update(uri,content,null,null)
+    }
+
 }
-
-
 
 
 /* Información adicional sobre ideas
@@ -261,6 +417,5 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
       renderable.isShadowReceiver = false  -> Para que una sombra reflejada por otro objeto no se le vea encima.
       renderable.isShadowCaster = false    -> Para que no proyecte sombra
       arFragment.arSceneView.planeRenderer.isEnabled = false -> para que no se vean los puntos
-
 
    */

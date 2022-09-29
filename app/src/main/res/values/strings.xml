@@ -30,5 +30,8 @@
     <string name="botonActPass">Actualizar Pass</string>
     <string name="big_lamp">Big Lamp</string>
     <string name="small_table">small table</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="SI">Sí</string>
+    <string name="NO">No</string>
 
 </resources>
