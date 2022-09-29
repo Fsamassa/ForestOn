@@ -15,6 +15,7 @@ class ParcelaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityParcelasBinding
     private val db = FirebaseFirestore.getInstance()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,8 +24,17 @@ class ParcelaActivity : AppCompatActivity() {
 
        cargarmailenParcela()
 
+
+
+
         binding.guardarParcela.setOnClickListener {
-        if(maildeUsuario!=null && binding.NombreParcela.text.toString()!="" && binding.direParcela.text.toString()!=""){
+        if(maildeUsuario!=null && binding.NombreParcela.text.toString()!="" && binding.direParcela.text.toString()!=""
+            && binding.cantArboles.text.toString()!=""
+            && binding.diametro.text.toString()!=""
+            && binding.altura.text.toString()!=""
+            && binding.tipodearbol.text.toString()!=""
+            && binding.edad.text.toString()!=""
+        ){
             db.collection("users").document(maildeUsuario!!).collection("parcelas").add(hashMapOf(
                 "nombre_parcela" to binding.NombreParcela.text.toString(),
                 "altura_prom" to binding.altura.text.toString(),
@@ -35,11 +45,13 @@ class ParcelaActivity : AppCompatActivity() {
                 "direccion" to binding.direParcela.text.toString()
                 ))
 
+
+
             Toast.makeText(this, "Datos Actualizados", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, InformacionActivity::class.java)
             startActivity(intent)
         }else{
-            Toast.makeText(this, "completar Direccion y Nombre", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "completar todo los datos", Toast.LENGTH_SHORT).show()
         }
 
         }
@@ -53,7 +65,6 @@ class ParcelaActivity : AppCompatActivity() {
          maildeUsuario= bundle?.get("email") as String?
 
         println("llego el mail a parcela"+maildeUsuario.toString())
-
 
     }
 }

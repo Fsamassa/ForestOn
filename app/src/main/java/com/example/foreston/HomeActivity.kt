@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,12 +29,12 @@ import com.google.firebase.auth.FirebaseAuth
 import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import com.example.foreston.recyclerAsociados.RecyclerAsociadosActivity
+import com.example.foreston.recyclerParcelas.RecyclerParcelasActivity
 import com.example.foreston.utils.UtilsAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
-import com.example.foreston.utils.GeneralUtils
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -139,8 +140,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val intento1= Intent(this,InformacionActivity::class.java)
                 startActivity(intento1)
             }
-   //         R.id.btnItemParcelas -> mostrarAlerta("Implementar fragment para ver parcelas","Mis Parcelas")
-            R.id.btnItemParcelas -> GeneralUtils.mostrarAlerta(this, "Implementar fragment para ver parcelas","Mis Parcelas")
+            R.id.btnItemParcelas -> {
+                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+                val intento2= Intent(this, RecyclerParcelasActivity::class.java)
+                startActivity(intento2)
+            }
             R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes","Reportes")
             R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono","Huella de Carbono")
             R.id.btnItemBuscarSocio -> {
@@ -262,5 +266,4 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
-
 }

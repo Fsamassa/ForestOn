@@ -51,6 +51,14 @@
             android:name=".InformacionActivity"
             android:exported="false" />
         <activity
+            android:name=".recyclerParcelas.RecyclerParcelasActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".recyclerParcelas.Parcela_editarActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.App.Inicio">
