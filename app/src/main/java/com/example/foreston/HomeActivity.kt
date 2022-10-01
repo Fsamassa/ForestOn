@@ -46,6 +46,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private val dbS = FirebaseStorage.getInstance()
 
     private val CAMERA_REQUEST_CODE = 0
+    private val STORAGE_REQUEST_CODE = 1
     private val ESCANEO_ARBOL = 1
     private val SIMULADOR_ARBOL = 2
     private var ingresoSeleccionado = 1
@@ -131,10 +132,10 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.btnItemScan -> {
                 ingresoSeleccionado = 1
-                checkearPermisosCamera(ingresoSeleccionado)}
+                checkearPermisos(ingresoSeleccionado)}
             R.id.btnItemSimularArbol -> {
                 ingresoSeleccionado = 2
-                checkearPermisosCamera(ingresoSeleccionado)}
+                checkearPermisos(ingresoSeleccionado)}
             R.id.btnInputInfo -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
                 val intento1= Intent(this,InformacionActivity::class.java)
@@ -199,24 +200,34 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onOptionsItemSelected(item)
     }
 
-    private fun checkearPermisosCamera(ingresoElegido: Int){
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+    private fun checkearPermisos(ingresoElegido: Int){
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) ||
+            (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
             //El permiso no está estaba aceptado o no tuvo
-            solicitarPermisosParaCamara()
+            solicitarPermisosCamara()
+
         } else {
             //El permiso estaba aceptado, hacer algo.
             ingresoASimuladores(ingresoElegido)
         }
     }
 
-    private fun solicitarPermisosParaCamara() {
+    private fun solicitarPermisosCamara() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
             //El usuario ya ha rechazado el permiso anteriormente, debemos informarle que vaya a ajustes.
-            mostrarAlerta("Has denegado el uso de la cámara anteriormente. Para acceder al scan deberas dar permisos manualmente.",
+            mostrarAlerta("Has denegado el uso de la cámara anteriormente. Para acceder al scan deberás dar permisos manualmente.",
                             "Permisos Cámara")
         } else {
-            //El usuario nunca ha aceptado ni rechazado, así que le pedimos que acepte el permiso.
             ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.CAMERA),CAMERA_REQUEST_CODE)
+        }
+    }
+    private fun solicitarPermisosStorage() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            //El usuario ya ha rechazado el permiso anteriormente, debemos informarle que vaya a ajustes.
+            mostrarAlerta("Has denegado el uso del Almacenamiento. Para acceder al scan deberás dar permisos manualmente.",
+                "Permisos Almacenamiento")
+        } else {
+            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),STORAGE_REQUEST_CODE)
         }
     }
 
@@ -226,10 +237,18 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             CAMERA_REQUEST_CODE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     //El usuario ha aceptado el permiso, no tiene porqué darle de nuevo al botón, podemos lanzar la funcionalidad desde aquí.
-                    ingresoASimuladores(ingresoSeleccionado)
+                    solicitarPermisosStorage()
                 } else {
                     //El usuario ha rechazado el permiso, podemos desactivar la funcionalidad o mostrar una vista/diálogo.
-                    mostrarAlerta("Has denegado el uso de la camara para scaneo. Para habilitarlo debes cambiarlo manualmente", "Permisos Cámara")
+                    mostrarAlerta("Has denegado el uso de la camara para scaneo. Para habilitarlo deberás cambiarlo manualmente desde configuración general de tu dispositivo", "Permisos Cámara")
+                }
+                return
+            }
+            STORAGE_REQUEST_CODE -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)){
+                    ingresoASimuladores(ingresoSeleccionado)
+                }else{
+                    mostrarAlerta("Has denegado el uso de almacenamiento. Para habilitarlo deberás cambiarlo manualmente desde configuración general de tu dispositivo", "Permisos de Almacenamiento")
                 }
                 return
             }

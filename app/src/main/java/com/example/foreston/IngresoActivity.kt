@@ -204,7 +204,7 @@ class IngresoActivity : AppCompatActivity() {
             if (teniaMailCargado.isNullOrBlank()){
                 db.collection("users").document(email).set(hashMapOf(
                     "email" to email,
-                    "imagen_foto_url" to "perfil_generico_3.png",
+                    "imagen_foto_url" to "",
                     "campos" to 0,
                     "nombre" to "",
                     "apellido" to "",
