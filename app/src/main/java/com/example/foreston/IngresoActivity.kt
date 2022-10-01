@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts.*
 import androidx.appcompat.app.AlertDialog
 import com.example.foreston.databinding.ActivityIngresoBinding
+import com.example.foreston.recyclerAsociados.Asociado
 import com.example.foreston.utils.*
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -25,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class IngresoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityIngresoBinding
+    private val TAG : String = "Seguimiento IngresoActivity"
     private val callbackManager = CallbackManager.Factory.create()
     private val db  = FirebaseFirestore.getInstance()
     private val respuestaLogueoGoogle = registerForActivityResult(StartActivityForResult()){ activityResult ->
@@ -121,7 +124,8 @@ class IngresoActivity : AppCompatActivity() {
                             startActivity(intent)
 
                         }else{
-                            mostrarAlerta("Creacion de usuario fallido. Contactese con Admin.")
+                            mostrarAlerta("Creación de usuario fallido: el correo de email seleccionado ya está en uso.")
+                            Log.e(TAG, it.exception.toString())
                         }
                         }
                 }else{
@@ -200,8 +204,12 @@ class IngresoActivity : AppCompatActivity() {
             if (teniaMailCargado.isNullOrBlank()){
                 db.collection("users").document(email).set(hashMapOf(
                     "email" to email,
-                    "imagen_foto_url" to "",
-                    "campos" to 0))
+                    "imagen_foto_url" to "perfil_generico_3.png",
+                    "campos" to 0,
+                    "nombre" to "",
+                    "apellido" to "",
+                    "direccion" to "",
+                    "telefono" to ""))
             }
         }
     }
