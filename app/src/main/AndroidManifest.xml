@@ -23,6 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_foreston512"
         android:supportsRtl="true"
         android:theme="@style/Theme.ForestOn"
+        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
         <activity
             android:name=".InfoScaneadaActivity"

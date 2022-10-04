@@ -3,6 +3,7 @@ package com.example.foreston
 import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
+import android.media.CamcorderProfile
 import android.net.Uri
 import android.os.*
 import android.provider.MediaStore
@@ -62,6 +63,12 @@ class ScanArbol2DActivity : AppCompatActivity() {
                 }
         }
 
+        val videoRecorder = VideoRecorder()
+
+        val orientation = resources.configuration.orientation
+        videoRecorder.setVideoQuality(CamcorderProfile.QUALITY_1080P, orientation)
+        videoRecorder.setSceneView(arFragment.arSceneView)
+
         binding.btn5CM.setOnClickListener  { diametro = 0.05f}
         binding.btn10CM.setOnClickListener { diametro = 0.10f}
         binding.btn15CM.setOnClickListener { diametro = 0.15f}
@@ -96,10 +103,31 @@ class ScanArbol2DActivity : AppCompatActivity() {
                 val URI = FileProvider.getUriForFile(this,"com.e.capturescreenshot.android.fileprovider", imageFile)
                 val intent = Intent()
                 intent.action = Intent.ACTION_SEND
-                intent.putExtra(Intent.EXTRA_TEXT, "Titulo envio"+ "\n"+ "Descripción mensaje")
+                intent.putExtra(Intent.EXTRA_TEXT,
+                    "|- Simulador de forestación -|"+ "\n" +
+                            "------------------------------" + "\n" +
+                            "Captura tomada con ForestOn APP")
                 intent.putExtra(Intent.EXTRA_STREAM,URI)
                 intent.type = "text/plain"
                 startActivity(intent)
+            }
+        }
+        binding.btnGrabarVideo.setOnClickListener {
+            val estaGrabando = videoRecorder.onToggleRecord()
+
+            if (estaGrabando) {
+                Toast.makeText(this, "Grabando...", Toast.LENGTH_SHORT).show()
+                binding.btnGrabarVideo.setBackgroundResource(R.drawable.ic_stop_camera_button)
+            }else{
+                val videoPath = videoRecorder.videoPath!!.absolutePath
+                binding.btnGrabarVideo.setBackgroundResource(R.drawable.ic_recording_button)
+
+                Toast.makeText(this, "Grabación finalizada y guardada en ../Galeria/ForestOn", Toast.LENGTH_SHORT).show()
+                val values = ContentValues()
+                values.put(MediaStore.Video.Media.TITLE, "Sceneform Video")
+                values.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4")
+                values.put(MediaStore.Video.Media.DATA, videoPath)
+                contentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values)
             }
         }
     }
@@ -160,7 +188,10 @@ class ScanArbol2DActivity : AppCompatActivity() {
     }
     private fun createContent(): ContentValues {
         val dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+
         file = File.createTempFile("IMG_${System.currentTimeMillis()}_",".jpg",dir)
+
+        println("path video : "+dir)
         val fileName = file.name
         val fileType = "image/jpg"
         return ContentValues().apply {
@@ -192,4 +223,5 @@ class ScanArbol2DActivity : AppCompatActivity() {
         }
         contentResolver.update(uri,content,null,null)
     }
+
 }
