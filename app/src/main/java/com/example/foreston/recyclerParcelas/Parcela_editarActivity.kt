@@ -2,9 +2,12 @@ package com.example.foreston.recyclerParcelas
 
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.foreston.InformacionActivity
 import com.example.foreston.R
 import com.example.foreston.databinding.ActivityEditarParcelaBinding
 import com.example.foreston.databinding.ActivityParcelasBinding
@@ -58,6 +61,45 @@ class Parcela_editarActivity : AppCompatActivity() {
                     }
 
 
+            }
+        }
+
+        binding.guardarParcela.setOnClickListener {
+
+            if(binding.ENombreParcela.text.toString()!="" && binding.EdireParcela.text.toString()!=""
+                && binding.EcantArboles.text.toString()!=""
+                && binding.Ediametro.text.toString()!=""
+                && binding.Ealtura.text.toString()!=""
+                && binding.Etipodearbol.text.toString()!=""
+                && binding.Eedad.text.toString()!=""){
+
+                db.collection("users").document(email!!).collection("parcelas").get().addOnSuccessListener { task ->
+
+                    for (document in task){
+                        db.collection("users").document(email).collection("parcelas").document(document.id.toString())
+                            .get().addOnSuccessListener {
+
+                                if(nombre_parcela==it.get("nombre_parcela")as String?){
+
+                                    db.collection("users").document(email!!).collection("parcelas").document(document.id.toString()).update(
+                                        "altura_prom",binding.Ealtura.text.toString(),
+                                        "cant_arboles" , binding.EcantArboles.text.toString(),
+                                        "diametro_arboles" , binding.Ediametro.text.toString(),
+                                        "tipo", binding.Etipodearbol.text.toString(),
+                                        "edad" , binding.Eedad.text.toString(),
+                                                "direccion",binding.EdireParcela.text.toString())
+
+                                    Toast.makeText(this, "Datos Actualizados", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(this, RecyclerParcelasActivity::class.java)
+                                    startActivity(intent)
+                                }
+
+                            }
+
+                    }
+
+
+                }
             }
         }
 

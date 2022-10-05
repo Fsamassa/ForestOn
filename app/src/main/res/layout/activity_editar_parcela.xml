@@ -28,7 +28,7 @@
             android:layout_height="32dp" />
 
 
-        <EditText
+        <TextView
             android:id="@+id/ENombreParcela"
             android:layout_width="match_parent"
             android:layout_height="40dp"
