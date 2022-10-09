@@ -53,14 +53,13 @@ class Parcela_editarActivity : AppCompatActivity() {
                                             binding.Ediametro.setText(it.get("diametro_arboles")as String?)
                                             binding.EcantArboles.setText(it.get("cant_arboles")as String?)
                                             binding.Ealtura.setText(it.get("altura_prom")as String?)
+                                            binding.etTipoIndustria.setText(it.get("tipo_industria")as String?)
                                         }
                                 }
                             }
 
                         }
                     }
-
-
             }
         }
 
@@ -87,7 +86,9 @@ class Parcela_editarActivity : AppCompatActivity() {
                                         "diametro_arboles" , binding.Ediametro.text.toString(),
                                         "tipo", binding.Etipodearbol.text.toString(),
                                         "edad" , binding.Eedad.text.toString(),
-                                                "direccion",binding.EdireParcela.text.toString())
+                                                "direccion",binding.EdireParcela.text.toString(),
+                                                "tipo_industria",binding.etTipoIndustria.text.toString()
+                                    )
 
                                     Toast.makeText(this, "Datos Actualizados", Toast.LENGTH_SHORT).show()
                                     val intent = Intent(this, RecyclerParcelasActivity::class.java)

@@ -50,6 +50,7 @@ class ParcelaViewHolder(view: View): RecyclerView.ViewHolder(view) {
         binding.tipo.text = parcelaModel.tipo.toString()
         binding.edadArb.text = parcelaModel.edad.toString()
         binding.DirePa.text = parcelaModel.direccion.toString()
+        binding.tipoIndustria.text = parcelaModel.tipo_industria.toString()
 
 
             binding.detalle.setOnClickListener{

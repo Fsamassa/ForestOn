@@ -18,7 +18,7 @@
         android:id="@+id/btnCamara"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="240dp"
         android:background="@drawable/efecto_tomar_foto"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"

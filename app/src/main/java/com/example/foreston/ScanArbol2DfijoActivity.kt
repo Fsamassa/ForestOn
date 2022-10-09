@@ -171,11 +171,7 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
 
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-        if (position == 0) {
-            diametro = 0.01f
-        }else{
-            diametro = position.toFloat() / 100
-        }
+        diametro = (position.toFloat() + 1) / 100
 
         arFragment.arSceneView.scene.removeChild(node)
 

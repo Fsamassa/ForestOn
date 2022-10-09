@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvinformacionParcela"
             android:text="Nombre Parcela: "
             android:textStyle="bold"
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNombreLeyenda"
             android:text="Cantidad de Arboles: "
             android:textStyle="bold"
@@ -77,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvcantLeyenda"
             android:text="Diametro (cm): "
             android:textStyle="bold"
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvdiametroLeyenda"
             android:text="Altura (m): "
             android:textStyle="bold"
@@ -123,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvalturaLeyenda"
             android:text="Tipo: "
             android:textStyle="bold"
@@ -145,8 +145,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-
             app:layout_constraintTop_toBottomOf="@+id/tvtipoleyenda"
+            app:layout_constraintStart_toStartOf="parent"
             android:text="Edad promedio (años): "
             android:textStyle="bold"
             tools:text="Edad promedio: "
@@ -167,7 +167,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvedadleyenda"
             android:text="Direccion: "
             android:textStyle="bold"
@@ -184,19 +184,36 @@
             tools:text="Direccion de Campo"
             tools:ignore="MissingConstraints"/>
 
-        <Space
-            android:id="@+id/idespa"
-            app:layout_constraintTop_toBottomOf="@+id/DirePa"
+        <TextView
+            android:id="@+id/tvTipoIndustria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints" />
+            android:text="Industria Destino: "
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvdireleyenda"
+            tools:ignore="MissingConstraints"
+            tools:text="Industria Destino: " />
+
+        <TextView
+            android:id="@+id/tipoIndustria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/DirePa"
+            app:layout_constraintStart_toEndOf="@+id/tvTipoIndustria"
+            tools:text="Industria destino"
+            tools:ignore="MissingConstraints"/>
 
         <Button
             android:id="@+id/detalle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="Editar"
-            app:layout_constraintTop_toBottomOf="@+id/idespa"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tipoIndustria"
             tools:ignore="MissingConstraints" />
 
 

@@ -23,10 +23,6 @@
             android:text="Editar Parcela"
             android:textColor="#000"
             android:textSize="25sp"/>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
-
 
         <TextView
             android:id="@+id/ENombreParcela"
@@ -38,100 +34,63 @@
             android:textColor="#000"
             android:textSize="18sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
-
         <EditText
             android:id="@+id/EcantArboles"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:hint="cantidad de árboles"
+            android:hint="Cantidad de árboles"
             android:inputType="number"
             android:textColor="#000"
             android:textSize="18sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
 
         <EditText
             android:id="@+id/Ediametro"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:hint="diametro cm"
+            android:hint="Diametro cm"
             android:inputType="number"
             android:textColor="#000"
             android:textSize="18sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
         <EditText
             android:id="@+id/Ealtura"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:hint="altura promedio"
+            android:hint="Altura promedio"
             android:inputType="number"
             android:textColor="#000"
             android:textSize="18sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
 
         <EditText
             android:id="@+id/Etipodearbol"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:hint="tipo"
+            android:hint="Tipo"
             android:textColor="#000"
             android:textSize="18sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
 
         <EditText
             android:id="@+id/Eedad"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="3dp"
-            android:hint="edad en años"
+            android:hint="Edad en años"
             android:inputType="number"
             android:textColor="#000"
             android:textSize="18sp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
-
         <EditText
             android:id="@+id/EdireParcela"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
             android:hint="Dirección"
             android:textColor="#000"
             android:textSize="18sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
 
         <!--    <Button android:id="@+id/editarParcela"
                 android:layout_width="wrap_content"
@@ -145,7 +104,14 @@
                 android:text="Borrar"
                 android:layout_marginLeft="10dp" /> -->
 
-
+        <EditText
+            android:id="@+id/etTipoIndustria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="Industria Destino"
+            android:textColor="#000"
+            android:textSize="18sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -156,16 +122,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_marginBottom="180dp"
                 android:background="@drawable/custom_button_inicio"
                 android:text="Guardar Cambios"
                 app:backgroundTint="@null" />
 
         </RelativeLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="48dp" />
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </ScrollView>

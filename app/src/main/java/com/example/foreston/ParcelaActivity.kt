@@ -24,9 +24,6 @@ class ParcelaActivity : AppCompatActivity() {
 
        cargarmailenParcela()
 
-
-
-
         binding.guardarParcela.setOnClickListener {
         if(maildeUsuario!=null && binding.NombreParcela.text.toString()!="" && binding.direParcela.text.toString()!=""
             && binding.cantArboles.text.toString()!=""
@@ -34,6 +31,7 @@ class ParcelaActivity : AppCompatActivity() {
             && binding.altura.text.toString()!=""
             && binding.tipodearbol.text.toString()!=""
             && binding.edad.text.toString()!=""
+            && binding.etIndustria.text.toString()!=""
         ){
             db.collection("users").document(maildeUsuario!!).collection("parcelas").add(hashMapOf(
                 "nombre_parcela" to binding.NombreParcela.text.toString(),
@@ -42,9 +40,9 @@ class ParcelaActivity : AppCompatActivity() {
                 "diametro_arboles" to binding.diametro.text.toString(),
                 "tipo" to binding.tipodearbol.text.toString(),
                 "edad" to binding.edad.text.toString(),
-                "direccion" to binding.direParcela.text.toString()
+                "direccion" to binding.direParcela.text.toString(),
+                "tipo_industria" to binding.etIndustria.text.toString()
                 ))
-
 
 
             Toast.makeText(this, "Datos Actualizados", Toast.LENGTH_SHORT).show()
@@ -53,11 +51,7 @@ class ParcelaActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this, "completar todo los datos", Toast.LENGTH_SHORT).show()
         }
-
         }
-
-
-
     }
 
     fun cargarmailenParcela(){

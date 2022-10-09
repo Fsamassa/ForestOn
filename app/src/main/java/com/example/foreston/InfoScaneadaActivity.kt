@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
+import java.text.DecimalFormat
 
 class InfoScaneadaActivity : AppCompatActivity() {
     private lateinit var binding : ActivityInfoScaneadaBinding
@@ -25,7 +26,7 @@ class InfoScaneadaActivity : AppCompatActivity() {
         val imagenUri : Uri = bundle!!.get("imagen") as Uri
 
         binding.ivFotoScaneada.setImageURI(imagenUri)
-        binding.etDiametro.text = "Diametro :" + diametro + " cm"
+        binding.etDiametro.text = "Diametro : " + diametro + " cm"
 
         traerDatosBaseDeDatos(diametro)
     }
@@ -33,8 +34,6 @@ class InfoScaneadaActivity : AppCompatActivity() {
     private fun traerDatosBaseDeDatos(diametro : String) {
 
         val idColeccionPorCM = "diametro_"+diametro+"cm"
-
-        println("*** diametro: "+idColeccionPorCM)
 
         db.collection("tipos_arboles").document("eucalipto")
             .collection("eucalyptus grandis").document(idColeccionPorCM).get()
@@ -45,6 +44,12 @@ class InfoScaneadaActivity : AppCompatActivity() {
             val oxigeno = it.get("oxigeno")
             val peso = it.get("peso")
             val volumen = it.get("volumen")
+            val edadMeses = it.get("edad")
+                val edadAniosLong = edadMeses as Long
+
+                val edadAniosFloat = edadAniosLong.toFloat() / 12
+                val df = DecimalFormat("##.##")
+                val edadAnios = df.format(edadAniosFloat)
 
                 binding.etAltura.text         = "Altura   : " + altura + " mts"
                 binding.etPeso.text           = "Peso     : " + peso + " kg"
@@ -52,9 +57,11 @@ class InfoScaneadaActivity : AppCompatActivity() {
                 binding.etCircunferencia.text = "Circunf. : " + circunferencia + " cm"
                 binding.etOxigeno.text        = "Oxigeno  : " + oxigeno + " tn"
                 binding.etCarbono.text        = "Carbono  : " + carbono + " tn"
+                binding.etEdad.text           = "Edad     : " + edadMeses + " Meses ("+edadAnios+" años)"
 
         }
     }
 
 
 }
+

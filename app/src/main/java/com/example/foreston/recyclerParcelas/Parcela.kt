@@ -7,5 +7,6 @@ data class Parcela(
     val altura_prom:String ?= null,
     val tipo:String ?= null,
     val edad:String ?= null,
-    val direccion:String ?= null
+    val direccion:String ?= null,
+    val tipo_industria:String ?= null
 )
