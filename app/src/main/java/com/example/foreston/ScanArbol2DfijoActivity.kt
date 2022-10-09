@@ -3,6 +3,7 @@ package com.example.foreston
 import android.content.ContentValues
 import android.content.Intent
 import android.graphics.*
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -20,6 +21,8 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.view.Gravity
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.example.foreston.utils.GeneralUtils
@@ -30,9 +33,8 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.*
-import kotlin.math.roundToInt
 
-class ScanArbol2DfijoActivity : AppCompatActivity() {
+class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     private lateinit var binding: ActivityScanArbol2DfijoBinding
     private lateinit var arFragment: ArFragment
@@ -59,7 +61,11 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
         binding = ActivityScanArbol2DfijoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.tvDistancia.visibility = View.GONE
+
         arFragment = supportFragmentManager.findFragmentById(R.id.fragmentFijo) as ArFragment
+        arFragment.arSceneView.planeRenderer.isEnabled = false
+
+        seleccionDiametros()
 
         binding.btnTranslucido.setOnClickListener {
             texturaElegida = TEXTURA_TRANSLUCIDA
@@ -74,142 +80,32 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
             texturaElegida = TEXTURA_TRANSPARENTE
         }
 
-        binding.btn5CM.setOnClickListener {
-            diametro = 0.05f
-            arFragment.arSceneView.scene.removeChild(node)
-
-            when (texturaElegida) {
-                TEXTURA_TRANSLUCIDA -> {
-                    color = Color(0f,1f,0f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-                TEXTURA_OPACO -> {
-                    color = Color(android.graphics.Color.GREEN)
-                    generarCilindroOpacoMedicion()
-                }
-                TEXTURA_EUCALIPTO -> {
-                    generarCilindroTexturaMedicion()
-                }
-                TEXTURA_TRANSPARENTE -> {
-                    color = Color(0f,0f,0f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-            }
-
-        }
-        binding.btn10CM.setOnClickListener {
-            diametro = 0.10f
-            arFragment.arSceneView.scene.removeChild(node)
-
-            when (texturaElegida) {
-                TEXTURA_TRANSLUCIDA -> {
-                    color = Color(1f,0f,1f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-                TEXTURA_OPACO -> {
-                    color = Color(android.graphics.Color.MAGENTA)
-                    generarCilindroOpacoMedicion()
-                }
-                TEXTURA_EUCALIPTO -> {
-                    generarCilindroTexturaMedicion()
-                }
-                TEXTURA_TRANSPARENTE -> {
-                    color = Color(0f,0f,0f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-            }
-
-        }
-        binding.btn15CM.setOnClickListener {
-            diametro = 0.15f
-            arFragment.arSceneView.scene.removeChild(node)
-
-            when (texturaElegida) {
-                TEXTURA_TRANSLUCIDA -> {
-                    color = Color(0f,0f,1f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-                TEXTURA_OPACO -> {
-                    color = Color(android.graphics.Color.BLUE)
-                    generarCilindroOpacoMedicion()
-                }
-                TEXTURA_EUCALIPTO -> {
-                    generarCilindroTexturaMedicion()
-                }
-                TEXTURA_TRANSPARENTE -> {
-                    color = Color(0f,0f,0f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-            }
-        }
-        binding.btn20CM.setOnClickListener {
-            diametro = 0.20f
-            arFragment.arSceneView.scene.removeChild(node)
-
-            when (texturaElegida) {
-                TEXTURA_TRANSLUCIDA -> {
-                    color = Color(251f,227f,8f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-                TEXTURA_OPACO -> {
-                    color = Color(android.graphics.Color.YELLOW)
-                    generarCilindroOpacoMedicion()
-                }
-                TEXTURA_EUCALIPTO -> {
-                    generarCilindroTexturaMedicion()
-                }
-                TEXTURA_TRANSPARENTE -> {
-                    color = Color(0f,0f,0f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-            }
-        }
-        binding.btn30CM.setOnClickListener {
-            diametro = 0.30f
-            arFragment.arSceneView.scene.removeChild(node)
-
-            when (texturaElegida) {
-                TEXTURA_TRANSLUCIDA -> {
-                    color = Color(1f,0f,0f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-                TEXTURA_OPACO -> {
-                    color = Color(android.graphics.Color.RED)
-                    generarCilindroOpacoMedicion()
-                }
-                TEXTURA_EUCALIPTO -> {
-                    generarCilindroTexturaMedicion()
-                }
-                TEXTURA_TRANSPARENTE -> {
-                    color = Color(0f,0f,0f,0f)
-                    generarCilindroTransparenteMedicion()
-                }
-            }
-        }
-
         binding.btnDistancia.setOnClickListener {
-
             binding.vHorizontal.setBackgroundColor(android.graphics.Color.RED)
             binding.vVertical.setBackgroundColor(android.graphics.Color.RED)
-            binding.btnDistancia.visibility = View.GONE
             binding.tvDistancia.visibility = View.VISIBLE
+            arFragment.arSceneView.planeRenderer.isEnabled = true
 
-            arFragment.setOnTapArPlaneListener{hitResult, _ , _ ->
+            if (arFragment.arSceneView.planeRenderer.isEnabled) {
+                arFragment.setOnTapArPlaneListener{hitResult, _ , _ ->
 
-                val df = DecimalFormat("#.##")
-                distancia = hitResult.distance
-                val distanciaEnDecimal = df.format(distancia)
+                    val df = DecimalFormat("#.##")
+                    distancia = hitResult.distance
+                    val distanciaEnDecimal = df.format(distancia)
 
-                binding.vHorizontal.setBackgroundColor(resources.getColor(R.color.botones_inicio))
-                binding.vVertical.setBackgroundColor(resources.getColor(R.color.botones_inicio))
-                binding.btnDistancia.visibility = View.VISIBLE
-                binding.tvDistancia.text = "- " + distanciaEnDecimal.toString() + " Metros -"
+                    binding.vHorizontal.setBackgroundColor(resources.getColor(R.color.botones_inicio))
+                    binding.vVertical.setBackgroundColor(resources.getColor(R.color.botones_inicio))
 
-                distancia *= -1
+                    binding.tvDistancia.text = "- " + distanciaEnDecimal.toString() + " Metros -"
 
+                    distancia *= -1
+
+                    binding.grupoDistancia.selectButtonWithAnimation(binding.btnDistancia)
+                    arFragment.arSceneView.planeRenderer.isEnabled = false
+                }
             }
-        }
 
+        }
         binding.btnCamara.setOnClickListener {
             arFragment.arSceneView.planeRenderer.isEnabled = false
             tomarCapturaPantalla()
@@ -247,7 +143,10 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
                 val URI = FileProvider.getUriForFile(this,"com.e.capturescreenshot.android.fileprovider", imageFile)
                 val intent = Intent()
                 intent.action = Intent.ACTION_SEND
-                intent.putExtra(Intent.EXTRA_TEXT, "Titulo envio"+ "\n"+ "Descripción mensaje")
+                intent.putExtra(Intent.EXTRA_TEXT,
+                    "|- Scaner de Medición Forestal -|"+ "\n" +
+                            "---------------------------------" + "\n" +
+                            "Captura tomada con ForestOn APP")
                 intent.putExtra(Intent.EXTRA_STREAM,URI)
                 intent.type = "text/plain"
                 startActivity(intent)
@@ -255,6 +154,95 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun seleccionDiametros() {
+
+        val diametrosString = resources.getStringArray(R.array.diametros_validos)
+
+        val arrayAdapter = ArrayAdapter(this, R.layout.drop_down_item, diametrosString)
+        binding.autoCompleteTextView.setAdapter(arrayAdapter)
+        binding.autoCompleteTextView.setAdapter(arrayAdapter)
+
+        with(binding.autoCompleteTextView){
+            onItemClickListener = this@ScanArbol2DfijoActivity
+        }
+
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+        if (position == 0) {
+            diametro = 0.01f
+        }else{
+            diametro = position.toFloat() / 100
+        }
+
+        arFragment.arSceneView.scene.removeChild(node)
+
+        when (texturaElegida) {
+            TEXTURA_TRANSLUCIDA -> {
+                when(position){
+                    in 0..9 -> {
+                        color = Color(0f,1f,0f,0f)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_verde))
+                    }
+                    in 10..19 -> {
+                        color = Color(1f,0f,1f,0f)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_magenta))
+                    }
+                    in 20..29 -> {
+                        color = Color(0f,0f,1f,0f)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_azul))
+                    }
+                    in 30..39 -> {
+                        color =  Color(251f,227f,8f,0f)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_amarillo))
+                    }
+                    in 40..49 -> {
+                        color = Color(1f,0f,0f,0f)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_rojo))
+                    }
+                }
+                generarCilindroTransparenteMedicion()
+            }
+            TEXTURA_OPACO -> {
+                when(position){
+                    in 0..9 -> {
+                        color = Color(android.graphics.Color.GREEN)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_verde))
+                    }
+                    in 10..19 -> {
+                        color = Color(android.graphics.Color.MAGENTA)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_magenta))
+                    }
+                    in 20..29 -> {
+                        color = Color(android.graphics.Color.BLUE)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_azul))
+                    }
+                    in 30..39 -> {
+                        color = Color(android.graphics.Color.YELLOW)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_amarillo))
+                    }
+                    in 40..49 -> {
+                        color = Color(android.graphics.Color.RED)
+                        binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.seleccion_rojo))
+                    }
+                }
+                generarCilindroOpacoMedicion()
+            }
+            TEXTURA_EUCALIPTO -> {
+                binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.contor_general))
+                generarCilindroTexturaMedicion()
+            }
+            TEXTURA_TRANSPARENTE -> {
+                color = Color(0f,0f,0f,0f)
+                binding.tilDropDown.endIconDrawable!!.setTint(resources.getColor(R.color.white))
+                generarCilindroTransparenteMedicion()
+            }
+        }
+
+    }
+
 
     private fun generarCilindroTexturaMedicion(){
         Texture.builder().setSource(this, R.drawable.textura_eucalipto).build().thenAccept {
@@ -403,9 +391,121 @@ class ScanArbol2DfijoActivity : AppCompatActivity() {
         }
         contentResolver.update(uri,content,null,null)
     }
-
 }
+/* Lo dejo por las dudas pero se implementa el drowdown menu de diametros
+        binding.btn5CM.setOnClickListener {
+            diametro = 0.05f
+            arFragment.arSceneView.scene.removeChild(node)
 
+            when (texturaElegida) {
+                TEXTURA_TRANSLUCIDA -> {
+                    color = Color(0f,1f,0f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+                TEXTURA_OPACO -> {
+                    color = Color(android.graphics.Color.GREEN)
+                    generarCilindroOpacoMedicion()
+                }
+                TEXTURA_EUCALIPTO -> {
+                    generarCilindroTexturaMedicion()
+                }
+                TEXTURA_TRANSPARENTE -> {
+                    color = Color(0f,0f,0f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+            }
+
+        }
+        binding.btn10CM.setOnClickListener {
+            diametro = 0.10f
+            arFragment.arSceneView.scene.removeChild(node)
+
+            when (texturaElegida) {
+                TEXTURA_TRANSLUCIDA -> {
+                    color = Color(1f,0f,1f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+                TEXTURA_OPACO -> {
+                    color = Color(android.graphics.Color.MAGENTA)
+                    generarCilindroOpacoMedicion()
+                }
+                TEXTURA_EUCALIPTO -> {
+                    generarCilindroTexturaMedicion()
+                }
+                TEXTURA_TRANSPARENTE -> {
+                    color = Color(0f,0f,0f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+            }
+
+        }
+        binding.btn15CM.setOnClickListener {
+            diametro = 0.15f
+            arFragment.arSceneView.scene.removeChild(node)
+
+            when (texturaElegida) {
+                TEXTURA_TRANSLUCIDA -> {
+                    color = Color(0f,0f,1f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+                TEXTURA_OPACO -> {
+                    color = Color(android.graphics.Color.BLUE)
+                    generarCilindroOpacoMedicion()
+                }
+                TEXTURA_EUCALIPTO -> {
+                    generarCilindroTexturaMedicion()
+                }
+                TEXTURA_TRANSPARENTE -> {
+                    color = Color(0f,0f,0f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+            }
+        }
+        binding.btn20CM.setOnClickListener {
+            diametro = 0.20f
+            arFragment.arSceneView.scene.removeChild(node)
+
+            when (texturaElegida) {
+                TEXTURA_TRANSLUCIDA -> {
+                    color = Color(251f,227f,8f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+                TEXTURA_OPACO -> {
+                    color = Color(android.graphics.Color.YELLOW)
+                    generarCilindroOpacoMedicion()
+                }
+                TEXTURA_EUCALIPTO -> {
+                    generarCilindroTexturaMedicion()
+                }
+                TEXTURA_TRANSPARENTE -> {
+                    color = Color(0f,0f,0f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+            }
+        }
+        binding.btn30CM.setOnClickListener {
+            diametro = 0.30f
+            arFragment.arSceneView.scene.removeChild(node)
+
+            when (texturaElegida) {
+                TEXTURA_TRANSLUCIDA -> {
+                    color = Color(1f,0f,0f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+                TEXTURA_OPACO -> {
+                    color = Color(android.graphics.Color.RED)
+                    generarCilindroOpacoMedicion()
+                }
+                TEXTURA_EUCALIPTO -> {
+                    generarCilindroTexturaMedicion()
+                }
+                TEXTURA_TRANSPARENTE -> {
+                    color = Color(0f,0f,0f,0f)
+                    generarCilindroTransparenteMedicion()
+                }
+            }
+        }
+*/
 
 /* Información adicional sobre ideas
  En la coordenada Z me queda fija la distancia, ya sé que va a estar cierta cantidad de metros,

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,12 +12,8 @@
         android:id="@+id/fragmentFijo"
         android:name="com.google.ar.sceneform.ux.ArFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/llBotones"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread"
-        app:layout_constraintVertical_weight="9"
-        tools:layout_editor_absoluteX="2dp" />
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnCompartirImagen"
@@ -27,76 +24,122 @@
         android:layout_weight="1"
         android:background="?attr/actionModeShareDrawable"
         app:backgroundTint="#B5006105"
-        app:layout_constraintBottom_toTopOf="@+id/btnTransparente"
+        app:layout_constraintBottom_toTopOf="@+id/grupoTexturas"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnCamara"
         android:layout_width="90dp"
         android:layout_height="90dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/efecto_tomar_foto"
         app:backgroundTint="@null"
-        android:layout_marginBottom="180dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/grupoDistancia"
         app:layout_constraintEnd_toEndOf="@+id/fragmentFijo"
-        app:layout_constraintStart_toStartOf="@+id/fragmentFijo" />
+        app:layout_constraintStart_toStartOf="@+id/fragmentFijo"
+         />
 
-    <Button
+    <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
+        android:id="@+id/grupoDistancia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:justifyContent="center"
+        app:layout_constraintBottom_toTopOf="@+id/grupoTexturas"
+        app:layout_constraintEnd_toEndOf="@+id/fragmentFijo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"
+        app:toggle_requiredAmount="0"
+        app:toggle_selectAnimation="fade"
+        app:toggle_selectableAmount="1">
+
+    <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
         android:id="@+id/btnDistancia"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginBottom="45dp"
-        android:background="@drawable/custom_button_inicio"
-        android:text="Medir Distancia"
-        app:backgroundTint="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/fragmentFijo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_height="45dp"
+        android:layout_marginBottom="1dp"
+        app:toggle_backgroundColor="@color/botones_inicio"
+        app:toggle_borderColor="@color/contor_general"
+        app:toggle_borderWidth="5dp"
+        app:toggle_text="Medir Distancia"
+        app:toggle_textSize="18sp"
+        app:toggle_textColor="@color/contor_general"
+        app:toggle_selectedBackgroundColor="#ED9494"
+        app:toggle_selectedBorderColor="#DF0000"
+        app:toggle_selectedText="    ¡ Midiendo !     "
+        app:toggle_selectedTextColor="@color/black" />
+    </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
 
-    <Button
-        android:id="@+id/btnTranslucido"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="2dp"
-        android:text="Translucido"
-        android:background="@drawable/custom_button_inicio"
-        app:layout_constraintBottom_toBottomOf="@+id/fragmentFijo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnOpaco"
-        app:backgroundTint="@null"/>
-    <Button
-        android:id="@+id/btnOpaco"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="2dp"
-        android:text="Opaco"
-        android:background="@drawable/custom_button_inicio"
-        app:layout_constraintBottom_toBottomOf="@+id/fragmentFijo"
-        app:layout_constraintStart_toEndOf="@+id/btnTranslucido"
-        app:layout_constraintEnd_toStartOf="@+id/btnEucalipto"
-        app:backgroundTint="@null"/>
-    <Button
-        android:id="@+id/btnEucalipto"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="2dp"
-        android:text="Real"
-        android:background="@drawable/custom_button_inicio"
-        app:layout_constraintBottom_toBottomOf="@+id/fragmentFijo"
-        app:layout_constraintStart_toEndOf="@+id/btnOpaco"
-        app:layout_constraintEnd_toStartOf="@+id/btnTransparente"
-        app:backgroundTint="@null"/>
-    <Button
-        android:id="@+id/btnTransparente"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="2dp"
-        android:text="Incoloro"
-        android:background="@drawable/custom_button_inicio"
-        app:layout_constraintBottom_toBottomOf="@+id/fragmentFijo"
-        app:layout_constraintStart_toEndOf="@+id/btnEucalipto"
+    <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
+        android:id="@+id/grupoTexturas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:flexWrap="wrap"
+        app:justifyContent="space_between"
+        app:layout_constraintBottom_toTopOf="@+id/tilDropDown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:backgroundTint="@null"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:toggle_requiredAmount="1"
+        app:toggle_selectAnimation="fade"
+        app:toggle_selectableAmount="1">
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/btnTranslucido"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            app:toggle_backgroundColor="@color/botones_inicio"
+            app:toggle_borderColor="@color/contor_general"
+            app:toggle_borderWidth="5dp"
+            app:toggle_selectedBackgroundColor="@color/white"
+            app:toggle_selectedBorderColor="@color/botones_inicio"
+            app:toggle_selectedTextColor="@color/contor_general"
+            app:toggle_text="Transp."
+            app:toggle_textColor="@color/contor_general"
+            app:toggle_textSize="18sp" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/btnOpaco"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            app:toggle_backgroundColor="@color/botones_inicio"
+            app:toggle_borderColor="@color/contor_general"
+            app:toggle_borderWidth="5dp"
+            app:toggle_selectedBackgroundColor="@color/white"
+            app:toggle_selectedBorderColor="@color/botones_inicio"
+            app:toggle_selectedTextColor="@color/contor_general"
+            app:toggle_text="Opaco"
+            app:toggle_textColor="@color/contor_general"
+            app:toggle_textSize="18sp" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/btnEucalipto"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            app:toggle_backgroundColor="@color/botones_inicio"
+            app:toggle_borderColor="@color/contor_general"
+            app:toggle_borderWidth="5dp"
+            app:toggle_selectedBackgroundColor="@color/white"
+            app:toggle_selectedBorderColor="@color/botones_inicio"
+            app:toggle_selectedTextColor="@color/contor_general"
+            app:toggle_text="Real"
+            app:toggle_textColor="@color/contor_general"
+            app:toggle_textSize="18sp" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/btnTransparente"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            app:toggle_backgroundColor="@color/botones_inicio"
+            app:toggle_borderColor="@color/contor_general"
+            app:toggle_borderWidth="5dp"
+            app:toggle_selectedBackgroundColor="@color/white"
+            app:toggle_selectedBorderColor="@color/botones_inicio"
+            app:toggle_selectedTextColor="@color/contor_general"
+            app:toggle_text="Incoloro"
+            app:toggle_textColor="@color/contor_general"
+            app:toggle_textSize="18sp" />
+    </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
 
     <TextView
         android:id="@+id/tvDistancia"
@@ -114,9 +157,9 @@
         android:id="@+id/vHorizontal"
         android:layout_width="72dp"
         android:layout_height="4dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="55dp"
         android:background="@color/botones_inicio"
-        app:layout_constraintBottom_toBottomOf="@+id/llBotones"
+        app:layout_constraintBottom_toBottomOf="@+id/tilDropDown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fragmentFijo" />
@@ -125,65 +168,93 @@
         android:id="@+id/vVertical"
         android:layout_width="4dp"
         android:layout_height="72dp"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="60dp"
         android:background="@color/botones_inicio"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/fragmentFijo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/fragmentFijo" />
+    <!--
+        <LinearLayout
+            android:id="@+id/llBotones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tilDropDown">
 
-    <LinearLayout
-        android:id="@+id/llBotones"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/fragmentFijo"
-        app:layout_constraintTop_toBottomOf="@id/fragmentFijo"
-        app:layout_constraintVertical_chainStyle="spread">
+            <Button
+                android:id="@+id/btn5CM"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/barra_menu"
+                android:text="5 CM" />
 
-        <Button
-            android:id="@+id/btn5CM"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="@color/barra_menu"
-            android:text="5 CM" />
+            <Button
+                android:id="@+id/btn10CM"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#8B4AFF"
+                android:text="10 CM" />
 
-        <Button
-            android:id="@+id/btn10CM"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="#8B4AFF"
-            android:text="10 CM" />
+            <Button
+                android:id="@+id/btn15CM"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#002CB3"
+                android:text="15 CM" />
 
-        <Button
-            android:id="@+id/btn15CM"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="#002CB3"
-            android:text="15 CM" />
+            <Button
+                android:id="@+id/btn20CM"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#FFEB3B"
+                android:text="20 CM"
+                android:textColor="@color/black" />
 
-        <Button
-            android:id="@+id/btn20CM"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="#FFEB3B"
-            android:text="20 CM"
-            android:textColor="@color/black" />
+            <Button
+                android:id="@+id/btn30CM"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="#D80000"
+                android:text="30 cm" />
+        </LinearLayout>
+    -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDropDown"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Diametros Válidos"
+            android:textColorHint="@color/botones_inicio"
+            app:startIconDrawable="@drawable/ic_diametro_seleccion_24"
+            app:startIconTint="@color/black"
+            app:endIconDrawable="@drawable/ic_diametro_verde_24"
+            app:endIconTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/btn30CM"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:backgroundTint="#D80000"
-            android:text="30 CM" />
-    </LinearLayout>
+            <AutoCompleteTextView
+                android:id="@+id/autoCompleteTextView"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:dropDownWidth="200dp"
+                android:dropDownHeight="200dp"
+                android:inputType="none"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Diametros"
+                android:textColor="#000000"
+                android:textStyle="bold" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

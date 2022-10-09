@@ -33,5 +33,58 @@
     <string name="Aceptar">Aceptar</string>
     <string name="SI">Sí</string>
     <string name="NO">No</string>
+    <string-array name="diametros_validos">
+        <item>1 cm</item>
+        <item>2 cm</item>
+        <item>3 cm</item>
+        <item>4 cm</item>
+        <item>5 cm</item>
+        <item>6 cm</item>
+        <item>7 cm</item>
+        <item>8 cm</item>
+        <item>9 cm</item>
+        <item>10 cm</item>
+        <item>11 cm</item>
+        <item>12 cm</item>
+        <item>13 cm</item>
+        <item>14 cm</item>
+        <item>15 cm</item>
+        <item>16 cm</item>
+        <item>17 cm</item>
+        <item>18 cm</item>
+        <item>19 cm</item>
+        <item>20 cm</item>
+        <item>21 cm</item>
+        <item>22 cm</item>
+        <item>23 cm</item>
+        <item>24 cm</item>
+        <item>25 cm</item>
+        <item>26 cm</item>
+        <item>27 cm</item>
+        <item>28 cm</item>
+        <item>29 cm</item>
+        <item>30 cm</item>
+        <item>31 cm</item>
+        <item>32 cm</item>
+        <item>33 cm</item>
+        <item>34 cm</item>
+        <item>35 cm</item>
+        <item>36 cm</item>
+        <item>37 cm</item>
+        <item>38 cm</item>
+        <item>39 cm</item>
+        <item>40 cm</item>
+        <item>41 cm</item>
+        <item>42 cm</item>
+        <item>43 cm</item>
+        <item>44 cm</item>
+        <item>45 cm</item>
+        <item>46 cm</item>
+        <item>47 cm</item>
+        <item>48 cm</item>
+        <item>49 cm</item>
+        <item>50 cm</item>
+    </string-array>
+
 
 </resources>

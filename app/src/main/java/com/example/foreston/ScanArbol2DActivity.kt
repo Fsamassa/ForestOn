@@ -9,6 +9,9 @@ import android.os.*
 import android.provider.MediaStore
 import android.text.format.DateFormat
 import android.view.Gravity
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -27,7 +30,7 @@ import java.io.OutputStream
 import java.util.*
 
 
-class ScanArbol2DActivity : AppCompatActivity() {
+class ScanArbol2DActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     private lateinit var binding: ActivityScanArbol2DactivityBinding
     private lateinit var arFragment: ArFragment
@@ -69,17 +72,22 @@ class ScanArbol2DActivity : AppCompatActivity() {
         videoRecorder.setVideoQuality(CamcorderProfile.QUALITY_1080P, orientation)
         videoRecorder.setSceneView(arFragment.arSceneView)
 
+        seleccionDiametros()
+        /*
         binding.btn5CM.setOnClickListener  { diametro = 0.05f}
         binding.btn10CM.setOnClickListener { diametro = 0.10f}
         binding.btn15CM.setOnClickListener { diametro = 0.15f}
         binding.btn20CM.setOnClickListener { diametro = 0.20f}
         binding.btn25CM.setOnClickListener { diametro = 0.25f}
-
+*/
         binding.btn1MTR.setOnClickListener { altura = 1f}
         binding.btn2MTR.setOnClickListener { altura = 2f}
         binding.btn3MTR.setOnClickListener { altura = 3f}
         binding.btn4MTR.setOnClickListener { altura = 4f}
         binding.btn5MTR.setOnClickListener { altura = 5f}
+        binding.btn10MTR.setOnClickListener { altura = 10f}
+        binding.btn15MTR.setOnClickListener { altura = 15f}
+        binding.btn20MTR.setOnClickListener { altura = 20f}
 
         binding.btnCamara.setOnClickListener {
             arFragment.arSceneView.planeRenderer.isEnabled = false  //  <- Ver esto para que no salgan en la foto los puntos blancos
@@ -129,6 +137,18 @@ class ScanArbol2DActivity : AppCompatActivity() {
                 values.put(MediaStore.Video.Media.DATA, videoPath)
                 contentResolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values)
             }
+        }
+    }
+
+    private fun seleccionDiametros() {
+        val diametrosString = resources.getStringArray(R.array.diametros_validos)
+
+        val arrayAdapter = ArrayAdapter(this, R.layout.drop_down_item, diametrosString)
+        binding.autoCompleteTextView.setAdapter(arrayAdapter)
+        binding.autoCompleteTextView.setAdapter(arrayAdapter)
+
+        with(binding.autoCompleteTextView){
+            onItemClickListener = this@ScanArbol2DActivity
         }
     }
 
@@ -222,6 +242,14 @@ class ScanArbol2DActivity : AppCompatActivity() {
             content.put(MediaStore.MediaColumns.IS_PENDING,0)
         }
         contentResolver.update(uri,content,null,null)
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (position == 0) {
+            diametro = 0.01f
+        }else{
+            diametro = position.toFloat() / 100
+        }
     }
 
 }
