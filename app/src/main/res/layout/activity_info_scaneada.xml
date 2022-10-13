@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#DCEDC8">
+
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cvDatosEstimados"
         android:layout_width="390dp"
-        android:layout_height="320dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_height="340dp"
+        android:layout_marginHorizontal="8dp"
         android:layout_marginVertical="8dp"
         app:barrierMargin="20dp"
         app:cardBackgroundColor="#8B4CAF50"
@@ -27,7 +28,7 @@
             <ImageView
                 android:id="@+id/ivFotoScaneada"
                 android:layout_width="120dp"
-                android:layout_height="200dp"
+                android:layout_height="300dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -52,18 +53,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:text="Nombre: Eucalipto colorado "
                 app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
-                app:layout_constraintTop_toBottomOf="@+id/tvDatosAsociado"
-                android:text="Eucalipto / Eucalyptus" />
+                app:layout_constraintTop_toBottomOf="@+id/tvDatosAsociado" />
 
             <TextView
                 android:id="@+id/etEspecie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:text="Especie: Eucalyptus Grandis"
+                android:textStyle="italic"
                 app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
-                app:layout_constraintTop_toBottomOf="@+id/tvNombreComun"
-                android:text="Eucalyptus grandis" />
+                app:layout_constraintTop_toBottomOf="@+id/tvNombreComun" />
 
             <TextView
                 android:id="@+id/tvMedidasScaneadas"
@@ -122,6 +124,7 @@
                 android:text="Volumen: "
                 app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
                 app:layout_constraintTop_toBottomOf="@+id/etPeso" />
+
             <TextView
                 android:id="@+id/etCircunferencia"
                 android:layout_width="wrap_content"
@@ -130,6 +133,7 @@
                 android:text="Circunferencia: "
                 app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
                 app:layout_constraintTop_toBottomOf="@+id/etVolumen" />
+
             <TextView
                 android:id="@+id/etOxigeno"
                 android:layout_width="wrap_content"
@@ -138,6 +142,7 @@
                 android:text="Oxigeno: "
                 app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
                 app:layout_constraintTop_toBottomOf="@+id/etCircunferencia" />
+
             <TextView
                 android:id="@+id/etCarbono"
                 android:layout_width="wrap_content"
@@ -146,6 +151,7 @@
                 android:text="Carbono: "
                 app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
                 app:layout_constraintTop_toBottomOf="@+id/etOxigeno" />
+
             <TextView
                 android:id="@+id/etEdad"
                 android:layout_width="wrap_content"
@@ -154,8 +160,366 @@
                 android:text="Edad: "
                 app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
                 app:layout_constraintTop_toBottomOf="@+id/etCarbono" />
+
+            <TextView
+                android:id="@+id/tvDensidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Densidad: 0.450 g/cm3"
+                app:layout_constraintStart_toEndOf="@+id/ivFotoScaneada"
+                app:layout_constraintTop_toBottomOf="@+id/etEdad" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvDatosCalculados"
+                android:layout_width="390dp"
+                android:layout_height="400dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="8dp"
+                app:barrierMargin="20dp"
+                app:cardBackgroundColor="#85B39DDB"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvDatosEstimados">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvDatosComerciales"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Generar Totales por Parcela"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvCantArboles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="25dp"
+                        android:text="Árboles en parcela"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDatosComerciales" />
+
+                    <EditText
+                        android:id="@+id/etCantArboles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:ems="4"
+                        android:inputType="number"
+                        android:hint="Cantidad"
+                        android:textAlignment="center"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCantArboles" />
+
+                    <TextView
+                        android:id="@+id/tvNombreParcela"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="Asignar Nombre "
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etCantArboles" />
+
+                    <EditText
+                        android:id="@+id/etNombreParcela"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:inputType="textPersonName"
+                        android:ems="7"
+                        android:hint="Nombre"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvNombreParcela" />
+
+                    <TextView
+                        android:id="@+id/tvDireccion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="Indicar Dirección "
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etNombreParcela" />
+
+                    <EditText
+                        android:id="@+id/etDireccion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:ems="7"
+                        android:inputType="textPostalAddress"
+                        android:hint="Ubicación"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDireccion" />
+
+                    <TextView
+                        android:id="@+id/tvIndustriaDestino"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:text="Industria a destinar"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etDireccion" />
+
+                    <EditText
+                        android:id="@+id/etIndustriaDestino"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:ems="7"
+                        android:inputType="textPostalAddress"
+                        android:hint="Industrias"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvIndustriaDestino" />
+
+                    <TextView
+                        android:id="@+id/tvHectareaParcela"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text=" Hectáreas totales "
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvCantArboles"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDatosComerciales" />
+
+                    <EditText
+                        android:id="@+id/etHectareaParcela"
+                        android:layout_height="wrap_content"
+                        android:layout_width="120dp"
+                        android:layout_marginEnd="50dp"
+                        android:ems="7"
+                        android:inputType="numberDecimal"
+                        android:textAlignment="textEnd"
+                        android:hint="0 hectáreas"
+                        android:textSize="16sp"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvHectareaParcela" />
+
+                    <TextView
+                        android:id="@+id/tvFechaScan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="32dp"
+                        android:layout_marginStart="52dp"
+                        android:text=" Fecha de Escaneo "
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etIndustriaDestino"
+                         />
+
+                    <TextView
+                        android:id="@+id/etFecha"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textIsSelectable="false"
+                        android:layout_marginStart="80dp"
+                        android:textSize="16sp"
+                        android:text="23/11/2022"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvFechaScan" />
+
+                    <TextView
+                        android:id="@+id/tvPesoTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Peso total "
+                        android:layout_marginEnd="70dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etHectareaParcela" />
+
+                    <TextView
+                        android:id="@+id/etPesoTotal"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:hint="0 kg"
+                        android:textAlignment="textEnd"
+                        android:textSize="16sp"
+                        android:textStyle="italic"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPesoTotal" />
+
+                    <TextView
+                        android:id="@+id/tvVolumenTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="60dp"
+                        android:text="Volumen Total"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etPesoTotal" />
+
+                    <TextView
+                        android:id="@+id/etVolumenTotal"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:textSize="16sp"
+                        android:textStyle="italic"
+                        android:hint="0 m3"
+                        android:textAlignment="textEnd"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvVolumenTotal" />
+                    <TextView
+                        android:id="@+id/tvOxigenoTotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="40dp"
+                        android:text="Oxigeno Emanado"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etVolumenTotal" />
+                    <TextView
+                        android:id="@+id/etOxigenoTotal"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:textSize="16sp"
+                        android:textStyle="italic"
+                        android:textAlignment="textEnd"
+                        android:hint="0 ton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvOxigenoTotal" />
+
+                    <TextView
+                        android:id="@+id/tvCo2Total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Co2 Absorbido"
+                        android:layout_marginEnd="60dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/etOxigenoTotal" />
+                    <TextView
+                        android:id="@+id/etCo2Total"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50dp"
+                        android:textSize="16sp"
+                        android:textStyle="italic"
+                        android:hint="0 ton"
+                        android:textAlignment="textEnd"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCo2Total" />
+                    <!--
+                                      <Button
+                                          android:id="@+id/btnCalcularDatos"
+                                          android:layout_width="50dp"
+                                          android:layout_height="50dp"
+                                          android:layout_marginBottom="30dp"
+                                          android:background="@drawable/ic_baseline_calculate"
+                                          app:backgroundTint="@null"
+                                          app:layout_constraintBottom_toBottomOf="parent"
+                                          app:layout_constraintEnd_toStartOf="@+id/btnGuardarDatos" />
+
+                                      <Button
+                                          android:id="@+id/btnGuardarDatos"
+                                          android:layout_width="50dp"
+                                          android:layout_height="50dp"
+                                          android:background="@android:drawable/ic_menu_save"
+                                          app:backgroundTint="#7E57C2"
+                                          android:layout_marginBottom="30dp"
+                                          app:layout_constraintBottom_toBottomOf="parent"
+                                          app:layout_constraintEnd_toStartOf="@+id/btnInicio" />
+                                      <Button
+                                          android:id="@+id/btnInicio"
+                                          android:layout_width="50dp"
+                                          android:layout_height="50dp"
+                                          android:layout_marginBottom="30dp"
+                                          android:layout_marginEnd="30dp"
+                                          android:background="@drawable/ic_baseline_home"
+                                          app:backgroundTint="@null"
+                                          app:layout_constraintBottom_toBottomOf="parent"
+                                          app:layout_constraintEnd_toEndOf="parent"/>
+                  -->
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btnConfiguracion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:srcCompat="@drawable/ic_baseline_miscellaneous"
+                        app:backgroundTint="@color/barra_usuario"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btnVolverHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginBottom="5dp"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toTopOf="@+id/btnConfiguracion"
+                        app:layout_constraintEnd_toEndOf="@+id/btnConfiguracion"
+                        app:backgroundTint="#303F9F"
+                        app:srcCompat="@drawable/ic_baseline_home" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btnGuardar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginBottom="5dp"
+                        android:visibility="invisible"
+                        app:backgroundTint="#26A69A"
+                        app:layout_constraintBottom_toTopOf="@+id/btnVolverHome"
+                        app:layout_constraintEnd_toEndOf="@+id/btnVolverHome"
+                        app:srcCompat="@drawable/ic_outline_save"/>
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btnCalcular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:layout_marginBottom="5dp"
+                        android:visibility="invisible"
+                        app:srcCompat="@drawable/ic_outline_calculate"
+                        app:backgroundTint="#66BB6A"
+                        app:layout_constraintBottom_toTopOf="@+id/btnGuardar"
+                        app:layout_constraintEnd_toEndOf="@+id/btnGuardar"
+                        />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                              </androidx.cardview.widget.CardView>
+
+                  </androidx.constraintlayout.widget.ConstraintLayout>

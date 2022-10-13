@@ -52,6 +52,9 @@
             <item android:id="@+id/btnItemInfoAdicional2"
                 android:icon="@drawable/ic_link_info"
                 android:title="Url página 2" />
+            <item android:id="@+id/btnItemInfoAdicional3"
+                android:icon="@drawable/ic_link_info"
+                android:title="Url página 3" />
         </menu>
     </item>
 

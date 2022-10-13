@@ -52,8 +52,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var ingresoSeleccionado = 1
 
     // urls test
-    private final var INTA_URL: String = "https://inta.gob.ar/sites/default/files/inta_concordia_planilla_de_precios_forestales_julio_2021.pdf"
-    private final var BONOS_URL: String = "http://www.ceads.org.ar/mercado-de-bonos-de-carbono-voluntario-vs-regulado/"
+    private var INTA_URL: String = "https://inta.gob.ar/sites/default/files/inta_concordia_planilla_de_precios_forestales_junio_2022.pdf"
+    private var BONOS_URL: String = "http://www.ceads.org.ar/mercado-de-bonos-de-carbono-voluntario-vs-regulado/"
+    private var MANUAL_URL: String = "https://inta.gob.ar/sites/default/files/script-tmp-manual_para_productores_de_eucaliptos_de_la_mesopotam.pdf"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,8 +118,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val navMenu: Menu = navigationView.menu
         // Acá se podria poner un Alias descriptivo en vez de las URL
-        navMenu.findItem(R.id.btnItemInfoAdicional1).setTitle(INTA_URL)
-        navMenu.findItem(R.id.btnItemInfoAdicional2).setTitle(BONOS_URL)
+        navMenu.findItem(R.id.btnItemInfoAdicional1).setTitle("Precios por Industria")
+        navMenu.findItem(R.id.btnItemInfoAdicional2).setTitle("¿Bonos de Carbono?")
+        navMenu.findItem(R.id.btnItemInfoAdicional3).setTitle("Manual para el Productor")
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -157,7 +159,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemInfoAdicional2 -> {
                 intent.setData(Uri.parse(BONOS_URL))
                 startActivity(intent)}
-
+            R.id.btnItemInfoAdicional3 -> {
+                intent.setData(Uri.parse(MANUAL_URL))
+                startActivity(intent)}
             R.id.btnItemConfig -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
                 println(prefs.toString())

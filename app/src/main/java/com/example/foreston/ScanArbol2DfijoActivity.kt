@@ -156,11 +156,9 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
     }
 
     private fun seleccionDiametros() {
-
         val diametrosString = resources.getStringArray(R.array.diametros_validos)
 
         val arrayAdapter = ArrayAdapter(this, R.layout.drop_down_item, diametrosString)
-        binding.autoCompleteTextView.setAdapter(arrayAdapter)
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
 
         with(binding.autoCompleteTextView){
