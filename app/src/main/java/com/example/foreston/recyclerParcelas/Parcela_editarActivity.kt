@@ -33,17 +33,9 @@ class Parcela_editarActivity : AppCompatActivity() {
         var email = pref.getString("Email", null)
 
 
-        db.collection("users").document(email!!).collection("parcelas").get().addOnSuccessListener { task ->
-
-            for (document in task){
-
-                db.collection("users").document(email).collection("parcelas").document(document.id.toString())
-                    .get().addOnSuccessListener {
-
-                        if(nombre_parcela==it.get("nombre_parcela")as String?){
                               if(nombre_parcela!=null){
                                 if (email != null) {
-                                    db.collection("users").document(email).collection("parcelas").document(document.id.toString())
+                                    db.collection("users").document(email).collection("parcelas").document(nombre_parcela.toString())
                                         .get().addOnSuccessListener {
 
                                             binding.ENombreParcela.setText(it.get("nombre_parcela")as String?)
@@ -58,12 +50,8 @@ class Parcela_editarActivity : AppCompatActivity() {
                                 }
                             }
 
-                        }
-                    }
-            }
-        }
 
-        binding.guardarParcela.setOnClickListener {
+       binding.guardarParcela.setOnClickListener {
 
             if(binding.ENombreParcela.text.toString()!="" && binding.EdireParcela.text.toString()!=""
                 && binding.EcantArboles.text.toString()!=""
@@ -72,15 +60,7 @@ class Parcela_editarActivity : AppCompatActivity() {
                 && binding.Etipodearbol.text.toString()!=""
                 && binding.Eedad.text.toString()!=""){
 
-                db.collection("users").document(email!!).collection("parcelas").get().addOnSuccessListener { task ->
-
-                    for (document in task){
-                        db.collection("users").document(email).collection("parcelas").document(document.id.toString())
-                            .get().addOnSuccessListener {
-
-                                if(nombre_parcela==it.get("nombre_parcela")as String?){
-
-                                    db.collection("users").document(email!!).collection("parcelas").document(document.id.toString()).update(
+                                    db.collection("users").document(email!!).collection("parcelas").document(nombre_parcela!!).update(
                                         "altura_prom",binding.Ealtura.text.toString(),
                                         "cant_arboles" , binding.EcantArboles.text.toString(),
                                         "diametro_arboles" , binding.Ediametro.text.toString(),
@@ -93,14 +73,8 @@ class Parcela_editarActivity : AppCompatActivity() {
                                     Toast.makeText(this, "Datos Actualizados", Toast.LENGTH_SHORT).show()
                                     val intent = Intent(this, RecyclerParcelasActivity::class.java)
                                     startActivity(intent)
-                                }
+                finish()
 
-                            }
-
-                    }
-
-
-                }
             }
         }
 

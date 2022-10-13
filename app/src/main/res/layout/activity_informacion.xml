@@ -136,9 +136,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:background="@drawable/custom_button_inicio"
                 android:text="Nueva Parcela"
-                app:backgroundTint="@null"
-                android:background="@drawable/custom_button_inicio"/>
+                app:backgroundTint="@null" />
 
         </RelativeLayout>
 

@@ -34,7 +34,6 @@ class InformacionActivity : AppCompatActivity() {
         auten = FirebaseAuth.getInstance()
         val uid = auten.currentUser?.uid
 
-
         val prefs = this.getSharedPreferences(
             getString(R.string.archivo_preferencias),
             Context.MODE_PRIVATE
@@ -49,6 +48,7 @@ class InformacionActivity : AppCompatActivity() {
             val intent = Intent(this, ParcelaActivity::class.java)
             intent.putExtra("email",binding.mailInfoForestal.text.toString())
             startActivity(intent)
+            finish()
         }
 
         setuptable()

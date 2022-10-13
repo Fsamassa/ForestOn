@@ -33,7 +33,7 @@ class ParcelaActivity : AppCompatActivity() {
             && binding.edad.text.toString()!=""
             && binding.etIndustria.text.toString()!=""
         ){
-            db.collection("users").document(maildeUsuario!!).collection("parcelas").add(hashMapOf(
+            db.collection("users").document(maildeUsuario!!).collection("parcelas").document(binding.NombreParcela.text.toString()).set(hashMapOf(
                 "nombre_parcela" to binding.NombreParcela.text.toString(),
                 "altura_prom" to binding.altura.text.toString(),
                 "cant_arboles" to binding.cantArboles.text.toString(),
@@ -48,6 +48,7 @@ class ParcelaActivity : AppCompatActivity() {
             Toast.makeText(this, "Datos Actualizados", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, InformacionActivity::class.java)
             startActivity(intent)
+            finish()
         }else{
             Toast.makeText(this, "completar todo los datos", Toast.LENGTH_SHORT).show()
         }
