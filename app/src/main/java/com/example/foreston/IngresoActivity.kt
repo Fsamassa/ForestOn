@@ -48,6 +48,7 @@ class IngresoActivity : AppCompatActivity() {
 
                             val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
+                            finish()
                         }else{
                             mostrarAlerta("Logueo con cuenta GOOGLE fallida. Contactese con Admin.")
                         }
@@ -76,6 +77,7 @@ class IngresoActivity : AppCompatActivity() {
         if(email != null){
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 
@@ -93,7 +95,7 @@ class IngresoActivity : AppCompatActivity() {
                         limpiarCamposLogueo()
                         val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
-
+                        finish()
 
                     }else{
                         mostrarAlerta("Logueo fallido. Revise credenciales.")
@@ -122,6 +124,7 @@ class IngresoActivity : AppCompatActivity() {
                             iniciarCamposBasicosDBS(emailNuevo.toString())
                             val intent = Intent(this, HomeActivity::class.java)
                             startActivity(intent)
+                            finish()
 
                         }else{
                             mostrarAlerta("Creación de usuario fallido: el correo de email seleccionado ya está en uso.")
@@ -146,7 +149,8 @@ class IngresoActivity : AppCompatActivity() {
             googleClient.signOut()  // Me deslogueo de la actual por si elegí otra cuenta.
 
             respuestaLogueoGoogle.launch(googleClient.signInIntent)
-            }
+        }
+
         binding.buttonFacebook.setOnClickListener{
 
             LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
@@ -166,6 +170,7 @@ class IngresoActivity : AppCompatActivity() {
 
                                 val intent = Intent(this@IngresoActivity, HomeActivity::class.java)
                                 startActivity(intent)
+                                finish()
                             }else{
                                 mostrarAlerta("Logueo con cuenta GOOGLE fallida. Contactese con Admin.")
                             }

@@ -13,6 +13,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
+import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -30,11 +31,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import com.example.foreston.recyclerAsociados.RecyclerAsociadosActivity
 import com.example.foreston.recyclerParcelas.RecyclerParcelasActivity
+import com.example.foreston.utils.GeneralUtils
 import com.example.foreston.utils.UtilsAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
+import java.text.DecimalFormat
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -182,13 +185,14 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 }else{
                     FirebaseAuth.getInstance().signOut()
                 }
-                onBackPressed()
+                val intent = Intent(this, IngresoActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
         drawer.closeDrawer(GravityCompat.START)
         return true
     }
-
     override fun onPostCreate(savedInstanceState: Bundle?){
         super.onPostCreate(savedInstanceState)
         toggle.syncState()
@@ -203,7 +207,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         return super.onOptionsItemSelected(item)
     }
-
     private fun checkearPermisos(ingresoElegido: Int){
         if ((ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) ||
             (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
@@ -215,7 +218,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ingresoASimuladores(ingresoElegido)
         }
     }
-
     private fun solicitarPermisosCamara() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
             //El usuario ya ha rechazado el permiso anteriormente, debemos informarle que vaya a ajustes.
@@ -234,7 +236,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),STORAGE_REQUEST_CODE)
         }
     }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
@@ -261,7 +262,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
     }
-
     private fun mostrarAlerta(mensaje: String, titulo: String ){
         val builder = AlertDialog.Builder(this)
         builder.setTitle(titulo)
@@ -270,7 +270,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-
     private fun ingresoASimuladores(ingresoElegido : Int){
         when(ingresoElegido){
             ESCANEO_ARBOL -> {
@@ -288,5 +287,16 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
             }
         }
+    }
+
+    override fun onBackPressed() {
+            GeneralUtils.mostrarAlertaDecision(
+                this,
+                "¿ Deseas salir de ForestOn ?",
+                "Salir", null,
+                positiveAction = {
+                    System.exit(0)
+                },
+                negativeAction = null)
     }
 }
