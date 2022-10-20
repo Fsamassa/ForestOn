@@ -5,7 +5,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -20,11 +21,14 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher_foreston512"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_foreston512"
         android:supportsRtl="true"
         android:theme="@style/Theme.ForestOn"
-        android:requestLegacyExternalStorage="true"
         tools:targetApi="31">
+        <activity
+            android:name=".DatosEconomicosParcelaActivity"
+            android:exported="false" />
         <activity
             android:name=".InfoScaneadaActivity"
             android:exported="false" />
@@ -52,11 +56,9 @@
         <activity
             android:name=".recyclerParcelas.RecyclerParcelasActivity"
             android:exported="false" />
-
         <activity
             android:name=".recyclerParcelas.Parcela_editarActivity"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"

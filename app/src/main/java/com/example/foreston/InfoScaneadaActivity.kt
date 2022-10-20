@@ -44,6 +44,10 @@ class InfoScaneadaActivity : AppCompatActivity() {
     private var carbonoDouble :  Double = 0.0
     private var maildeUsuario : String? = null
     private var diametroACargar : Int = 5
+    private var flagDatosGuardados = false
+    private var pesototal : Double = 0.0
+    private var volumentotal : Double = 0.0
+    private var cantArbolesGlobal : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,25 +73,55 @@ class InfoScaneadaActivity : AppCompatActivity() {
         binding.btnConfiguracion.setOnClickListener{
             onAddButtonClicked()
         }
+
+        binding.btnDatosEconomicos.setOnClickListener{
+            onAddButtonClicked()
+
+            if (binding.etCantArboles.text.isNullOrBlank() ||
+                binding.etDireccion.text.isNullOrBlank() ||
+                binding.etHectareaParcela.text.isNullOrBlank() ||
+                binding.etNombreParcela.text.isNullOrBlank()) {
+
+                val mensajeToast = Toast.makeText(this, "Falta ingresar información necesaria para calcular datos Económicos.", Toast.LENGTH_LONG)
+                mensajeToast.setGravity(Gravity.CENTER,0 ,0)
+                mensajeToast.show()
+            }else{
+                if (binding.etPesoTotal.text.isNullOrBlank()){
+                    val mensajeToast = Toast.makeText(this, "Ingresar cantidad de árboles y generar calculos necesarios para ver datos Económicos.", Toast.LENGTH_LONG)
+                    mensajeToast.setGravity(Gravity.CENTER,0 ,0)
+                    mensajeToast.show()
+                }else{
+                    generarDatosEconomicos(diametro)
+                }
+            }
+        }
+
+
         binding.btnCalcular.setOnClickListener{
-            var mensajeToast = Toast.makeText(this, "CALCULANDO....", Toast.LENGTH_SHORT)
+            var mensajeToast = Toast.makeText(this, "Calculando...", Toast.LENGTH_SHORT)
 
             if (binding.etCantArboles.text.isNotEmpty()){
                 val cantArbolesString = binding.etCantArboles.text.toString()
                 val cantArbolesInt = cantArbolesString.toInt()
                 val pesoTotalFormat = cantArbolesInt * pesoDouble
 
+                val df = DecimalFormat("#,###.00")
+
                 if (pesoTotalFormat > 5000){
-                    binding.etPesoTotal.text = (pesoTotalFormat/1000).toString() + " ton"
+                    binding.etPesoTotal.text = df.format((pesoTotalFormat/1000)) + " ton"
                 }else{
-                    binding.etPesoTotal.text = pesoTotalFormat.toString() + " kg"
+                    binding.etPesoTotal.text = df.format(pesoTotalFormat) + " kg"
                 }
 
-                val df = DecimalFormat("##.##")
-                val volTotalFormat = df.format((cantArbolesInt * volumenDouble))
-                binding.etVolumenTotal.text = volTotalFormat.toString() + " m3"
-                binding.etOxigenoTotal.text = (cantArbolesInt * oxigenoDouble).toString() + " ton"
-                binding.etCo2Total.text = (cantArbolesInt * carbonoDouble).toString() + " ton"
+                binding.etVolumenTotal.text = df.format((cantArbolesInt * volumenDouble)) + " m3"
+                binding.etOxigenoTotal.text = df.format((cantArbolesInt * oxigenoDouble)) + " ton"
+                binding.etCo2Total.text = df.format((cantArbolesInt * carbonoDouble)) + " ton"
+
+
+                pesototal = pesoTotalFormat/1000
+                volumentotal = cantArbolesInt * volumenDouble
+                cantArbolesGlobal = cantArbolesInt
+
                 onAddButtonClicked()
             }else{
                 mensajeToast = Toast.makeText(this, "¡ Ingresar cantidad de árboles !", Toast.LENGTH_LONG)
@@ -114,21 +148,47 @@ class InfoScaneadaActivity : AppCompatActivity() {
             if (binding.etCantArboles.text.isNullOrBlank() ||
                 binding.etDireccion.text.isNullOrBlank() ||
                 binding.etHectareaParcela.text.isNullOrBlank() ||
-                binding.etNombreParcela.text.isNullOrBlank() ||
-                binding.etIndustriaDestino.text.isNullOrBlank()) {
+                binding.etNombreParcela.text.isNullOrBlank()) {
 
-                val mensajeToast = Toast.makeText(this, "Falta ingresar información necesaria para guardar nueva parcela.", Toast.LENGTH_SHORT)
+                val mensajeToast = Toast.makeText(this, "Falta ingresar información necesaria para guardar nueva parcela.", Toast.LENGTH_LONG)
                 mensajeToast.setGravity(Gravity.CENTER,0 ,0)
                 mensajeToast.show()
             }else{
                 if (binding.etPesoTotal.text.isNullOrBlank()){
-                    val mensajeToast = Toast.makeText(this, "Ingresar cantidad de árboles y generar calculos necesarios para guardar nueva parcela.", Toast.LENGTH_SHORT)
+                    val mensajeToast = Toast.makeText(this, "Ingresar cantidad de árboles y generar calculos necesarios para guardar nueva parcela.", Toast.LENGTH_LONG)
                     mensajeToast.setGravity(Gravity.CENTER,0 ,0)
                     mensajeToast.show()
                 }else{
                     guardarDatosDeParcela()
                 }
             }
+        }
+
+    }
+
+    private fun generarDatosEconomicos(diametro: String) {
+        val idDiametro = diametro
+        if (flagDatosGuardados){
+            GeneralUtils.mostrarAlertaDecision(
+                this,
+                "¿Iniciar generador de datos Económicos para esta Parcela? Recuerda que los datos que hayas modificado y no guardado se perderán.",
+                "Generar Datos Económicos", "Revisar datos",
+                positiveAction = {
+                    val intent = Intent(this, DatosEconomicosParcelaActivity::class.java)
+                    intent.putExtra("idDiametro", idDiametro)
+                    intent.putExtra("idParcela", binding.etNombreParcela.text.toString())
+                    intent.putExtra("cantArboles", cantArbolesGlobal)
+                    intent.putExtra("pesoTotal", pesototal)
+                    intent.putExtra("volumenTotal", volumentotal)
+                    startActivity(intent)
+                    finish()
+                },
+                negativeAction = null)
+        }else{
+            GeneralUtils.mostrarAlerta(
+                this,
+                "No has guardado los datos cargados! ForestOn necesita que guardes los datos para avanzar.",
+                null, null)
         }
 
     }
@@ -145,19 +205,28 @@ class InfoScaneadaActivity : AppCompatActivity() {
             "tipo" to "Eucaliptus Grandis",
             "edad" to edadMesesLong.toString(),
             "direccion" to binding.etDireccion.text.toString(),
-            "tipo_industria" to binding.etIndustriaDestino.text.toString(),
             "circunferencia_arboles" to circunferenciaDouble,
             "peso_total" to (cantArbolesInt * pesoDouble).toString(),
             "volumen_total" to (cantArbolesInt * volumenDouble).toString(),
             "oxigeno_total" to (cantArbolesInt * oxigenoDouble).toString(),
             "carbono_total" to (cantArbolesInt * carbonoDouble).toString(),
+            "fecha_escaneo" to  binding.etFecha.text.toString(),
+            "tipo_industria" to "",
+            "valoracion_total" to "",
+
         ))
+        flagDatosGuardados = true
         GeneralUtils.mostrarAlertaDecision(
             this,
-            "Nueva parcela cargada y guardada exitosamente ¿Deseas volver al Menú Principal?",
+            "Nueva parcela cargada y guardada exitosamente ¿Deseas generar datos Económicos?",
             null, null,
             positiveAction = {
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, DatosEconomicosParcelaActivity::class.java)
+                intent.putExtra("idDiametro", diametroACargar.toString())
+                intent.putExtra("idParcela", binding.etNombreParcela.text.toString())
+                intent.putExtra("cantArboles", cantArbolesGlobal)
+                intent.putExtra("pesoTotal", pesototal)
+                intent.putExtra("volumenTotal", volumentotal)
                 startActivity(intent)
                 finish()
             },
@@ -174,10 +243,12 @@ class InfoScaneadaActivity : AppCompatActivity() {
             binding.btnCalcular.visibility = View.VISIBLE
             binding.btnGuardar.visibility = View.VISIBLE
             binding.btnVolverHome.visibility = View.VISIBLE
+            binding.btnDatosEconomicos.visibility = View.VISIBLE
         }else{
             binding.btnCalcular.visibility = View.GONE
             binding.btnGuardar.visibility = View.GONE
             binding.btnVolverHome.visibility = View.GONE
+            binding.btnDatosEconomicos.visibility = View.GONE
         }
     }
     private fun setAnimation(clicked: Boolean) {
@@ -185,11 +256,13 @@ class InfoScaneadaActivity : AppCompatActivity() {
             binding.btnCalcular.startAnimation(fromBottom)
             binding.btnGuardar.startAnimation(fromBottom)
             binding.btnVolverHome.startAnimation(fromBottom)
+            binding.btnDatosEconomicos.startAnimation(fromBottom)
             binding.btnConfiguracion.startAnimation(rotateOpen)
         }else{
             binding.btnCalcular.startAnimation(toBottom)
             binding.btnGuardar.startAnimation(toBottom)
             binding.btnVolverHome.startAnimation(toBottom)
+            binding.btnDatosEconomicos.startAnimation(toBottom)
             binding.btnConfiguracion.startAnimation(rotateClose)
         }
     }

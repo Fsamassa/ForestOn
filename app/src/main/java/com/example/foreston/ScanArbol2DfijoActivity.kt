@@ -33,6 +33,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
 import java.util.*
+import kotlin.math.sqrt
 
 class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
@@ -91,6 +92,7 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
 
                     val df = DecimalFormat("#.##")
                     distancia = hitResult.distance
+
                     val distanciaEnDecimal = df.format(distancia)
 
                     binding.vHorizontal.setBackgroundColor(resources.getColor(R.color.botones_inicio))
@@ -124,6 +126,7 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
                     intent.putExtra("diametro", diametroSinDecimal.toString())
                     intent.putExtra("imagen", uriGlobal)
                     startActivity(intent)
+                    finish()
                 },
                 negativeAction = null)
             arFragment.arSceneView.planeRenderer.isEnabled = true
@@ -150,6 +153,7 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
                 intent.putExtra(Intent.EXTRA_STREAM,URI)
                 intent.type = "text/plain"
                 startActivity(intent)
+                finish()
             }
         }
 
@@ -239,10 +243,10 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
 
 
     private fun generarCilindroTexturaMedicion(){
-        Texture.builder().setSource(this, R.drawable.textura_eucalipto).build().thenAccept {
+        Texture.builder().setSource(this, R.drawable.textura_eucalipto3).build().thenAccept {
             texture ->
                 MaterialFactory.makeOpaqueWithTexture(this, texture).thenAccept { material ->
-                    renderable = ShapeFactory.makeCylinder( diametro, 2f , Vector3(0f, -0.35f, distancia * 0.9f), material)
+                    renderable = ShapeFactory.makeCylinder( diametro, 3f , Vector3(0f, -1f, -3f), material)
                     node.setParent(arFragment.arSceneView.scene)
                     node.renderable = renderable
                     renderable.isShadowCaster = false
@@ -260,7 +264,7 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
     }
     private fun generarCilindroTransparenteMedicion(){
         MaterialFactory.makeTransparentWithColor(this, color).thenAccept{ material ->
-            renderable = ShapeFactory.makeCylinder( diametro, 2f , Vector3(0f, -0.35f, distancia * 0.9f), material)
+            renderable = ShapeFactory.makeCylinder( diametro, 3f , Vector3(0f, -1f, -3f), material)
             renderable.isShadowCaster = false
 
             node.setParent(arFragment.arSceneView.scene)
@@ -278,7 +282,7 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
     }
     private fun generarCilindroOpacoMedicion(){
         MaterialFactory.makeOpaqueWithColor(this, color).thenAccept{ material ->
-            renderable = ShapeFactory.makeCylinder( diametro, 2f , Vector3(0f, -0.35f, distancia * 0.9f), material)
+            renderable = ShapeFactory.makeCylinder( diametro, 3f , Vector3(0f, -1f, -3f), material)
             renderable.isShadowCaster = false
 
             node.setParent(arFragment.arSceneView.scene)
@@ -320,14 +324,14 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
                         this,
                         "Imagen cargada en la Base de Datos de Foreston...",
                         Toast.LENGTH_SHORT)
-                    mensajeToast.setGravity(Gravity.TOP,0 ,0)
+                    mensajeToast.setGravity(Gravity.CENTER,0 ,0)
                     mensajeToast.show() }
                 .addOnFailureListener {
                     val mensajeToast = Toast.makeText(
                         this,
                         "Error al querer cagar imagen en la Base de Datos de Foreston...",
                         Toast.LENGTH_SHORT)
-                    mensajeToast.setGravity(Gravity.TOP,0 ,0)
+                    mensajeToast.setGravity(Gravity.CENTER,0 ,0)
                     mensajeToast.show()
                 }
         }
@@ -340,7 +344,7 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
             guardarLocalmente()
         }
         val mensajeToast = Toast.makeText(this, "Imagen guardada exitosamente en Galeria...", Toast.LENGTH_SHORT)
-        mensajeToast.setGravity(Gravity.TOP,0 ,0)
+        mensajeToast.setGravity(Gravity.CENTER,0 ,0)
         mensajeToast.show()
     }
     private fun guardarLocalmente()  {

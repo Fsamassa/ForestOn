@@ -28,8 +28,6 @@
     <string name="TELEFONOdato">TELEFONO</string>
     <string name="botonActDa">Actualizar Datos</string>
     <string name="botonActPass">Actualizar Pass</string>
-    <string name="big_lamp">Big Lamp</string>
-    <string name="small_table">small table</string>
     <string name="Aceptar">Aceptar</string>
     <string name="SI">Sí</string>
     <string name="NO">No</string>
@@ -85,6 +83,22 @@
         <item>49 cm</item>
         <item>50 cm</item>
     </string-array>
-
+    <string-array name="industria_destino">
+        <item>Aserradero - En Monte en Pie</item>
+        <item>Aserradero - En Playa de Monte</item>
+        <item>Aserradero - En Playa de Monte - podado</item>
+        <item>Aserradero - En Planta industrial</item>
+        <item>Aserradero - En Planta industrial - podado</item>
+        <item>Aserrin - En Planta industrial</item>
+        <item>Celulosa (C. B. Sta Fe)</item>
+        <item>Celulosa (Arauco Argentina SA)</item>
+        <item>Chips - En Planta industrial</item>
+        <item>Costanero - En Planta industrial</item>
+        <item>Papel (Papel Misionero SA)</item>
+        <item>Rodrigones - En Playa de Monte</item>
+        <item>Tutores - En Playa de Monte</item>
+        <item>Tijeras - En Playa de Monte</item>
+        <item>Viruta - En Planta industrial</item>
+    </string-array>
 
 </resources>

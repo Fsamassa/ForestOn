@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E8EAF6"
+    tools:context=".DatosEconomicosParcelaActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvDatosEconomicos"
+        android:layout_width="390dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="8dp"
+        app:barrierMargin="20dp"
+        app:cardBackgroundColor="#FFF59D"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Cálculo Económico por Parcela"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDropDown"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Industria Destino"
+                android:textColorHint="@color/barra_menu">
+
+                <AutoCompleteTextView
+                    android:id="@+id/acIndustriaDestino"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:dropDownWidth="360dp"
+                    android:dropDownHeight="200dp"
+                    android:inputType="none"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:text="Seleccion de Producto"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:id="@+id/vHorizontal1"
+                android:layout_width="360dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/black_semi_transparent" />
+            <TextView
+                android:id="@+id/tvCantArboles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Árboles en parcela"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/etCantArboles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="0 árboles"
+                android:layout_gravity="start" />
+
+            <TextView
+                android:id="@+id/tvDiametroScaneado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diametro Escaneado"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/etDiametroScaneado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Diametro"
+                android:layout_gravity="start"/>
+
+            <TextView
+                android:id="@+id/tvPesoTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Peso total"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/etPesoTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Peso Total"
+                android:layout_gravity="start"/>
+
+            <TextView
+                android:id="@+id/tvVolumenTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Volumen total"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/etVolumenTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Volumen total"
+                android:layout_gravity="start"/>
+            <View
+                android:id="@+id/vHorizontal2"
+                android:layout_width="360dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/black_semi_transparent" />
+            <TextView
+                android:id="@+id/tvDiametroConsulta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¿Diametro apto para producto seleccionado? "
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/etRespuestaApto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Si | Excede | Insuficiente"/>
+
+            <TextView
+                android:id="@+id/tvPrecioUnitario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Precio Unitario "
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/etPrecioUnitario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Precio por ton/vol/Unidades"/>
+
+            <TextView
+                android:id="@+id/tvPrecioTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rentabilidad Económica Bruta total"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/etPrecioTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Precio total"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+            <View
+                android:id="@+id/vHorizontal3"
+                android:layout_width="360dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="7dp"
+                android:background="@color/black_semi_transparent" />
+                </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnConfiguracion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:backgroundTint="@color/barra_usuario"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_baseline_miscellaneous"
+                tools:ignore="SpeakableTextPresentCheck"
+                android:contentDescription="TODO" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnVolverHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="invisible"
+                app:backgroundTint="#303F9F"
+                app:layout_constraintBottom_toTopOf="@+id/btnConfiguracion"
+                app:layout_constraintEnd_toEndOf="@+id/btnConfiguracion"
+                app:srcCompat="@drawable/ic_baseline_home" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="invisible"
+                app:backgroundTint="#26A69A"
+                app:layout_constraintBottom_toTopOf="@+id/btnVolverHome"
+                app:layout_constraintEnd_toEndOf="@+id/btnVolverHome"
+                app:srcCompat="@drawable/ic_outline_save" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
