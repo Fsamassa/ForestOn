@@ -28,6 +28,7 @@ class RecyclerAsociadosActivity : AppCompatActivity() {
 
         binding.recyclerAsociados.adapter = asociadosAdapter
 
+
         EventChangeLister()
     }
 
