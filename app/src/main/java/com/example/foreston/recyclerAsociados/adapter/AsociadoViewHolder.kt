@@ -1,21 +1,47 @@
 package com.example.foreston.recyclerAsociados.adapter
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.View
+import android.widget.PopupWindow
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isGone
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.foreston.*
+import com.example.foreston.databinding.ItemAsociado2Binding
 import com.example.foreston.databinding.ItemAsociadoBinding
 import com.example.foreston.recyclerAsociados.Asociado
+import com.google.android.gms.common.SupportErrorDialogFragment
+import com.google.android.gms.dynamic.SupportFragmentWrapper
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
 
 
+
 class AsociadoViewHolder(view: View):RecyclerView.ViewHolder(view){
 
-    val binding = ItemAsociadoBinding.bind(view)
+    //val binding = ItemAsociadoBinding.bind(view)
+    val binding= ItemAsociado2Binding.bind(view)
     private lateinit var storage: StorageReference
+    val  dialogo : Dialog? =null
+    private val db2 = FirebaseFirestore.getInstance()
+
+
 
     fun render(asociadoModel: Asociado, dbStorage: FirebaseStorage){
         val imagen_url = asociadoModel.imagen_foto_url
@@ -33,19 +59,58 @@ class AsociadoViewHolder(view: View):RecyclerView.ViewHolder(view){
             binding.progressWheel.isGone = true
         }
 
-        binding.tvNombre.text = asociadoModel.nombre
+       /* binding.tvNombre.text = asociadoModel.nombre
         binding.tvApellido.text = asociadoModel.apellido
         binding.tvDomicilio.text = asociadoModel.direccion
         binding.tvCantCampos.text = asociadoModel.campos.toString()
         binding.tvEmail.text = asociadoModel.email
-        binding.tvTelefono.text = asociadoModel.telefono
+        binding.tvTelefono.text = asociadoModel.telefono*/
+
+
+        val mail : String? = asociadoModel.email
+
+        db2.collection("users").document(mail!!).collection("parcelas").get().addOnSuccessListener {
+           binding.cantidadPValor.text=it.size().toString()
+            var cant_totalCarbono:Double=0.0
+            var cant_hectareas:Double=0.0
+
+            for (doc in it.documents){
+
+                if(doc.get("carbono_total")==null) {
+                    cant_totalCarbono = cant_totalCarbono + 0
+                }else{cant_totalCarbono = cant_totalCarbono + doc.get("carbono_total").toString().toDouble()}
+
+                if(doc.get("hectareas")==null){
+                    cant_hectareas=cant_hectareas+0
+                }else{cant_hectareas=cant_hectareas+doc.get("hectareas").toString().toDouble()}
+            }
+
+
+            binding.co2consumido.text=cant_totalCarbono.toString()
+            binding.HAdeCampo.text=cant_hectareas.toString()
+        }
+
+
 
         binding.ivAsociadoFoto.setOnClickListener{
-            Toast.makeText(binding.ivAsociadoFoto.context, "Quieres conectar con "+asociadoModel.nombre+" ?", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(binding.ivAsociadoFoto.context, "Quieres conectar con "+asociadoModel.nombre+" ?", Toast.LENGTH_SHORT).show()
+          val dialogBuilder = AlertDialog.Builder(binding.cantidadPValor.context)
 
+            dialogBuilder.setMessage("Datos de "+asociadoModel.nombre?.uppercase()+" "+asociadoModel.apellido?.uppercase()+"\n\nEmail: "+asociadoModel.email
+            +"\nTeléfono : "+asociadoModel.telefono
+            +"\nDirección: "+asociadoModel.direccion)
+                .setCancelable(false)
+
+                .setPositiveButton("ok", DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+                })
+
+            val alert = dialogBuilder.create()
+            alert.show()
             // Acá iria logica para que se conecten y se asocien, mostrar algun grafico o dato de ejemplo si se junta los campos de ambos.
+    }
 
-        }
+
     }
 
 }

@@ -26,6 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ForestOn"
         tools:targetApi="31">
+
         <activity
             android:name=".DatosEconomicosParcelaActivity"
             android:exported="false" />

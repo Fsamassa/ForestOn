@@ -13,7 +13,7 @@ class AsociadoAdapter(private val asociadosList:ArrayList<Asociado>) : RecyclerV
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsociadoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        return AsociadoViewHolder(layoutInflater.inflate(R.layout.item_asociado, parent, false))
+        return AsociadoViewHolder(layoutInflater.inflate(R.layout.item_asociado_2, parent, false))
     }
 
     override fun onBindViewHolder(holder: AsociadoViewHolder, position: Int) {
