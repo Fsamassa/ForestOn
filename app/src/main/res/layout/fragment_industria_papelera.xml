@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IndustriaPapeleraFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/ivFoto1"
+                            android:layout_width="400dp"
+                            android:layout_height="300dp"
+                            android:background="@drawable/papeleras"
+                            android:layout_marginEnd="5dp"
+                            app:layout_constraintEnd_toStartOf="@+id/ivFoto2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/ivFoto2"
+                            android:layout_width="400dp"
+                            android:layout_height="300dp"
+                            android:background="@drawable/celulosa"
+                            android:layout_marginEnd="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/ivFoto1"
+                            app:layout_constraintEnd_toStartOf="@+id/ivFoto3"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivFoto3"
+                            android:layout_width="400dp"
+                            android:layout_height="300dp"
+                            android:background="@drawable/papeleras2"
+                            android:layout_marginEnd="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/ivFoto2"
+                            app:layout_constraintEnd_toStartOf="@+id/ivFoto4"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/ivFoto4"
+                            android:layout_width="400dp"
+                            android:layout_height="300dp"
+                            android:background="@drawable/papeleras_color"
+                            app:layout_constraintStart_toEndOf="@+id/ivFoto3"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="La Celulosa y el Papel"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:textColor="@color/contor_general"
+                android:textStyle="bold"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="La Industria"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/info_papel_y_celulosa" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Celulosa"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/info_celulosa" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="El Papel"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_papel" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="La necesidad de la materia prima"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/info_fibra_virgen" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="¿Cómo se obtiene?"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/maquina_de_papel" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Mitos vs Realidad"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Mito (1)"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/mito_1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Mito (2)"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/mito_2" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Mito (3)"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/mito_3" />
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

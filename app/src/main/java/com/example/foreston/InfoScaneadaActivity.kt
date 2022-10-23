@@ -211,6 +211,7 @@ class InfoScaneadaActivity : AppCompatActivity() {
             "oxigeno_total" to (cantArbolesInt * oxigenoDouble).toString(),
             "carbono_total" to (cantArbolesInt * carbonoDouble).toString(),
             "fecha_escaneo" to  binding.etFecha.text.toString(),
+            "hectareas" to binding.etHectareaParcela.text.toString(),
             "tipo_industria" to "",
             "valoracion_total" to "",
 

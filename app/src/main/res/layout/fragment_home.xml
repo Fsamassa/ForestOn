@@ -1,65 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".HomeFragment">
 
-    <Button
-        android:id="@+id/btnScanArbol"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:minWidth="300dp"
-        android:paddingStart="20dp"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:background="@drawable/custom_button_inicio"
-        app:backgroundTint="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Escanear Arbol" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <Button
-        android:id="@+id/btnBuscarSocios"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:text="Buscar Socios"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnScanArbol"
-        android:background="@drawable/custom_button_inicio"
-        app:backgroundTint="@null"/>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/btnInfo"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:background="@drawable/custom_button_inicio"
-        app:backgroundTint="@null"
-        android:text="Cargar Informacion"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBuscarSocios"/>
-    <Button
-        android:id="@+id/btnReportes"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:textAlignment="center"
-        android:background="@drawable/custom_button_inicio"
-        app:backgroundTint="@null"
-        android:text="Mis Reportes"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnInfo"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

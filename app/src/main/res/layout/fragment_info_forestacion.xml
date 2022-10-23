@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InfoForestacionFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/black"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/ivFoto1"
+                            android:layout_width="400dp"
+                            android:layout_height="300dp"
+                            android:background="@drawable/forestacion3"
+                            android:layout_marginEnd="5dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/ivFoto2"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/ivFoto2"
+                            android:layout_width="400dp"
+                            android:layout_height="300dp"
+                            android:background="@drawable/plantaciones"
+                            android:layout_marginEnd="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/ivFoto1"
+                            app:layout_constraintEnd_toStartOf="@+id/ivFoto3"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivFoto3"
+                            android:layout_width="400dp"
+                            android:layout_height="300dp"
+                            android:background="@drawable/plantaciones2"
+                            android:layout_marginEnd="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/ivFoto2"
+                            app:layout_constraintEnd_toStartOf="@+id/ivFoto4"
+                            app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/ivFoto4"
+                            android:layout_width="400dp"
+                            android:layout_height="300dp"
+                            android:background="@drawable/forestacion1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/ivFoto3"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </HorizontalScrollView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Conceptos básicos"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:textColor="@color/contor_general"
+                android:textStyle="bold"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Forestación"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_forestacion" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Reforestación"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_reforestacion" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Deforestación"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_deforestacion" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

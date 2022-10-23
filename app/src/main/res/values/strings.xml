@@ -100,5 +100,76 @@
         <item>Tijeras - En Playa de Monte</item>
         <item>Viruta - En Planta industrial</item>
     </string-array>
+    <string name="info_forestacion">La forestación es la conversión, por actividad humana directa, de tierras que carecían de bosque,
+        durante un periodo de al menos 50 años, en tierras forestales mediante plantación, siembra o fomento antrópico de semilleros naturales.</string>
+    <string name="info_reforestacion">Se considera reforestación la conversión por actividad humana directa de tierras no boscosas en boscosas mediante plantación,
+        siembra o fomento antrópico de semilleros naturales, en tierras que estuvieron forestadas pero que actualmente están deforestadas. </string>
+    <string name="info_deforestacion">La deforestación es la conversión de tierras boscosas en no forestales por actividad humana directa,
+        para aprovechamiento (o no) de las tierras para otras actividades no forestales.</string>
+    <string name="info_aserradero">Un aserradero es un lugar donde se somete a un proceso de producción el tronco de un árbol,
+        aquí el tronco es pelado de la corteza para poder someterlo a un proceso de aserrado de diferentes tamaños y formatos para mejorar el aprovechamiento de la madera.
+        En este mismo lugar se separa la madera según calidades y tamaños. Básicamente, son industrias de primera transformación de la madera.</string>
+    <string name="info_aserradero_usos">Dependiendo del tamaño de la troza/rollizo se destina a diferentes usos.
+        El primer corte que se realiza al tronco del árbol, con una sierra principal, determina el espesor de la pieza.
+        Después, el segundo corte realizado con una canteadora determina el ancho de la pieza,
+        quedando solo por determinar el largo que se consigue con una retestadora.
+        Gracias a los aserraderos de madera, podemos utilizar este material en infinidad de usos, como: \n
+        - Estructuras de madera para construcción \n
+        - Fabricación de suelos de madera \n
+        - Fabricación de tablas de madera y tableros alistonados, aglomerados o contrachapados \n
+        - Cajas, palets y embalajes de madera \n
+        - Subproductos del aserrado: Pellets, chips, aserrín, virutas, etc.
+    </string>
 
+
+    <string name="info_papel_y_celulosa">Cuando hablamos de productos de papel y cartón, tenemos que diferenciar la producción de celulosa de la producción de papel.
+        La celulosa es la fibra que se utiliza como materia prima para hacer papel y puede ser de origen forestal o vegetal. A su vez, el término “papel” engloba diferentes
+        tipos que se clasifican en: \n
+        - Culturales: diarios, libros y todo tipo de papeles para impresión y escritura.\n
+        - Industriales: papeles para fabricar cartón corrugado, kraft, cartulina, impermeables, para embalaje.\n
+        - Domésticos: papel tissue como papel higiénico, servilletas, rollos de cocina, pañuelos de papel.
+    </string>
+    <string name="info_celulosa">En Argentina se producen anualmente cerca de 900.000 toneladas de pasta celulósica de las cuales el 16% proviene de la caña de azúcar;
+    el resto proviene de bosques implantados de pinos, eucaliptos, sauces y álamos.
+        Partiendo de la madera, primero se separan las fibras (unidas por una especie de pegamento denominado lignina) “moliendo” la madera o
+        disolviendo el pegamento con calor y productos químicos.
+    </string>
+    <string name="info_papel">El papel se fabrica con las fibras de celulosa que hay en la madera.
+        Cuando esa fibra se utiliza por primera vez se llama fibra virgen y cuando a través del reciclaje la recuperamos y la volvemos a utilizar como materia prima para fabricación de papel la llamamos fibra reciclada.
+        En Argentina se producen anualmente 1.762.000 toneladas de productos de papel, la cual utiliza como materia prima un 45% de celulosa y un 55% de papel que se recicla.
+    </string>
+    <string name="info_fibra_virgen">Siempre será necesario aportar una cierta cantidad de fibra virgen (materia prima nueva) al ciclo del papel.
+        Se calcula que alrededor de un 19% del papel que utilizamos no puede recuperarse para el reciclaje debido a diversas causas.
+        Por otra parte, la fibra de celulosa se va deteriorando a medida que se va utilizando.
+        Hay además determinados usos para los cuales se necesitan ciertas características que sólo aporta la fibra virgen.
+        Por todo ello, siempre será necesario añadir al ciclo del papel una cierta cantidad de fibra virgen.
+    </string>
+    <string name="maquina_de_papel">Para fabricar el papel, las fibras de celulosa -vírgenes o recicladas- se mezclan con agua en un gran recipiente llamado pulper,
+        y esa mezcla pasa a la máquina papelera. En la máquina, la mezcla de agua y fibras se coloca sobre una larga banda conducida por rodillos.
+        A continuación se va retirando el agua por varios procedimientos: gravedad, vacío, presión y secado.
+        Y finalmente obtenemos una enorme hoja de papel, que se enrolla para formar una bobina.
+    </string>
+    <string name="mito_1">
+        Mito: Para fabricar papel se destruyen bosques en Argentina.\n
+        Realidad: De la misma manera que se planta maíz o trigo, luego se cosecha y se vuelve a plantar, también los árboles se plantan.
+        Las empresas forestales tienen viveros donde cultivan los plantines que se transformarán en árboles.\n
+    </string>
+    <string name="mito_2">
+        Mito: La deforestación aumenta en todo el mundo, estamos acabando con los bosques a causa del papel.\n
+        Realidad: La mayor causa de deforestación en el mundo es el avance de la frontera agrícola.\n
+        Los opositores dicen que los bosques implantados secarán las fuentes de agua, degradarán el suelo y serán susceptibles a las plagas y enfermedades.\n
+        Sin embargo, ampliar la superficie forestada mediante bosques implantados presenta beneficios ambientales. Las plantaciones forestales fijan carbono, disminuyen
+        el efecto invernadero, cuidan al suelo de la erosión y lo ayudan a conservar el agua, y además son refugio de la fauna.
+    </string>
+    <string name="mito_3">
+        Mito: A nivel mundial el papel es un producto del pasado. Por ejemplo: en el futuro se va a leer y estudiar en forma digital.\n
+        Realidad: A pesar de todos los pronósticos que le anunciaban el final al libro en papel, los adolescentes siguen eligiéndolo.
+        La PC, el smartphone y la tablet crecen, pero se destinan a otros usos. El fenómeno es global,
+        aun donde la accesibilidad económica a los dispositivos electrónicos es mayor.
+        Los estudios demuestran que se sigue prefiriendo leer libros en papel.
+        El Segundo Informe Anual de “Regreso a la Escuela” realizado por la Junta de Papel y Embalaje,
+        que incluye encuestas a 4.300 estudiantes, padres y docentes en Estados Unidos,
+        muestra que el papel no solo tiene un significativo rol en el aula, sino que su uso e importancia está creciendo.
+
+    </string>
 </resources>
