@@ -125,6 +125,7 @@ class ScanArbol2DfijoActivity : AppCompatActivity(), AdapterView.OnItemClickList
                     val intent = Intent(this, InfoScaneadaActivity::class.java)
                     intent.putExtra("diametro", diametroSinDecimal.toString())
                     intent.putExtra("imagen", uriGlobal)
+                    intent.putExtra("especie", " ")
                     startActivity(intent)
                     finish()
                 },
