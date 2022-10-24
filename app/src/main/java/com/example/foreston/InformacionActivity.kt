@@ -1,30 +1,27 @@
 package com.example.foreston
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
-import android.widget.TableRow
-import android.widget.TextView
-import com.example.foreston.databinding.ActivityHomeBinding
+import android.view.View
+import android.widget.*
 import com.example.foreston.databinding.ActivityInformacionBinding
-import com.example.foreston.databinding.FragmentPerfilBinding
-import com.example.foreston.recyclerAsociados.RecyclerAsociadosActivity
+import com.example.foreston.utils.GeneralUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import org.w3c.dom.Text
 
 
-class InformacionActivity : AppCompatActivity() {
+class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     private val db = FirebaseFirestore.getInstance()
     private lateinit var auten: FirebaseAuth
     private lateinit var binding: ActivityInformacionBinding
-
+    private lateinit var item : String
+    private lateinit var especie : String
+    private lateinit var diametro : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,27 +29,53 @@ class InformacionActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auten = FirebaseAuth.getInstance()
-        val uid = auten.currentUser?.uid
-
-        val prefs = this.getSharedPreferences(
-            getString(R.string.archivo_preferencias),
-            Context.MODE_PRIVATE
-        )
-        var email = prefs.getString("Email", null)
-
-        binding.mailInfoForestal.setText(email)
-
 
         binding.btncargarcampo.setOnClickListener {
-
+/*
             val intent = Intent(this, ParcelaActivity::class.java)
             intent.putExtra("email",binding.mailInfoForestal.text.toString())
             startActivity(intent)
             finish()
+*/
+
+            when (especie){
+                "Eucalipto - Eucalyptus Grandis" -> {
+                    val intent = Intent(this, InfoScaneadaActivity::class.java)
+                    intent.putExtra("diametro", diametro.removeSuffix(" cm"))
+                    intent.putExtra("especie", "Eucalyptus Grandis")
+                    startActivity(intent)
+                    finish()
+                }
+                "Eucalipto - Eucalyptus Globulus" -> {
+                    val intent = Intent(this, InfoScaneadaActivity::class.java)
+                    intent.putExtra("diametro", diametro.removeSuffix(" cm"))
+                    intent.putExtra("especie", "Eucalyptus Globulus")
+                    startActivity(intent)
+                    finish()
+                   }
+                "Pino - Pinus ponderosa" -> {
+                    GeneralUtils.mostrarAlerta(this,
+                        "Lo sentimos, la especie $especie será implementada proximanente.\nPor favor elija otra de las disponibles",
+                        null)
+
+                }
+                "Álamo - Populus Simonii" -> {
+                    GeneralUtils.mostrarAlerta(this,
+                        "Lo sentimos, la especie $especie será implementada proximanente.\nPor favor elija otra de las disponibles",
+                        null)
+                }
+                else -> {
+                    GeneralUtils.mostrarAlerta(this,
+                        "Debes seleccionar una especie de árbol para continuar.",
+                        null)
+                }
+            }
+
         }
 
+        seleccionEspecieArbol()
+        seleccionDiametroArbol()
         setuptable()
-
 
         /*   if (uid != null) {
             db.collection("users").document(uid.toString()).get().addOnSuccessListener {
@@ -61,6 +84,64 @@ class InformacionActivity : AppCompatActivity() {
             }}else{
                 println(uid.toString())
             }*/
+    }
+
+    private fun seleccionDiametroArbol() {
+        val diametroString = resources.getStringArray(R.array.diametros_validos)
+
+        val arrayAdapter = ArrayAdapter(this, R.layout.drop_down_item, diametroString)
+        binding.acDiametros.setAdapter(arrayAdapter)
+
+        with(binding.acDiametros){
+            onItemClickListener = this@InformacionActivity
+        }
+    }
+
+    private fun seleccionEspecieArbol() {
+        val especieString = resources.getStringArray(R.array.especie_arbol)
+
+        val arrayAdapter = ArrayAdapter(this, R.layout.drop_down_especie, especieString)
+        binding.acEspecies.setAdapter(arrayAdapter)
+
+        with(binding.acEspecies){
+            onItemClickListener = this@InformacionActivity
+        }
+    }
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+        item = parent!!.getItemAtPosition(position).toString()
+
+        when (item){
+            "Eucalipto - Eucalyptus Grandis" -> {
+                binding.acEspecies.setTextColor(getColor(R.color.black))
+                especie = "Eucalipto - Eucalyptus Grandis"
+            }
+            "Eucalipto - Eucalyptus Globulus" -> {
+                binding.acEspecies.setTextColor(getColor(R.color.black))
+                especie = "Eucalipto - Eucalyptus Globulus"
+            }
+            "Pino - Pinus ponderosa" -> {
+                val mensajeToast = Toast.makeText(this, "Lo sentimos, especie proximanente ha ser implementada! \n Por favor elija otra de las disponibles",
+                    Toast.LENGTH_LONG)
+                mensajeToast.setGravity(Gravity.CENTER,0 ,0)
+                mensajeToast.show()
+                binding.acEspecies.setTextColor(getColor(R.color.seleccion_rojo))
+                especie = "Pino - Pinus ponderosa"
+            }
+            "Álamo - Populus Simonii" -> {
+                val mensajeToast = Toast.makeText(this, "Lo sentimos, especie proximanente ha ser implementada! \n Por favor elija otra de las disponibles",
+                    Toast.LENGTH_LONG)
+                mensajeToast.setGravity(Gravity.CENTER,0 ,0)
+                mensajeToast.show()
+                binding.acEspecies.setTextColor(getColor(R.color.seleccion_rojo))
+                especie = "Álamo - Populus Simonii"
+            }
+            else -> {
+                diametro = item
+            }
+        }
+
+
     }
 
     private fun setuptable() {
@@ -94,9 +175,9 @@ class InformacionActivity : AppCompatActivity() {
                         val tblrow0= TableRow(this)
                         tblrow0.setPadding(5,10,5,10)
 
-                        val tv0=TextView(this)
-                        tv0.text=document.data.get("nombre_parcela").toString().uppercase()
-                        tv0.gravity=Gravity.CENTER
+                        val tv0 = TextView(this)
+                        tv0.text = document.data.get("nombre_parcela").toString().uppercase()
+                        tv0.gravity = Gravity.CENTER
                         tblrow0.addView(tv0)
 
                         val tv1=TextView(this)

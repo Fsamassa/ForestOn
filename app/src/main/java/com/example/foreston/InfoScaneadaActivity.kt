@@ -2,7 +2,6 @@ package com.example.foreston
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,20 +11,11 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import androidx.core.view.isGone
 import com.example.foreston.databinding.ActivityInfoScaneadaBinding
-import com.example.foreston.recyclerAsociados.RecyclerAsociadosActivity
 import com.example.foreston.utils.GeneralUtils
-import com.google.android.gms.common.api.Api
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import java.io.File
-import java.math.BigDecimal
 import java.text.DecimalFormat
-import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.roundToLong
 
 class InfoScaneadaActivity : AppCompatActivity() {
     private lateinit var binding : ActivityInfoScaneadaBinding
@@ -57,10 +47,26 @@ class InfoScaneadaActivity : AppCompatActivity() {
         val bundle = intent.extras
         val diametro = bundle!!.get("diametro") as String
         diametroACargar = diametro.toInt()
-        val imagenUri : Uri = bundle!!.get("imagen") as Uri
 
-        binding.ivFotoScaneada.setImageURI(imagenUri)
         binding.etDiametro.text = "Diametro : " + diametro + " cm"
+
+        val especie = bundle.get("especie") as String
+
+        if (especie.isNotBlank()){
+            binding.etEspecie.text = "Especie: $especie"
+            binding.tvMedidasScaneadas.text = "Medidas Ingresadas"
+
+            if (especie == "Eucalyptus Grandis") {
+                binding.ivFotoScaneada.setImageResource(R.drawable.eucaliptus_grandis_default)
+
+            }else{
+                binding.ivFotoScaneada.setImageResource(R.drawable.eucaliptus_globulus_default)
+                binding.tvNombreComun.text = "Nombre: Eucalipto blanco"
+            }
+        }else{
+            val imagenUri : Uri = bundle.get("imagen") as Uri
+            binding.ivFotoScaneada.setImageURI(imagenUri)
+        }
 
         val now = Date()
         val fecha = DateFormat.format("dd/MM/yyyy", now)

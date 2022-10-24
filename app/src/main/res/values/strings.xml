@@ -31,6 +31,12 @@
     <string name="Aceptar">Aceptar</string>
     <string name="SI">Sí</string>
     <string name="NO">No</string>
+    <string-array name="especie_arbol">
+        <item>Eucalipto - Eucalyptus Grandis</item>
+        <item>Eucalipto - Eucalyptus Globulus</item>
+        <item>Pino - Pinus ponderosa</item>
+        <item>Álamo - Populus Simonii</item>
+    </string-array>
     <string-array name="diametros_validos">
         <item>1 cm</item>
         <item>2 cm</item>

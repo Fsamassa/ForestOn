@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".InformacionActivity">
-
     <androidx.appcompat.widget.LinearLayoutCompat
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="10dp"
+        android:orientation="vertical"
+        tools:context=".InformacionActivity">
 
         <Space
             android:layout_width="wrap_content"
@@ -22,68 +20,147 @@
             android:text="Cargar Información"
             android:textColor="#000"
             android:textSize="25sp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="32dp" />
+        <View
+            android:id="@+id/vHorizontal2"
+            android:layout_width="215dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/black_semi_transparent" />
 
         <TextView
-            android:id="@+id/mail_infoForestal"
+            android:id="@+id/tvDatosIniciales"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:hint="Correo"
-            android:textColor="#000"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="30dp"
+            android:text="Datos iniciales"
+            android:textStyle="bold"
+            android:textColor="@color/contor_general"
+            android:textSize="24sp" />
 
-        <Space
+        <TextView
+            android:id="@+id/tvDiametroEstimado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Selecciona el diámetro y especie de tus árboles"
+            android:textStyle="bold"
+            android:textColor="@color/barra_menu" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDropDown2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="wrap_content"
-            android:layout_height="16dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:hint="Diámetros Válidos"
+            android:textColorHint="@color/barra_menu"
+            app:startIconDrawable="@drawable/ic_diametro_seleccion_24"
+            app:startIconTint="@color/purple_700"
+            app:endIconTint="@color/purple_700">
+
+        <AutoCompleteTextView
+            android:id="@+id/acDiametros"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:dropDownWidth="200dp"
+            android:dropDownHeight="200dp"
+            android:inputType="none"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:text="Diámetros"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDropDown"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Árboles por especie"
+            app:startIconDrawable="@drawable/ic_arbol"
+            app:startIconTint="@color/barra_menu"
+            app:endIconTint="@color/barra_menu"
+            android:textColorHint="@color/barra_menu">
+
+            <AutoCompleteTextView
+                android:id="@+id/acEspecies"
+                android:layout_width="350dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:dropDownWidth="350dp"
+                android:dropDownHeight="400dp"
+                android:inputType="none"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:text="Selección de especie"
+                android:textColor="#000000"
+                android:textStyle="bold"
+/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btncargarcampo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/custom_button_inicio"
+            android:text="Nueva Parcela"
+            app:backgroundTint="@null" />
+        <View
+            android:id="@+id/vHorizontal1"
+            android:layout_width="400dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/black_semi_transparent" />
 
         <TextView
             android:id="@+id/campos_titulo"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:hint="Parcelas:"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Parcelas Actuales:"
             android:textStyle="bold"
             android:textColor="#000"
             android:textSize="24sp" />
-
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:stretchColumns="1"
             android:layout_marginTop="10dp"
             android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-
-
-            >
+            android:paddingRight="5dp">
 
             <TableRow
                 android:background="@color/botones_inicio"
                 android:padding="10dp"
-                android:layout_width="wrap_content">
-            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="Parcela"
-
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="80dp"
-                android:textColor="@color/white"
-                android:text="Dirección"
-
-                />
+                android:scrollbarAlwaysDrawVerticalTrack="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Nombre"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="80dp"
+                    android:textColor="@color/white"
+                    android:text="Dirección" />
             </TableRow>
+        </TableLayout>
+    </ScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>
 
             <!-- <TableRow>
 
@@ -121,31 +198,7 @@
                 </TableRow> -->
 
 
-        </TableLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="48dp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
 
-            <Button
-                android:id="@+id/btncargarcampo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/custom_button_inicio"
-                android:text="Nueva Parcela"
-                app:backgroundTint="@null" />
 
-        </RelativeLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="48dp" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-</ScrollView>
