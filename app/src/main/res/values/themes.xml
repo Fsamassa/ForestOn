@@ -23,6 +23,11 @@
         <item name="postSplashScreenTheme">@style/Theme.ForestOn</item>
     </style>
 
+
+    <style name="Theme.Tab.Inicio" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="Theme.ForestOn.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

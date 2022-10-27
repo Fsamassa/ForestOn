@@ -1,13 +1,11 @@
-package com.example.foreston
+package com.example.foreston.componentesTabLayout
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.foreston.databinding.FragmentHomeBinding
-import com.example.foreston.databinding.FragmentIndustriaAserraderoBinding
-
+import com.example.foreston.databinding.FragmentInfoForestacionBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -16,12 +14,12 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [IndustriaAserraderoFragment.newInstance] factory method to
+ * Use the [IndustriaPapeleraFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class IndustriaAserraderoFragment : Fragment() {
+class InfoForestacionFragment : Fragment() {
 
-    private var _binding: FragmentIndustriaAserraderoBinding? = null
+    private var _binding: FragmentInfoForestacionBinding? = null
     private val binding get() = _binding!!
 
     private var param1: String? = null
@@ -35,11 +33,16 @@ class IndustriaAserraderoFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        _binding =  FragmentIndustriaAserraderoBinding.inflate(inflater, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        _binding =  FragmentInfoForestacionBinding.inflate(inflater, container, false)
         return binding.root
+
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.takeIf { it.containsKey(ARG_OBJECT) }?.apply {
 

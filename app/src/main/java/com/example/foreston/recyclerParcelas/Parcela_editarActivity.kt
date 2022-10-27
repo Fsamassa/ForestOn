@@ -1,16 +1,12 @@
 package com.example.foreston.recyclerParcelas
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.foreston.InformacionActivity
 import com.example.foreston.R
 import com.example.foreston.databinding.ActivityEditarParcelaBinding
-import com.example.foreston.databinding.ActivityParcelasBinding
 import com.google.firebase.firestore.FirebaseFirestore
 
 class Parcela_editarActivity : AppCompatActivity() {
@@ -32,8 +28,7 @@ class Parcela_editarActivity : AppCompatActivity() {
 
         var email = pref.getString("Email", null)
 
-
-                              if(nombre_parcela!=null){
+        if(nombre_parcela!=null){
                                 if (email != null) {
                                     db.collection("users").document(email).collection("parcelas").document(nombre_parcela.toString())
                                         .get().addOnSuccessListener {
@@ -50,8 +45,7 @@ class Parcela_editarActivity : AppCompatActivity() {
                                 }
                             }
 
-
-       binding.guardarParcela.setOnClickListener {
+        binding.guardarParcela.setOnClickListener {
 
             if(binding.ENombreParcela.text.toString()!="" && binding.EdireParcela.text.toString()!=""
                 && binding.EcantArboles.text.toString()!=""
@@ -60,19 +54,19 @@ class Parcela_editarActivity : AppCompatActivity() {
                 && binding.Etipodearbol.text.toString()!=""
                 && binding.Eedad.text.toString()!=""){
 
-                                    db.collection("users").document(email!!).collection("parcelas").document(nombre_parcela!!).update(
-                                        "altura_prom",binding.Ealtura.text.toString(),
-                                        "cant_arboles" , binding.EcantArboles.text.toString(),
-                                        "diametro_arboles" , binding.Ediametro.text.toString(),
-                                        "tipo", binding.Etipodearbol.text.toString(),
-                                        "edad" , binding.Eedad.text.toString(),
-                                                "direccion",binding.EdireParcela.text.toString(),
-                                                "tipo_industria",binding.etTipoIndustria.text.toString()
-                                    )
+                db.collection("users").document(email!!).collection("parcelas").document(nombre_parcela!!).update(
+                    "altura_prom",binding.Ealtura.text.toString(),
+                    "cant_arboles" , binding.EcantArboles.text.toString(),
+                    "diametro_arboles" , binding.Ediametro.text.toString(),
+                    "tipo", binding.Etipodearbol.text.toString(),
+                    "edad" , binding.Eedad.text.toString(),
+                    "direccion",binding.EdireParcela.text.toString(),
+                    "tipo_industria",binding.etTipoIndustria.text.toString()
+                )
 
-                                    Toast.makeText(this, "Datos Actualizados", Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(this, RecyclerParcelasActivity::class.java)
-                                    startActivity(intent)
+                Toast.makeText(this, "Datos Actualizados", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, RecyclerParcelasActivity::class.java)
+                startActivity(intent)
                 finish()
 
             }

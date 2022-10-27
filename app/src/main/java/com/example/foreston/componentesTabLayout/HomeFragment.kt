@@ -1,10 +1,11 @@
-package com.example.foreston
+package com.example.foreston.componentesTabLayout
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.foreston.R
 import com.example.foreston.databinding.FragmentHomeBinding
 import com.google.android.material.tabs.TabLayoutMediator
 

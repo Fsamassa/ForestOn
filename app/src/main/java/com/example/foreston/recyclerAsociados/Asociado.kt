@@ -1,7 +1,5 @@
 package com.example.foreston.recyclerAsociados
 
-import com.example.foreston.recyclerParcelas.Parcela
-
 data class Asociado(
     val uid: String ?= null,
     val nombre:String ?= null,

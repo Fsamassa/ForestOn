@@ -1,4 +1,4 @@
-package com.example.foreston
+package com.example.foreston.componentesTabLayout
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

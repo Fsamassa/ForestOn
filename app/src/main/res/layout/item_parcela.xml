@@ -7,215 +7,164 @@
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="8dp"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="70dp"
     app:cardElevation="10dp"
     app:cardBackgroundColor="#E6E9F3"
-    app:barrierMargin="20dp"
-    xmlns:wheel="http://schemas.android.com/apk/res-auto">
+    app:barrierMargin="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tvinformacionParcela"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="   Información Parcela"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
             android:id="@+id/tvNombreLeyenda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvinformacionParcela"
-            android:text="Nombre Parcela: "
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="200dp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="Nombre Parcela: "
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Parcela "
+            android:textColor="@color/contor_general" />
 
         <TextView
-            android:id="@+id/tvNombre"
-            android:layout_width="wrap_content"
+            android:id="@+id/etNombre"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"
+            android:textColor="@color/contor_general"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="3"
             app:layout_constraintStart_toEndOf="@+id/tvNombreLeyenda"
-            app:layout_constraintTop_toBottomOf="@+id/tvinformacionParcela"
-            tools:text="Nombre"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Nombre" />
 
         <TextView
-            android:id="@+id/tvcantLeyenda"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvHectareasLeyenda"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvNombreLeyenda"
-            android:text="Cantidad de Arboles: "
-            android:textStyle="bold"
-            tools:text="Cantidad de Arboles: "
-            tools:ignore="MissingConstraints" />
+            android:text="Hectáreas "
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvcantArb"
+            android:id="@+id/etHectareas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toEndOf="@+id/tvcantLeyenda"
-            app:layout_constraintTop_toBottomOf="@+id/tvNombre"
-            tools:text="Cantidad de Arboles"
-            tools:ignore="MissingConstraints" />
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/tvHectareasLeyenda"
+            app:layout_constraintTop_toBottomOf="@+id/etNombre"
+            tools:text="Hectareas en m2" />
 
         <TextView
-            android:id="@+id/tvdiametroLeyenda"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvCantArboles"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvcantLeyenda"
-            android:text="Diametro (cm): "
-            android:textStyle="bold"
-            tools:text="Diametro promedio: "
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/tvHectareasLeyenda"
+            android:text="Total de árboles "
+            android:textStyle="bold"/>
 
 
         <TextView
-            android:id="@+id/tvdiametro"
+            android:id="@+id/etCantArboles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/tvcantArb"
-            app:layout_constraintStart_toEndOf="@+id/tvdiametroLeyenda"
-            tools:text="Diametro"
-            tools:ignore="MissingConstraints"/>
-
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/etHectareas"
+            app:layout_constraintStart_toEndOf="@+id/tvCantArboles"
+            tools:text="cantidad"/>
 
         <TextView
-            android:id="@+id/tvalturaLeyenda"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvEspecie"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvdiametroLeyenda"
-            android:text="Altura (m): "
+            app:layout_constraintTop_toBottomOf="@+id/tvCantArboles"
             android:textStyle="bold"
-            tools:text="Altura promedio: "
-            tools:ignore="MissingConstraints" />
+            android:text="Plantacion de " />
 
         <TextView
-            android:id="@+id/tvaltura"
+            android:id="@+id/etEspecie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/tvdiametro"
-            app:layout_constraintStart_toEndOf="@+id/tvalturaLeyenda"
-            tools:text="Altura Promedio"
-            tools:ignore="MissingConstraints"/>
+            android:textSize="15sp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/etCantArboles"
+            app:layout_constraintStart_toEndOf="@+id/tvEspecie"
+            tools:text="Eucalyptus Grandis"/>
 
         <TextView
-            android:id="@+id/tvtipoleyenda"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvIndustriaDestino"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="30dp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvalturaLeyenda"
-            android:text="Tipo: "
-            android:textStyle="bold"
-            tools:text="Tipo de Arbol: "
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEspecie"
+            android:text="Destinada para "
+            android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tipo"
-            android:layout_width="wrap_content"
+            android:id="@+id/etIndustriaDestino"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/tvaltura"
-            app:layout_constraintStart_toEndOf="@+id/tvtipoleyenda"
-            tools:text="Tipo de Arbol"
-            tools:ignore="MissingConstraints"/>
-
-        <TextView
-            android:id="@+id/tvedadleyenda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/tvtipoleyenda"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="Edad promedio (años): "
-            android:textStyle="bold"
-            tools:text="Edad promedio: "
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/edadArb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/tipo"
-            app:layout_constraintStart_toEndOf="@+id/tvedadleyenda"
-            tools:text="Edad"
-            tools:ignore="MissingConstraints"/>
-
-        <TextView
-            android:id="@+id/tvdireleyenda"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvedadleyenda"
-            android:text="Direccion: "
-            android:textStyle="bold"
-            tools:text="Direccion: "
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/DirePa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/edadArb"
-            app:layout_constraintStart_toEndOf="@+id/tvdireleyenda"
-            tools:text="Direccion de Campo"
-            tools:ignore="MissingConstraints"/>
-
-        <TextView
-            android:id="@+id/tvTipoIndustria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Industria Destino: "
-            android:textStyle="bold"
-            android:layout_marginStart="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvdireleyenda"
-            tools:ignore="MissingConstraints"
-            tools:text="Industria Destino: " />
-
-        <TextView
-            android:id="@+id/tipoIndustria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/DirePa"
-            app:layout_constraintStart_toEndOf="@+id/tvTipoIndustria"
-            tools:text="Industria destino"
-            tools:ignore="MissingConstraints"/>
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="3"
+            android:layout_marginStart="5dp"
+            app:layout_constraintTop_toBottomOf="@+id/etEspecie"
+            app:layout_constraintStart_toEndOf="@+id/tvIndustriaDestino"
+            tools:text="Industria"/>
 
         <Button
-            android:id="@+id/detalle"
+            android:id="@+id/btnEditar"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="65dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_button_inicio"
             android:text="Editar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tipoIndustria"
-            tools:ignore="MissingConstraints" />
+            android:textSize="11sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <Button
+            android:id="@+id/btnDetalles"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/custom_button_inicio"
+            android:text="Detalles"
+            android:textSize="11sp"
+            app:backgroundTint="@null"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnEditar"
+            app:layout_constraintTop_toBottomOf="@+id/etIndustriaDestino"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
