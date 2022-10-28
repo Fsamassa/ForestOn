@@ -1,15 +1,16 @@
 package com.example.foreston.recyclerParcelas.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foreston.R
 import com.example.foreston.recyclerParcelas.Parcela
-import com.google.firebase.storage.FirebaseStorage
+import com.example.foreston.recyclerParcelas.RecyclerParcelasActivity
 
-class ParcelasAdapter(private val parcelaList: ArrayList<Parcela>) : RecyclerView.Adapter<ParcelaViewHolder>(){
+class ParcelasAdapter(private val parcelaList: ArrayList<Parcela>, context: Context) : RecyclerView.Adapter<ParcelaViewHolder>(){
 
-    private val dbS = FirebaseStorage.getInstance()
+    private val activity : RecyclerParcelasActivity = context as RecyclerParcelasActivity
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParcelaViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -18,7 +19,7 @@ class ParcelasAdapter(private val parcelaList: ArrayList<Parcela>) : RecyclerVie
 
     override fun onBindViewHolder(holder: ParcelaViewHolder, position: Int) {
         val item = parcelaList[position]
-        holder.render(item)
+        holder.render(item, activity)
     }
 
     override fun getItemCount(): Int {

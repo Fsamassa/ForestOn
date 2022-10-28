@@ -33,27 +33,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
+
 
             <TextView
                 android:id="@+id/tvNombreParcela"
-                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Datos totales de la Parcela"
-                android:textStyle="bold"
                 android:textColor="@color/barra_menu"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etNombreParcela"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Nombre de la parcela"
-                android:textStyle="bold"
                 android:textColor="@color/barra_menu"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tvUbicacion"
@@ -62,17 +63,18 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:text="Ubicación"
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etUbicacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Ubicacion "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvHectareas"
@@ -81,17 +83,19 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Hectáreas "
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etHectareas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:text="Hectareas "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
             <TextView
                 android:id="@+id/tvCantidadArboles"
                 android:layout_width="wrap_content"
@@ -99,18 +103,19 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Árboles sembrados "
-                android:textStyle="bold|italic"
                 android:textColor="#000"
                 android:textSize="20sp"
-                app:drawableEndCompat="@drawable/ic_editar" />
+                android:textStyle="bold|italic" />
+
             <TextView
                 android:id="@+id/etCantidadArboles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Arboles "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
             <TextView
                 android:id="@+id/tvVolumen"
                 android:layout_width="wrap_content"
@@ -118,17 +123,19 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Volumen de madera"
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etVolumen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Volumen total "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
             <TextView
                 android:id="@+id/tvPeso"
                 android:layout_width="wrap_content"
@@ -136,17 +143,19 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Toneladas de madera"
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etPeso"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Toneladas totales "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
             <TextView
                 android:id="@+id/tvCarbono"
                 android:layout_width="wrap_content"
@@ -154,38 +163,41 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Co2 absorbido anualmente"
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etCarbono"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Carbono total "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="3dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/seleccion_magenta"/>
+                android:background="@color/seleccion_magenta" />
 
             <TextView
                 android:id="@+id/tvDatosForestales"
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Dimensiones y estimaciones forestales"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:textStyle="bold"
+                android:text="Dimensiones y estimaciones forestales"
                 android:textColor="@color/barra_menu"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <View
                 android:layout_width="350dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="24dp"
-                android:background="@color/barra_menu"/>
+                android:background="@color/barra_menu" />
 
             <TextView
                 android:id="@+id/tvDiametro"
@@ -194,10 +206,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:text="Diametro aproximado "
-                android:textStyle="bold"
                 android:textColor="#000"
                 android:textSize="20sp"
-                app:drawableEndCompat="@drawable/ic_editar"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/etDiametro"
@@ -205,8 +216,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Diametro "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvEspecie"
@@ -215,17 +226,19 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Especie sembrada "
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etEspecie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Especie "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
             <TextView
                 android:id="@+id/tvEdad"
                 android:layout_width="wrap_content"
@@ -233,17 +246,19 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Edad promedio "
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etEdad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Edad "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
             <TextView
                 android:id="@+id/tvAltura"
                 android:layout_width="wrap_content"
@@ -251,17 +266,18 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Altura promedio "
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etAltura"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Altura "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvCircunferencia"
@@ -270,17 +286,18 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Circunferencia promedio "
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etCircunferencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Circunferencia "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvFecha"
@@ -290,9 +307,10 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="Fecha de medición y calculo"
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etFecha"
                 android:layout_width="match_parent"
@@ -301,14 +319,15 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="DD/MM/AAAA "
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="3dp"
                 android:layout_marginTop="20dp"
-                android:background="@color/seleccion_magenta"/>
+                android:background="@color/seleccion_magenta" />
 
             <TextView
                 android:id="@+id/tvDatosComerciales"
@@ -325,7 +344,7 @@
                 android:layout_width="170dp"
                 android:layout_height="1dp"
                 android:layout_marginStart="111dp"
-                android:background="@color/barra_menu"/>
+                android:background="@color/barra_menu" />
 
             <TextView
                 android:id="@+id/tvIndustria"
@@ -334,17 +353,18 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Industria destino "
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etIndustria"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Industria "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
             <TextView
                 android:id="@+id/tvRentabilidad"
@@ -353,46 +373,54 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:text="Rentabilidad según Industria "
-                android:textStyle="bold"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/etRentabilidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:text="Rentabilidad "
-                android:textStyle="italic"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
-            <Button
-                android:id="@+id/btnVolver"
-                android:layout_width="65dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_gravity="right"
-                android:background="@drawable/custom_buttom_volver"
-                android:elevation="10dp"
-                app:backgroundTint="@null"
-                app:icon="@android:drawable/ic_menu_revert"
-                app:iconSize="35dp"
-                app:iconTint="@color/contor_general" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnBorrarParcela"
+                    android:layout_width="65dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="200dp"
+                    android:background="@drawable/custom_buttom_volver"
+                    android:elevation="10dp"
+                    app:backgroundTint="@null"
+                    app:icon="@drawable/ic_baseline_delete_forever_24"
+                    app:iconSize="35dp"
+                    app:iconTint="@color/seleccion_rojo" />
+                <Button
+                    android:id="@+id/btnVolver"
+                    android:layout_width="65dp"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/custom_buttom_volver"
+                    android:elevation="10dp"
+                    app:backgroundTint="@null"
+                    app:icon="@android:drawable/ic_menu_revert"
+                    app:iconSize="35dp"
+                    app:iconTint="@color/contor_general" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
 </LinearLayout>
-
-    <!--
-                    <Button
-                        android:id="@+id/guardarParcela"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/custom_button_inicio"
-                        android:text="Guardar"
-                        app:backgroundTint="@null"
-                        tools:layout_editor_absoluteY="360dp" />
-                        -->

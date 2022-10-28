@@ -144,9 +144,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intento1)
             }
             R.id.btnItemParcelas -> {
-                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
-                val intento2= Intent(this, RecyclerParcelasActivity::class.java)
-                startActivity(intento2)
+                val intent= Intent(this, RecyclerParcelasActivity::class.java)
+                startActivity(intent)
             }
             R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes","Reportes")
             R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono","Huella de Carbono")

@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.foreston.databinding.ActivityParcelasBinding
+import com.example.foreston.recyclerParcelas.RecyclerParcelasActivity
+import com.example.foreston.utils.GeneralUtils
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.DecimalFormat
 
@@ -21,52 +23,42 @@ class ParcelaActivity : AppCompatActivity() {
 
         val bundle = intent.extras
         val nombreParcela = bundle!!.get("nombre_parcela") as String
-        traerYcargarDatos(nombreParcela)
-
-        binding.btnVolver.setOnClickListener {
-            onBackPressed()
-        }
-
-/*
-        binding.guardarParcela.setOnClickListener {
-        if(maildeUsuario!=null && binding.NombreParcela.text.toString()!="" && binding.direParcela.text.toString()!=""
-            && binding.cantArboles.text.toString()!=""
-            && binding.diametro.text.toString()!=""
-            && binding.altura.text.toString()!=""
-            && binding.tipodearbol.text.toString()!=""
-            && binding.edad.text.toString()!=""
-            && binding.etIndustria.text.toString()!=""
-        ){
-            db.collection("users").document(maildeUsuario!!).collection("parcelas").document(binding.NombreParcela.text.toString()).set(hashMapOf(
-            /*    "nombre_parcela" to binding.NombreParcela.text.toString(),
-                "altura_prom" to binding.altura.text.toString(),
-                "cant_arboles" to binding.cantArboles.text.toString(),
-                "diametro_arboles" to binding.diametro.text.toString(),
-                "tipo" to binding.tipodearbol.text.toString(),
-                "edad" to binding.edad.text.toString(),
-                "direccion" to binding.direParcela.text.toString(),*/
-                "tipo_industria" to binding.etIndustria.text.toString()
-                ))
-
-
-            Toast.makeText(this, "Datos Actualizados", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, InformacionActivity::class.java)
-            startActivity(intent)
-            finish()
-        }else{
-            Toast.makeText(this, "completar todo los datos", Toast.LENGTH_SHORT).show()
-        }
-        }
-*/
-    }
-
-    private fun traerYcargarDatos(nombreParcela : String) {
 
         val emailUser = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
             .getString(getString(R.string.Email), null)
 
 
-        db.collection("users").document(emailUser!!).collection("parcelas").document(nombreParcela)
+        traerYcargarDatos(nombreParcela, emailUser!!)
+
+        binding.btnVolver.setOnClickListener {
+            val intent= Intent(this, RecyclerParcelasActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+        binding.btnBorrarParcela.setOnClickListener {
+            GeneralUtils.mostrarAlertaDecision(
+                this,
+                "¿Confirmar la eliminación definitiva de la parcela \"$nombreParcela\" y volver al listado anterior?",
+            "Eliminar",
+            "Cancelar",
+                positiveAction = {
+                    db.collection("users").document(emailUser).collection("parcelas").document(nombreParcela)
+                        .delete().addOnSuccessListener {
+                            GeneralUtils.mostrarAlerta(
+                                this,
+                                "Parcela eliminada satisfactoriamente")
+                        }
+                    val intent= Intent(this, RecyclerParcelasActivity::class.java)
+                    startActivity(intent)
+                    finish()
+            },
+                negativeAction = null)
+        }
+    }
+
+    private fun traerYcargarDatos(nombreParcela : String, emailUser : String) {
+
+        db.collection("users").document(emailUser).collection("parcelas").document(nombreParcela)
             .get().addOnSuccessListener {
 
                 // Datos totales de la parcela
@@ -79,7 +71,6 @@ class ParcelaActivity : AppCompatActivity() {
                 var pesoToneladas = (pesoKilos.toString().toDouble())/1000
                 val co2 = it.get("carbono_total")
 
-
                 binding.etNombreParcela.text = "\"$nombreParcela\""
                 binding.etUbicacion.text = direccion.toString()
                 binding.etHectareas.text = hectareas.toString()
@@ -87,7 +78,6 @@ class ParcelaActivity : AppCompatActivity() {
                 binding.etVolumen.text = "$volumen m3"
                 binding.etPeso.text = "$pesoToneladas toneladas"
                 binding.etCarbono.text = "$co2 toneladas"
-
 
                 // Datos de las dimensiones de los arboles
 
@@ -102,7 +92,6 @@ class ParcelaActivity : AppCompatActivity() {
                 val edadAniosFloat = edadAniosLong.toFloat() / 12
                 val df = DecimalFormat("##.##")
                 val edadAnios = df.format(edadAniosFloat)
-
 
                 binding.etDiametro.text = "$diametro cm"
                 binding.etEspecie.text = especie.toString()
