@@ -161,6 +161,16 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemInfoAdicional3 -> {
                 intent.setData(Uri.parse(MANUAL_URL))
                 startActivity(intent)}
+            R.id.btncertificaciones ->{
+
+                //mostrarAlerta("Implementar fragment para ver certificaciones","Certi")
+                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+                var email = prefs.getString("Email", null)
+                val intent= Intent(this, CertificacionesActivity::class.java)
+                intent.putExtra("email",email)
+                startActivity(intent)
+
+            }
             R.id.btnItemConfig -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
                 println(prefs.toString())

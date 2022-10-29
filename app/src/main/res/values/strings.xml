@@ -178,4 +178,60 @@
         muestra que el papel no solo tiene un significativo rol en el aula, sino que su uso e importancia está creciendo.
 
     </string>
+
+    <string name="Diseñar_Actividad">
+
+        El /los Participantes del Proyecto (PP) diseñan una actividad que involucra la reducción o
+absorción de gases con efecto invernadero (GEI).
+
+    </string>
+
+    <string name="Diseñar_PDD">
+
+        El Documento de Diseño del Proyecto (PDD) es el documento oficial de la Convención
+Marco de Cambio Climático de las Naciones Unidas (UNFCCC) para la presentación de
+un proyecto MDL(Mecanismo para un Desarrollo Limpio).
+
+    </string>
+
+    <string name="AprobNac">
+
+        La actividad MDL debe ser aprobada por escrito por la Autoridad Nacional Designada
+(AND) de cada participante. La aprobación de la AND del país huésped incluye analizar la
+contribución al desarrollo sustentable. El proyecto puede registrarse aún sin el apoyo de un
+PP del Anexo I .
+    </string>
+
+    <string name="Validacion">
+La validación es una evaluación independiente de la actividad del proyecto en base al PDD.
+La realiza una Entidad Operacional Designada (EOD) registrada ante la JE.
+    </string>
+
+    <string name="Registro">
+Es la aceptación formal de un proyecto validado como MDL. La Junta Ejecutiva del MDL
+(JE) registra la actividad. El/los PP abonan un canon de registración.
+    </string>
+
+    <string name="Monitoreo">
+Los PP recogen la información necesaria para calcular las reducciones o absorciones de GEI
+que derivan del proyecto. Se observa el plan de monitoreo del PDD.
+    </string>
+
+    <string name="verificacion_certificacion">
+La verificación es la revisión periódica independiente que lleva a cabo la EOD luego del
+monitoreo. La certificación es la declaración escrita de la EOD respecto de las reducciones o
+absorciones de GEI verificadas.
+    </string>
+
+    <string name="Emision">
+La JE emite los Bonos equivalentes a las reducciones o absorciones verificadas. Se deducen
+Bonos para aplicar a gastos administrativos y costos derivados de asistencia al cambio
+climático en zonas vulnerables.
+    </string>
+
+    <string name="Distribucion">
+Se distribuyen los Bonos de acuerdo con el pedido de los participantes del proyecto.
+    </string>
+
+
 </resources>

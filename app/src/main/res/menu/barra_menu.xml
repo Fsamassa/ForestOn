@@ -42,6 +42,11 @@
             android:icon="@drawable/ic_buscar_socio"
             android:title="Buscar un socio" />
 
+        <item
+            android:id="@+id/btncertificaciones"
+            android:icon="@drawable/cert3"
+            android:title="Certificaciones" />
+
     </group>
 
     <item android:title="Links de interés">
