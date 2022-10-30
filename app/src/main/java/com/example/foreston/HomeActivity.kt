@@ -147,7 +147,9 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val intent= Intent(this, RecyclerParcelasActivity::class.java)
                 startActivity(intent)
             }
-            R.id.btnItemReportes -> mostrarAlerta("Implementar fragment para ver reportes","Reportes")
+            R.id.btnItemReportes -> {
+                val intent = Intent(this, MisReportesActivity::class.java)
+                startActivity(intent)}
             R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono","Huella de Carbono")
             R.id.btnItemBuscarSocio -> {
                 val intent = Intent(this, RecyclerAsociadosActivity::class.java)
