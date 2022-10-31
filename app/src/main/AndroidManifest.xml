@@ -30,6 +30,9 @@
             android:name=".MisReportesActivity"
             android:exported="false" />
         <activity
+            android:name=".CertificacionesActivity"
+            android:exported="false" />
+        <activity
             android:name=".DatosEconomicosParcelaActivity"
             android:exported="false" />
         <activity
