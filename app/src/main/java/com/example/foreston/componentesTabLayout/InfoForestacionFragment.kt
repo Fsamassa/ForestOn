@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.foreston.R
 import com.example.foreston.databinding.FragmentInfoForestacionBinding
+import org.imaginativeworld.whynotimagecarousel.ImageCarousel
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,6 +42,29 @@ class InfoForestacionFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding =  FragmentInfoForestacionBinding.inflate(inflater, container, false)
+
+        val carousel: ImageCarousel = binding.carouselForestacion
+        carousel.registerLifecycle(viewLifecycleOwner)
+        val list = mutableListOf<CarouselItem>()
+
+        list.add(CarouselItem(
+            imageDrawable = R.drawable.forestacion3,
+            caption = "Bosques reforestados")
+        )
+        list.add(CarouselItem(
+            imageDrawable = R.drawable.plantaciones,
+            caption = "Forestación escalonada")
+        )
+        list.add(CarouselItem(
+            imageDrawable = R.drawable.plantaciones2,
+            caption = "Forestaciones adultas")
+        )
+        list.add(CarouselItem(
+            imageDrawable = R.drawable.forestacion1,
+            caption = "Forestaciones longevas")
+        )
+        carousel.setData(list)
+
         return binding.root
 
     }

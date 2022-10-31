@@ -16,63 +16,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-
-            <HorizontalScrollView
+            <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                android:id="@+id/carouselForestacion"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/black"
-                >
+                android:layout_height="300dp"
+                />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/ivFoto1"
-                            android:layout_width="400dp"
-                            android:layout_height="300dp"
-                            android:background="@drawable/forestacion3"
-                            android:layout_marginEnd="5dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/ivFoto2"
-                            app:layout_constraintTop_toTopOf="parent" />
-                        <ImageView
-                            android:id="@+id/ivFoto2"
-                            android:layout_width="400dp"
-                            android:layout_height="300dp"
-                            android:background="@drawable/plantaciones"
-                            android:layout_marginEnd="5dp"
-                            app:layout_constraintStart_toEndOf="@+id/ivFoto1"
-                            app:layout_constraintEnd_toStartOf="@+id/ivFoto3"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageView
-                            android:id="@+id/ivFoto3"
-                            android:layout_width="400dp"
-                            android:layout_height="300dp"
-                            android:background="@drawable/plantaciones2"
-                            android:layout_marginEnd="5dp"
-                            app:layout_constraintStart_toEndOf="@+id/ivFoto2"
-                            app:layout_constraintEnd_toStartOf="@+id/ivFoto4"
-                            app:layout_constraintTop_toTopOf="parent" />
-                        <ImageView
-                            android:id="@+id/ivFoto4"
-                            android:layout_width="400dp"
-                            android:layout_height="300dp"
-                            android:background="@drawable/forestacion1"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/ivFoto3"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </LinearLayout>
-            </HorizontalScrollView>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,3 +80,61 @@
     </ScrollView>
 
 </FrameLayout>
+
+    <!--
+           <HorizontalScrollView
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@color/black"
+               >
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical">
+
+
+
+                   <androidx.constraintlayout.widget.ConstraintLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent">
+                       <ImageView
+                           android:id="@+id/ivFoto1"
+                           android:layout_width="400dp"
+                           android:layout_height="300dp"
+                           android:background="@drawable/forestacion3"
+                           android:layout_marginEnd="5dp"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintEnd_toStartOf="@+id/ivFoto2"
+                           app:layout_constraintTop_toTopOf="parent" />
+                       <ImageView
+                           android:id="@+id/ivFoto2"
+                           android:layout_width="400dp"
+                           android:layout_height="300dp"
+                           android:background="@drawable/plantaciones"
+                           android:layout_marginEnd="5dp"
+                           app:layout_constraintStart_toEndOf="@+id/ivFoto1"
+                           app:layout_constraintEnd_toStartOf="@+id/ivFoto3"
+                           app:layout_constraintTop_toTopOf="parent" />
+                       <ImageView
+                           android:id="@+id/ivFoto3"
+                           android:layout_width="400dp"
+                           android:layout_height="300dp"
+                           android:background="@drawable/plantaciones2"
+                           android:layout_marginEnd="5dp"
+                           app:layout_constraintStart_toEndOf="@+id/ivFoto2"
+                           app:layout_constraintEnd_toStartOf="@+id/ivFoto4"
+                           app:layout_constraintTop_toTopOf="parent" />
+                       <ImageView
+                           android:id="@+id/ivFoto4"
+                           android:layout_width="400dp"
+                           android:layout_height="300dp"
+                           android:background="@drawable/forestacion1"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintStart_toEndOf="@+id/ivFoto3"
+                           app:layout_constraintTop_toTopOf="parent" />
+                   </androidx.constraintlayout.widget.ConstraintLayout>
+
+                  </LinearLayout>
+              </HorizontalScrollView>
+              -->

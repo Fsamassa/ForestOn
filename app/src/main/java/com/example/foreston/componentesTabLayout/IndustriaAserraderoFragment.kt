@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.foreston.R
 import com.example.foreston.databinding.FragmentIndustriaAserraderoBinding
+import org.imaginativeworld.whynotimagecarousel.ImageCarousel
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,6 +40,33 @@ class IndustriaAserraderoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         _binding =  FragmentIndustriaAserraderoBinding.inflate(inflater, container, false)
+
+        val carousel: ImageCarousel = binding.carouselAserradero
+        carousel.registerLifecycle(viewLifecycleOwner)
+        val list = mutableListOf<CarouselItem>()
+
+        list.add(
+            CarouselItem(
+            imageDrawable = R.drawable.industria_aserradero2,
+            caption = "Obtención de la madera")
+        )
+        list.add(
+            CarouselItem(
+            imageDrawable = R.drawable.aserradero,
+            caption = "Puesta en planta")
+        )
+        list.add(
+            CarouselItem(
+            imageDrawable = R.drawable.industria_aserradero3,
+            caption = "Seccionando")
+        )
+        list.add(
+            CarouselItem(
+            imageDrawable = R.drawable.aserradero4,
+            caption = "Almacenamiento")
+        )
+        carousel.setData(list)
+
         return binding.root
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

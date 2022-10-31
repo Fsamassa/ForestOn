@@ -5,7 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.foreston.R
 import com.example.foreston.databinding.FragmentIndustriaPapeleraBinding
+import org.imaginativeworld.whynotimagecarousel.ImageCarousel
+import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -37,6 +40,33 @@ class IndustriaPapeleraFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding =  FragmentIndustriaPapeleraBinding.inflate(inflater, container, false)
+
+        val carousel: ImageCarousel = binding.carouselPapeleras
+        carousel.registerLifecycle(viewLifecycleOwner)
+        val list = mutableListOf<CarouselItem>()
+
+        list.add(
+            CarouselItem(
+            imageDrawable = R.drawable.papeleras,
+            caption = "La Industria Papelera")
+        )
+        list.add(
+            CarouselItem(
+            imageDrawable = R.drawable.celulosa,
+            caption = "Pasta de Celulosa")
+        )
+        list.add(
+            CarouselItem(
+            imageDrawable = R.drawable.papeleras2,
+            caption = "Materia Prima de Reciclaje")
+        )
+        list.add(
+            CarouselItem(
+            imageDrawable = R.drawable.papeleras_color,
+            caption = "Diversificación de Productos")
+        )
+        carousel.setData(list)
+
         return binding.root
 
     }

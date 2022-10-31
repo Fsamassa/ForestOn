@@ -87,6 +87,9 @@ dependencies {
     implementation 'com.pnikosis:materialish-progress:1.7'
     implementation 'nl.bryanderidder:themed-toggle-button-group:1.4.1'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
-
+    // Implementacion slider de las imagenes
+    implementation 'me.relex:circleindicator:2.1.6'
+    implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0'
+    // Implementacion de la libreria de graficos
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

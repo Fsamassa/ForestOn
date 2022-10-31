@@ -16,8 +16,57 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                android:id="@+id/carouselAserradero"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
 
-            <HorizontalScrollView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Los Aserraderos"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:textColor="@color/contor_general"
+                android:textStyle="bold"
+
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="La Industria"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_aserradero" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="¿Cómo trabajan?"
+                android:textSize="18sp"
+                android:textAlignment="textStart"
+                android:textColor="@color/barra_menu"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info_aserradero_usos" /> />
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
+
+<!--
+   <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/black"
@@ -64,46 +113,4 @@
 
                 </LinearLayout>
             </HorizontalScrollView>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Los Aserraderos"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:textColor="@color/contor_general"
-                android:textStyle="bold"
-
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="La Industria"
-                android:textSize="18sp"
-                android:textAlignment="textStart"
-                android:textColor="@color/barra_menu"
-                android:textStyle="bold"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/info_aserradero" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="¿Cómo trabajan?"
-                android:textSize="18sp"
-                android:textAlignment="textStart"
-                android:textColor="@color/barra_menu"
-                android:textStyle="bold"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/info_aserradero_usos" /> />
-
-        </LinearLayout>
-    </ScrollView>
-</FrameLayout>
+-->
