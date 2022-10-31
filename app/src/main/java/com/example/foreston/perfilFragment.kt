@@ -55,8 +55,8 @@ class perfilFragment : Fragment() {
             binding.ApellidoDato.setText(it.get("apellido")as String?)
             binding.DireccionDato.setText(it.get("direccion")as String?)
             binding.TelefonoDato.setText(it.get("telefono")as String?)
-            val cantCampos = (it.get("campos")) as Long
-            binding.etCampos.setText(cantCampos.toString())
+            //val cantCampos = (it.get("campos")) as Long
+          //  binding.etCampos.setText(cantCampos.toString())
             imagen_url = (it.get("imagen_foto_url") as String)
 
             if (imagen_url != ""){
@@ -92,9 +92,10 @@ class perfilFragment : Fragment() {
                 && binding.NombreDato.text.toString() !=""
                // && binding.DireccionDato.text.toString() !=""   -> Les damos la posibilidad de que no carguen esos
               //  && binding.TelefonoDato.text.toString() !=""    -> campos si no quieren.
-                && binding.etCampos.text.toString() !="" )
+               // && binding.etCampos.text.toString() !=""  -> no hay campos
+            )
             {
-                val cantCampos = binding.etCampos.text.toString()
+              //  val cantCampos = binding.etCampos.text.toString()
 
                 db.collection("users").document(email).
                 set(hashMapOf(
@@ -103,7 +104,7 @@ class perfilFragment : Fragment() {
                     "direccion" to binding.DireccionDato.text.toString(),
                     "telefono" to binding.TelefonoDato.text.toString(),
                     "email" to email,
-                    "campos" to cantCampos.toLong(),
+                   // "campos" to cantCampos.toLong(),
                     "imagen_foto_url" to auten.currentUser?.uid,
                 ))
 

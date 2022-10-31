@@ -139,16 +139,7 @@
             android:layout_width="match_parent"
             android:layout_height="8dp" />
 
-        <EditText
-            android:id="@+id/etCampos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
-            android:hint="Cantidad de campos"
-            android:textColor="#000"
-            android:textSize="20sp"
-            android:inputType="number"/>
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="24dp" />
