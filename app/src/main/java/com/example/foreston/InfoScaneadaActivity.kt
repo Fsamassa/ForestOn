@@ -208,7 +208,7 @@ class InfoScaneadaActivity : AppCompatActivity() {
             "altura_prom" to alturaDouble.toString(),
             "cant_arboles" to binding.etCantArboles.text.toString(),
             "diametro_arboles" to diametroACargar.toString(),
-            "tipo" to "Eucaliptus Grandis",
+            "tipo" to binding.etEspecie.text.removePrefix("Especie: "),
             "edad" to edadMesesLong.toString(),
             "direccion" to binding.etDireccion.text.toString(),
             "circunferencia_arboles" to circunferenciaDouble,

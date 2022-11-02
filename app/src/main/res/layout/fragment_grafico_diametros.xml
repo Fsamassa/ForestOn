@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GraficoDiametrosFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvCantArboles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Distribución de ejemplares de especie"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/barra_menu"
+            />
+        <TextView
+            android:id="@+id/tvEscala"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="25dp"
+            android:text="Ejemplares agrupados cada 5 cm de diametro"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_inicio"
+            />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/grafBar"
+            android:layout_width="390dp"
+            android:layout_height="500dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

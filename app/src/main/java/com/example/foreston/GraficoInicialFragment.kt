@@ -16,8 +16,6 @@ import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM0 = "TIPO_GRAFICO"
 private const val ARG_PARAM1 = "ARBOLES_TOTALES"
 private const val ARG_PARAM2 = "HECTAREAS_TOTALES"
@@ -25,17 +23,12 @@ private const val ARG_PARAM3 = "ASERRADERO_TOTALES"
 private const val ARG_PARAM4 = "CELULOSA_TOTALES"
 private const val ARG_PARAM5 = "PAPEL_TOTALES"
 private const val ARG_PARAM6 = "SUBPRODUCTOS_TOTALES"
+private const val ARG_PARAM7 = "INDUSTRIAS_VALORES"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [GraficoInicialFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class GraficoInicialFragment : Fragment() {
 
     private var _binding: FragmentGraficoInicialBinding? = null
     private val binding get() = _binding!!
-
 
     private var tipoGrafico: String? = ""
     private var arbolesTotales: Int? = 0
@@ -48,8 +41,7 @@ class GraficoInicialFragment : Fragment() {
     private var celulosaTotal: Double? = 0.0
     private var papelTotal: Double? = 0.0
     private var subproductosTotal: Double? = 0.0
-
-
+    private var listaIndustrias = doubleArrayOf()
 
     private var listener: OnFragmentGraphicListener? = null
 
@@ -63,6 +55,7 @@ class GraficoInicialFragment : Fragment() {
             celulosaTotal = it.getDouble(ARG_PARAM4)
             papelTotal = it.getDouble(ARG_PARAM5)
             subproductosTotal = it.getDouble(ARG_PARAM6)
+            listaIndustrias = it.getDoubleArray(ARG_PARAM7)!!
 
         }
 
@@ -93,18 +86,19 @@ class GraficoInicialFragment : Fragment() {
 
                     val l: Legend = binding.grafIndustrias.getLegend()
                     l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
-                    l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+                    l.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
                     l.orientation = Legend.LegendOrientation.VERTICAL
                     l.setDrawInside(false)
                     l.isEnabled = true
 
                     val entries: ArrayList<PieEntry> = ArrayList()
-                    entries.add(PieEntry(aserraderoTotal!!.toFloat(), "Aserradero"))
-                    entries.add(PieEntry(celulosaTotal!!.toFloat(), "Celulosa"))
-               //     entries.add(PieEntry(papelTotal!!.toFloat(), "Papel"))
-                    entries.add(PieEntry(1800000f, "Papel"))
-               //     entries.add(PieEntry(subproductosTotal!!.toFloat(), "SubProductos"))
-                     entries.add(PieEntry(2000000f, "SubProductos"))
+                    entries.add(PieEntry(listaIndustrias.get(0).toFloat(), "Aserr. en Monte en Pie"))
+                    entries.add(PieEntry(listaIndustrias.get(1).toFloat(), "Aserr. en Playa de Monte"))
+                    entries.add(PieEntry(listaIndustrias.get(2).toFloat(), "Aserr. en Planta industrial"))
+                    entries.add(PieEntry(listaIndustrias.get(3).toFloat(), "Celulosa"))
+                    entries.add(PieEntry(listaIndustrias.get(4).toFloat(), "Papelera"))
+                    entries.add(PieEntry(listaIndustrias.get(5).toFloat(), "SubProductos"))
+                    entries.add(PieEntry(listaIndustrias.get(6).toFloat(), "Varas y Postes"))
 
                     val colors: ArrayList<Int> = ArrayList()
                     for (color in ColorTemplate.MATERIAL_COLORS) {
@@ -126,7 +120,6 @@ class GraficoInicialFragment : Fragment() {
 
                     binding.grafIndustrias.setData(data)
                     binding.grafIndustrias.invalidate()
-
                     binding.grafIndustrias.animateY(1400, Easing.EaseInOutQuad)
 
 
@@ -141,18 +134,19 @@ class GraficoInicialFragment : Fragment() {
 
                     val l: Legend = binding.grafIndustrias.getLegend()
                     l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
-                    l.horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+                    l.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
                     l.orientation = Legend.LegendOrientation.VERTICAL
                     l.setDrawInside(false)
                     l.isEnabled = true
 
                     val entries: ArrayList<PieEntry> = ArrayList()
-                    entries.add(PieEntry(aserraderoTotal!!.toFloat(), "Aserradero"))
-                    entries.add(PieEntry(celulosaTotal!!.toFloat(), "Celulosa"))
-                    //     entries.add(PieEntry(papelTotal!!.toFloat(), "Papel"))
-                    entries.add(PieEntry(1800000f, "Papel"))
-                    //     entries.add(PieEntry(subproductosTotal!!.toFloat(), "SubProductos"))
-                    entries.add(PieEntry(2000000f, "SubProductos"))
+                    entries.add(PieEntry(listaIndustrias.get(0).toFloat(), "Aserr. en Monte en Pie"))
+                    entries.add(PieEntry(listaIndustrias.get(1).toFloat(), "Aserr. en Playa de Monte"))
+                    entries.add(PieEntry(listaIndustrias.get(2).toFloat(), "Aserr. en Planta industrial"))
+                    entries.add(PieEntry(listaIndustrias.get(3).toFloat(), "Celulosa"))
+                    entries.add(PieEntry(listaIndustrias.get(4).toFloat(), "Papelera"))
+                    entries.add(PieEntry(listaIndustrias.get(5).toFloat(), "SubProductos"))
+                    entries.add(PieEntry(listaIndustrias.get(6).toFloat(), "Varas y Postes"))
 
                     val colors: ArrayList<Int> = ArrayList()
                     for (color in ColorTemplate.MATERIAL_COLORS) {
@@ -174,15 +168,17 @@ class GraficoInicialFragment : Fragment() {
 
                     binding.grafIndustrias.setData(data)
                     binding.grafIndustrias.invalidate()
-
                     binding.grafIndustrias.animateY(1400, Easing.EaseInOutQuad)
+                }
+                "BARRAS_VALOR" -> {
+
                 }
 
             }
 
         }
         // Dejo creado un listener por si quiero mandar info del fragment a la activity
-        binding.button2.setOnClickListener { listener?.onClickFragmentButton() }
+        //binding.button2.setOnClickListener { listener?.onClickFragmentButton() }
     }
 
     override fun onAttach(context: Context) {

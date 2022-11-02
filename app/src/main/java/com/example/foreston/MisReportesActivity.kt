@@ -5,14 +5,15 @@ import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
-import android.widget.TableRow
-import android.widget.TextView
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.example.foreston.databinding.ActivityMisReportesBinding
+import com.github.mikephil.charting.data.RadarEntry
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.DecimalFormat
 
-class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener {
+class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener,
+    AdapterView.OnItemClickListener {
 
     lateinit var binding: ActivityMisReportesBinding
     private val db = FirebaseFirestore.getInstance()
@@ -29,6 +30,10 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener {
     private var papelTotal = 0.0
     private var subproductosTotal = 0.0
 
+    private var listaDiametrosGrandis: ArrayList<Int> = ArrayList()
+    private var listaDiametrosGlobulus: ArrayList<Int> = ArrayList()
+    private var listaIndustrias = doubleArrayOf(0.0,0.0,0.0,0.0,0.0,0.0,0.0)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMisReportesBinding.inflate(layoutInflater)
@@ -37,10 +42,11 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener {
         // Creo una instancia del primer fragment del gráfico, lo cargo directamente cuando cargo
         // también la tabla.
 
+        iniciarListaGlobales()
+        seleccionGrafico()
         cargarTabla()
 
     }
-
 
 
     private fun cargarTabla() {
@@ -62,21 +68,15 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener {
                     var carbonoTotal = 0.0
                     var rentabilidadTotal = 0.0
 
-                    var aserradero = 0.0
-                    var celulosa = 0.0
-                    var aserrin = 0.0
-                    var chips = 0.0
-                    var papel = 0.0
-                    var tutores = 0.0
-                    var tijeras = 0.0
-                    var viruta = 0.0
-                    var costanero = 0.0
-                    var rodrigones = 0.0
-
-
                     var industria :String
 
                     for (document in task) {
+
+                        val diametroString = document.data.get("diametro_arboles").toString()
+                        val cantArbolesString = document.data.get("cant_arboles").toString()
+                        val especie = document.data.get("tipo").toString()
+                        cargarDiametros(diametroString, cantArbolesString, especie)
+
                         val tablaContenedora = TableRow(this)
                         tablaContenedora.setPadding(15,5,15,5)
 
@@ -237,11 +237,12 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener {
                         putDouble("CELULOSA_TOTALES", celulosaTotal )
                         putDouble("PAPEL_TOTALES", papelTotal )
                         putDouble("SUBPRODUCTOS_TOTALES", subproductosTotal)
+                        putDoubleArray("INDUSTRIAS_VALORES",listaIndustrias)
                     }
 
                     fragmentTransaction.add(R.id.flGraficos, fragmentGraficoInicial)
                     fragmentTransaction.commit()
-
+/*
                     binding.button3.setOnClickListener {
                         val fragmentTransaction = supportFragmentManager.beginTransaction()
                         val nuevoGraficoFragment = GraficoInicialFragment()
@@ -260,7 +261,7 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener {
                         fragmentTransaction.commit()
                     }
                     binding.button4.setOnClickListener {
-                          val fragmentTransaction = supportFragmentManager.beginTransaction()
+                        val fragmentTransaction = supportFragmentManager.beginTransaction()
                         val nuevoGraficoFragment = GraficoInicialFragment()
 
                         nuevoGraficoFragment.arguments = Bundle().apply {
@@ -276,31 +277,478 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener {
                         fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
                         fragmentTransaction.commit()
                     }
+                    binding.button5.setOnClickListener {
+                        val fragmentTransaction = supportFragmentManager.beginTransaction()
+                        val nuevoGraficoFragment = GraficoDiametrosFragment()
+
+                        nuevoGraficoFragment.arguments = Bundle().apply {
+                            putString("TIPO_GRAFICO", "BARRAS_VALOR")
+                            putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                            putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGrandis)
+                            putString("ESPECIE", "Eucalyptus Grandis")
+                        }
+
+                        fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                        fragmentTransaction.commit()
+                    }
+                    binding.button6.setOnClickListener {
+                        val fragmentTransaction = supportFragmentManager.beginTransaction()
+                        val nuevoGraficoFragment = GraficoDiametrosFragment()
+
+                        nuevoGraficoFragment.arguments = Bundle().apply {
+                            putString("TIPO_GRAFICO", "BARRAS_VALOR")
+                            putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                            putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGlobulus)
+                            putString("ESPECIE", "Eucalyptus Globulus")
+                        }
+
+                        fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                        fragmentTransaction.commit()
+                    }
+                    binding.button7.setOnClickListener {
+                        val fragmentTransaction = supportFragmentManager.beginTransaction()
+                        val nuevoGraficoFragment = GraficoDiametrosFragment()
+
+                        val listaDiametrosTotal: ArrayList<Int> = ArrayList()
+
+                        for(num in 0..9) {
+                            listaDiametrosTotal.add(num,listaDiametrosGrandis.get(num) + listaDiametrosGlobulus.get(num))
+                        }
+
+                        nuevoGraficoFragment.arguments = Bundle().apply {
+                            putString("TIPO_GRAFICO", "BARRAS_VALOR")
+                            putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                            putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosTotal)
+                            putString("ESPECIE", "TODOS")
+                        }
+
+                        fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                        fragmentTransaction.commit()
+                    }
+                    binding.button8.setOnClickListener {
+                        val fragmentTransaction = supportFragmentManager.beginTransaction()
+                        val nuevoGraficoFragment = GraficoDiametrosPorIndustriaFragment()
+
+                        nuevoGraficoFragment.arguments = Bundle().apply {
+                            putString("TIPO_GRAFICO", "RADAR_ARBOLES")
+                            putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                            putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGrandis)
+                            putString("ESPECIE", "Eucalyptus Grandis")
+                        }
+
+                        fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                        fragmentTransaction.commit()
+                    }
+                    binding.button9.setOnClickListener {
+                        val fragmentTransaction = supportFragmentManager.beginTransaction()
+                        val nuevoGraficoFragment = GraficoDiametrosPorIndustriaFragment()
+
+                        nuevoGraficoFragment.arguments = Bundle().apply {
+                            putString("TIPO_GRAFICO", "RADAR_ARBOLES")
+                            putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                            putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGlobulus)
+                            putString("ESPECIE", "Eucalyptus Globulus")
+                        }
+
+                        fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                        fragmentTransaction.commit()
+                    }
+                    binding.button10.setOnClickListener {
+                        val fragmentTransaction = supportFragmentManager.beginTransaction()
+                        val nuevoGraficoFragment = GraficoDiametrosPorIndustriaFragment()
+
+                        var sumador = 0
+                        var listaDiametrosAmbos: ArrayList<Int> = ArrayList()
+                        //pongo en la lista de Grandis los items de Globulus para enviar 1 sola lista
+
+                        for(num in 0..9) {
+                            sumador = listaDiametrosGrandis.get(num)
+                            listaDiametrosAmbos.add(num, sumador )
+                            sumador = 0
+                        }
+                        for(num in 0..9) {
+                            sumador = listaDiametrosGlobulus.get(num)
+                            listaDiametrosAmbos.add(num + 10, sumador)
+                            sumador = 0
+                        }
+                        nuevoGraficoFragment.arguments = Bundle().apply {
+                            putString("TIPO_GRAFICO", "RADAR_ARBOLES")
+                            putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                            putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosAmbos)
+                            putString("ESPECIE", "AMBOS")
+                        }
+
+                        fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                        fragmentTransaction.commit()
+                    }
+                    binding.button11.setOnClickListener {
+                        val fragmentTransaction = supportFragmentManager.beginTransaction()
+                        val nuevoGraficoFragment = GraficoRadarPorIndustriaFragment()
+
+                        var sumador = 0
+                        val listaDiametrosAmbos: ArrayList<Int> = ArrayList()
+                        //pongo en la lista de Grandis los items de Globulus para enviar 1 sola lista
+
+                        for(num in 0..9) {
+                            sumador = listaDiametrosGrandis.get(num)
+                            listaDiametrosAmbos.add(num, sumador )
+                            sumador = 0
+                        }
+                        nuevoGraficoFragment.arguments = Bundle().apply {
+                            putString("TIPO_GRAFICO", "RADAR_INDUSTRIAS")
+                            putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                            putDoubleArray("INDUSTRIAS_VALORES",listaIndustrias)
+                            putString("ESPECIE", "AMBOS")
+
+
+                        }
+
+                        fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                        fragmentTransaction.commit()
+                    }
+
+ */
                 }
         }
+    }
+    private fun seleccionGrafico() {
+        val graficoString = resources.getStringArray(R.array.graficos)
+
+        val arrayAdapter = ArrayAdapter(this, R.layout.drop_down_grafico, graficoString)
+        binding.acGrFicosDisponibles.setAdapter(arrayAdapter)
+
+        with(binding.acGrFicosDisponibles){
+            onItemClickListener = this@MisReportesActivity
+        }
+    }
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+
+        val item = parent!!.getItemAtPosition(position).toString()
+
+        when (item){
+            "Torta - Rentabilidad por industria" -> {
+                binding.acGrFicosDisponibles.setTextColor(getColor(R.color.totales_azul))
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                val nuevoGraficoFragment = GraficoInicialFragment()
+
+                nuevoGraficoFragment.arguments = Bundle().apply {
+                    putString("TIPO_GRAFICO", "INDUSTRIAS_VALOR")
+                    putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                    putInt("HECTARES_TOTALES", hectareasTotalesGlobal )
+                    putDouble("ASERRADERO_TOTALES", aserraderoTotal )
+                    putDouble("CELULOSA_TOTALES", celulosaTotal )
+                    putDouble("PAPEL_TOTALES", papelTotal )
+                    putDouble("SUBPRODUCTOS_TOTALES", subproductosTotal)
+                    putDoubleArray("INDUSTRIAS_VALORES",listaIndustrias)
+
+                }
+                fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                fragmentTransaction.commit()
+            }
+            "Torta - Rentabilidad Porcentual" -> {
+                binding.acGrFicosDisponibles.setTextColor(getColor(R.color.totales_azul))
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                val nuevoGraficoFragment = GraficoInicialFragment()
+
+                nuevoGraficoFragment.arguments = Bundle().apply {
+                    putString("TIPO_GRAFICO", "INDUSTRIAS_PORCENTAJE")
+                    putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                    putInt("HECTARES_TOTALES", hectareasTotalesGlobal )
+                    putDouble("ASERRADERO_TOTALES", aserraderoTotal )
+                    putDouble("CELULOSA_TOTALES", celulosaTotal )
+                    putDouble("PAPEL_TOTALES", papelTotal )
+                    putDouble("SUBPRODUCTOS_TOTALES", subproductosTotal)
+                    putDoubleArray("INDUSTRIAS_VALORES",listaIndustrias)
+
+                }
+                fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                fragmentTransaction.commit()
+            }
+            "Barras - Distribución E. Grandis" -> {
+                binding.acGrFicosDisponibles.setTextColor(getColor(R.color.teal_701))
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                val nuevoGraficoFragment = GraficoDiametrosFragment()
+
+                nuevoGraficoFragment.arguments = Bundle().apply {
+                    putString("TIPO_GRAFICO", "BARRAS_VALOR")
+                    putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGrandis)
+                    putString("ESPECIE", "Eucalyptus Grandis")
+                }
+
+                fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                fragmentTransaction.commit()
+            }
+            "Barras - Distribución E. Globulus" -> {
+                binding.acGrFicosDisponibles.setTextColor(getColor(R.color.teal_701))
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                val nuevoGraficoFragment = GraficoDiametrosFragment()
+
+                nuevoGraficoFragment.arguments = Bundle().apply {
+                    putString("TIPO_GRAFICO", "BARRAS_VALOR")
+                    putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGlobulus)
+                    putString("ESPECIE", "Eucalyptus Globulus")
+                }
+
+                fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                fragmentTransaction.commit()
+            }
+            "Barras - Distribución total" -> {
+                binding.acGrFicosDisponibles.setTextColor(getColor(R.color.teal_701))
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                val nuevoGraficoFragment = GraficoDiametrosFragment()
+
+                val listaDiametrosTotal: ArrayList<Int> = ArrayList()
+
+                for(num in 0..9) {
+                    listaDiametrosTotal.add(num,listaDiametrosGrandis.get(num) + listaDiametrosGlobulus.get(num))
+                }
+
+                nuevoGraficoFragment.arguments = Bundle().apply {
+                    putString("TIPO_GRAFICO", "BARRAS_VALOR")
+                    putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosTotal)
+                    putString("ESPECIE", "TODOS")
+                }
+
+                fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                fragmentTransaction.commit()
+            }
+            "Radar - Distribución E. Grandis" -> {
+                binding.acGrFicosDisponibles.setTextColor(getColor(R.color.seleccion_magenta))
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                val nuevoGraficoFragment = GraficoDiametrosPorIndustriaFragment()
+
+                nuevoGraficoFragment.arguments = Bundle().apply {
+                    putString("TIPO_GRAFICO", "RADAR_ARBOLES")
+                    putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGrandis)
+                    putString("ESPECIE", "Eucalyptus Grandis")
+                }
+
+                fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                fragmentTransaction.commit()
+            }
+            "Radar - Distribución E. Globulus" -> {
+                binding.acGrFicosDisponibles.setTextColor(getColor(R.color.seleccion_magenta))
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                val nuevoGraficoFragment = GraficoDiametrosPorIndustriaFragment()
+
+                nuevoGraficoFragment.arguments = Bundle().apply {
+                    putString("TIPO_GRAFICO", "RADAR_ARBOLES")
+                    putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGlobulus)
+                    putString("ESPECIE", "Eucalyptus Globulus")
+                }
+
+                fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                fragmentTransaction.commit()
+            }
+            "Radar - Distribución por especie" -> {
+                binding.acGrFicosDisponibles.setTextColor(getColor(R.color.seleccion_magenta))
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                val nuevoGraficoFragment = GraficoDiametrosPorIndustriaFragment()
+
+                var sumador = 0
+                var listaDiametrosAmbos: ArrayList<Int> = ArrayList()
+                //pongo en la lista de Grandis los items de Globulus para enviar 1 sola lista
+
+                for(num in 0..9) {
+                    sumador = listaDiametrosGrandis.get(num)
+                    listaDiametrosAmbos.add(num, sumador )
+                    sumador = 0
+                }
+                for(num in 0..9) {
+                    sumador = listaDiametrosGlobulus.get(num)
+                    listaDiametrosAmbos.add(num + 10, sumador)
+                    sumador = 0
+                }
+                nuevoGraficoFragment.arguments = Bundle().apply {
+                    putString("TIPO_GRAFICO", "RADAR_ARBOLES")
+                    putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosAmbos)
+                    putString("ESPECIE", "AMBOS")
+                }
+
+                fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                fragmentTransaction.commit()
+            }
+            "Radar - Distribución Rentabilidad" -> {
+                binding.acGrFicosDisponibles.setTextColor(getColor(R.color.seleccion_magenta))
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                val nuevoGraficoFragment = GraficoRadarPorIndustriaFragment()
+
+                var sumador = 0
+                val listaDiametrosAmbos: ArrayList<Int> = ArrayList()
+                //pongo en la lista de Grandis los items de Globulus para enviar 1 sola lista
+
+                for(num in 0..9) {
+                    sumador = listaDiametrosGrandis.get(num)
+                    listaDiametrosAmbos.add(num, sumador )
+                    sumador = 0
+                }
+                nuevoGraficoFragment.arguments = Bundle().apply {
+                    putString("TIPO_GRAFICO", "RADAR_INDUSTRIAS")
+                    putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
+                    putDoubleArray("INDUSTRIAS_VALORES",listaIndustrias)
+                    putString("ESPECIE", "AMBOS")
+                }
+                fragmentTransaction.replace(R.id.flGraficos, nuevoGraficoFragment)
+                fragmentTransaction.commit()
+            }
+        }
+    }
+    private fun cargarDiametros(diametro: String, cantidad: String, especie: String) {
+
+        val diametroInt = diametro.toInt()
+        val cantidadInt = cantidad.toInt()
+        var sumador = 0
+
+        when (especie){
+            "Eucalyptus Grandis" -> {
+
+                when(diametroInt){
+                    in 1..5 -> { sumador = listaDiametrosGrandis.get(0) + cantidadInt
+                        listaDiametrosGrandis.add(0, sumador )}
+
+                    in 6..10 -> { sumador = listaDiametrosGrandis.get(1) + cantidadInt
+                        listaDiametrosGrandis.add(1, sumador )}
+
+                    in 11..15 -> {sumador = listaDiametrosGrandis.get(2) + cantidadInt
+                        listaDiametrosGrandis.add(2, sumador )}
+
+                    in 16..20 -> {sumador = listaDiametrosGrandis.get(3) + cantidadInt
+                        listaDiametrosGrandis.add(3, sumador )}
+
+                    in 21..25 -> { sumador = listaDiametrosGrandis.get(4) + cantidadInt
+                        listaDiametrosGrandis.add(4, sumador )}
+
+                    in 26..30 -> { sumador = listaDiametrosGrandis.get(5) + cantidadInt
+                        listaDiametrosGrandis.add(5, sumador )}
+
+                    in 31..35 -> { sumador = listaDiametrosGrandis.get(6) + cantidadInt
+                        listaDiametrosGrandis.add(6, sumador )}
+
+                    in 36..40 -> { sumador = listaDiametrosGrandis.get(7) + cantidadInt
+                        listaDiametrosGrandis.add(7, sumador )}
+
+                    in 41..45 -> { sumador = listaDiametrosGrandis.get(8) + cantidadInt
+                        listaDiametrosGrandis.add(8, sumador )}
+
+                    in 46..50 -> { sumador = listaDiametrosGrandis.get(9) + cantidadInt
+                        listaDiametrosGrandis.add(9, sumador )}
+                }
+            }
+            "Eucalyptus Globulus" ->{
+
+                when(diametroInt){
+                    in 1..5 -> { sumador = listaDiametrosGlobulus.get(0) + cantidadInt
+                        listaDiametrosGlobulus.add(0, sumador )}
+
+                    in 6..10 -> { sumador = listaDiametrosGlobulus.get(1) + cantidadInt
+                        listaDiametrosGlobulus.add(1, sumador )}
+
+                    in 11..15 -> {sumador = listaDiametrosGlobulus.get(2) + cantidadInt
+                        listaDiametrosGlobulus.add(2, sumador )}
+
+                    in 16..20 -> {sumador = listaDiametrosGlobulus.get(3) + cantidadInt
+                        listaDiametrosGlobulus.add(3, sumador )}
+
+                    in 21..25 -> { sumador = listaDiametrosGlobulus.get(4) + cantidadInt
+                        listaDiametrosGlobulus.add(4, sumador )}
+
+                    in 26..30 -> { sumador = listaDiametrosGlobulus.get(5) + cantidadInt
+                        listaDiametrosGlobulus.add(5, sumador )}
+
+                    in 31..35 -> { sumador = listaDiametrosGlobulus.get(6) + cantidadInt
+                        listaDiametrosGlobulus.add(6, sumador )}
+
+                    in 36..40 -> { sumador = listaDiametrosGlobulus.get(7) + cantidadInt
+                        listaDiametrosGlobulus.add(7, sumador )}
+
+                    in 41..45 -> { sumador = listaDiametrosGlobulus.get(8) + cantidadInt
+                        listaDiametrosGlobulus.add(8, sumador )}
+
+                    in 46..50 -> { sumador = listaDiametrosGlobulus.get(9) + cantidadInt
+                        listaDiametrosGlobulus.add(9, sumador )}
+                }
+            }
+        }
+
     }
 
     private fun cargarRentabilidadPorIndustria(industria: String, rentabilidad: Double) {
 
-        when(industria){
-            "Aserradero - En Monte en Pie" -> aserraderoTotal += rentabilidad
-            "Aserradero - En Playa de Monte" -> aserraderoTotal += rentabilidad
-            "Aserradero - En Playa de Monte - podado" -> aserraderoTotal += rentabilidad
-            "Aserradero - En Planta industrial" -> aserraderoTotal += rentabilidad
-            "Aserradero - En Planta industrial - podado" -> aserraderoTotal += rentabilidad
-            "Celulosa (C. B. Sta Fe)" -> celulosaTotal += rentabilidad
-            "Celulosa (Arauco Argentina SA)" -> celulosaTotal += rentabilidad
-            "Papel (Papel Misionero SA)" -> papelTotal += rentabilidad
-            "Aserrin - En Planta industrial" -> subproductosTotal += rentabilidad
-            "Viruta - En Planta industrial" -> subproductosTotal += rentabilidad
-            "Costanero - En Planta industrial" -> subproductosTotal += rentabilidad
-            "Rodrigones - En Playa de Monte" -> subproductosTotal += rentabilidad
-            "Tutores - En Playa de Monte" -> subproductosTotal += rentabilidad
-            "Tijeras - En Playa de Monte" -> subproductosTotal += rentabilidad
+        when (industria) {
+            "Aserradero - En Monte en Pie" -> {
+                aserraderoTotal += rentabilidad
+                listaIndustrias[0] += rentabilidad
+            }
+            "Aserradero - En Playa de Monte" -> {
+                aserraderoTotal += rentabilidad
+                listaIndustrias[1] += rentabilidad
+            }
+            "Aserradero - En Playa de Monte - podado" -> {
+                aserraderoTotal += rentabilidad
+                listaIndustrias[1] += rentabilidad
+            }
+            "Aserradero - En Planta industrial" -> {
+                aserraderoTotal += rentabilidad
+                listaIndustrias[2] += rentabilidad
+            }
+            "Aserradero - En Planta industrial - podado" -> {
+                aserraderoTotal += rentabilidad
+                listaIndustrias[2] += rentabilidad
+            }
+            "Celulosa (C. B. Sta Fe)" -> {
+                celulosaTotal += rentabilidad
+                listaIndustrias[3] += rentabilidad
+            }
+            "Celulosa (Arauco Argentina SA)" -> {
+                celulosaTotal += rentabilidad
+                listaIndustrias[3] += rentabilidad
+            }
+            "Papel (Papel Misionero SA)" -> {
+                papelTotal += rentabilidad
+                listaIndustrias[4] += rentabilidad
+            }
+            "Aserrin - En Planta industrial" -> {
+                subproductosTotal += rentabilidad
+                listaIndustrias[5] += rentabilidad
+            }
+            "Viruta - En Planta industrial" -> {
+                subproductosTotal += rentabilidad
+                listaIndustrias[5] += rentabilidad
+            }
+            "Chips - En Planta industrial" -> {
+                subproductosTotal += rentabilidad
+                listaIndustrias[5] += rentabilidad
+            }
+            "Costanero - En Planta industrial" -> {
+                subproductosTotal += rentabilidad
+                listaIndustrias[6] += rentabilidad
+            }
+            "Rodrigones - En Playa de Monte" -> {
+                subproductosTotal += rentabilidad
+                listaIndustrias[6] += rentabilidad
+            }
+            "Tutores - En Playa de Monte" -> {
+                subproductosTotal += rentabilidad
+                listaIndustrias[6] += rentabilidad
+            }
+            "Tijeras - En Playa de Monte" -> {
+                subproductosTotal += rentabilidad
+                listaIndustrias[6] += rentabilidad
+            }
         }
+    }
 
-
-
+    private fun iniciarListaGlobales() {
+        for(num in 0..9) {
+            listaDiametrosGrandis.add(num,0)
+            listaDiametrosGlobulus.add(num,0)
+        }
     }
 
     private fun formatearNumerosGrandes(valor : Double): String? {

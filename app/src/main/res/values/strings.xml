@@ -106,6 +106,20 @@
         <item>Tijeras - En Playa de Monte</item>
         <item>Viruta - En Planta industrial</item>
     </string-array>
+
+    <string-array name="graficos">
+        <item>Torta - Rentabilidad por industria</item>
+        <item>Torta - Rentabilidad Porcentual</item>
+        <item>Barras - Distribución E. Grandis</item>
+        <item>Barras - Distribución E. Globulus</item>
+        <item>Barras - Distribución total</item>
+        <item>Radar - Distribución E. Grandis</item>
+        <item>Radar - Distribución E. Globulus</item>
+        <item>Radar - Distribución por especie</item>
+        <item>Radar - Distribución Rentabilidad</item>
+    </string-array>
+
+
     <string name="info_forestacion">La forestación es la conversión, por actividad humana directa, de tierras que carecían de bosque,
         durante un periodo de al menos 50 años, en tierras forestales mediante plantación, siembra o fomento antrópico de semilleros naturales.</string>
     <string name="info_reforestacion">Se considera reforestación la conversión por actividad humana directa de tierras no boscosas en boscosas mediante plantación,
@@ -232,6 +246,8 @@ climático en zonas vulnerables.
     <string name="Distribucion">
 Se distribuyen los Bonos de acuerdo con el pedido de los participantes del proyecto.
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
