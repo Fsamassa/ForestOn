@@ -1,15 +1,13 @@
 package com.example.foreston
 
-import android.graphics.Color
 import android.Manifest
-import androidx.core.app.ActivityCompat
-import android.content.pm.PackageManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.Menu
@@ -19,23 +17,25 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
-import com.example.foreston.databinding.ActivityHomeBinding
-import com.facebook.login.LoginManager
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.FirebaseAuth
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
 import androidx.core.view.isGone
+import androidx.drawerlayout.widget.DrawerLayout
+import com.example.foreston.componentesTabLayout.HomeFragment
+import com.example.foreston.databinding.ActivityHomeBinding
 import com.example.foreston.recyclerAsociados.RecyclerAsociadosActivity
 import com.example.foreston.recyclerParcelas.RecyclerParcelasActivity
 import com.example.foreston.utils.GeneralUtils
 import com.example.foreston.utils.UtilsAuth
+import com.facebook.login.LoginManager
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
-import com.example.foreston.componentesTabLayout.HomeFragment
 
 class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -150,7 +150,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.btnItemReportes -> {
                 val intent = Intent(this, MisReportesActivity::class.java)
                 startActivity(intent)}
-            R.id.btnItemHuella -> mostrarAlerta("Implementar fragment para ver bonos de carbono","Huella de Carbono")
+            R.id.btnItemHuella -> {
+                val fragmentTransaction = supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.frameLayout, HuellaFragment())
+                fragmentTransaction.commit()
+            }
             R.id.btnItemBuscarSocio -> {
                 val intent = Intent(this, RecyclerAsociadosActivity::class.java)
                 startActivity(intent)}
