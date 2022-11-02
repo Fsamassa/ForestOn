@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HuellaFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/tvTituloBonos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Bonos de Carbono"
+            android:textColor="@color/barra_menu"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/vTituloBonos"
+            android:layout_width="150dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/barra_menu" />
+
+        <TextView
+            android:id="@+id/tvSubtituloBonosParcelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:text="Bonos por cada Parcela"
+            android:textColor="@color/contor_general"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+   <!--     <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">-->
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvTablaBonosParcelas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            app:barrierMargin="20dp"
+            app:cardBackgroundColor="#E0F7FA"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:padding="20dp">
+
+                <TableLayout
+                    android:id="@+id/tlBonosParcelas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:dividerPadding="4dp"
+                        android:elevation="10dp">
+
+                        <TextView
+                            android:id="@+id/tvNombreParcela"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Parcela"
+                            android:textColor="@color/barra_menu"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvBonosAnuales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="100dp"
+                            android:gravity="center"
+                            android:text="Bonos Anuales"
+                            android:textColor="@color/barra_menu"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </ScrollView>
+        </androidx.cardview.widget.CardView>
+        <!--</HorizontalScrollView>-->
+    </LinearLayout>
+</FrameLayout>
