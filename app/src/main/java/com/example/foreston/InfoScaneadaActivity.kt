@@ -60,7 +60,7 @@ class InfoScaneadaActivity : AppCompatActivity() {
                 binding.ivFotoScaneada.setImageResource(R.drawable.eucaliptus_grandis_default)
 
             }else{
-                binding.ivFotoScaneada.setImageResource(R.drawable.eucaliptus_globulus_default)
+               binding.ivFotoScaneada.setImageResource(R.drawable.eucaliptus_globulus_default)
                 binding.tvNombreComun.text = "Nombre: Eucalipto blanco"
             }
         }else{

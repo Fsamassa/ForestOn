@@ -182,6 +182,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 println(prefs.toString())
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.frameLayout, perfilFragment())
+                fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
 
             }
@@ -301,7 +302,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onBackPressed() {
+   /* override fun onBackPressed() {
 
             GeneralUtils.mostrarAlertaDecision(
                 this,
@@ -311,6 +312,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     System.exit(0)
                 },
                 negativeAction = null)
-    }
+    }*/
 
 }
