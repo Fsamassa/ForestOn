@@ -58,7 +58,6 @@ class InfoScaneadaActivity : AppCompatActivity() {
 
             if (especie == "Eucalyptus Grandis") {
                 binding.ivFotoScaneada.setImageResource(R.drawable.eucaliptus_grandis_default)
-
             }else{
                 binding.ivFotoScaneada.setImageResource(R.drawable.eucaliptus_globulus_default)
                 binding.tvNombreComun.text = "Nombre: Eucalipto blanco"

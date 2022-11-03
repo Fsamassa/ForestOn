@@ -319,14 +319,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-            GeneralUtils.mostrarAlertaDecision(
-                this,
-                "¿ Deseas salir de ForestOn ?",
-                "Salir", null,
-                positiveAction = {
-                    System.exit(0)
-                },
-                negativeAction = null)
-    }
 
+        GeneralUtils.mostrarAlertaDecision(
+            this,
+            "¿ Deseas salir de ForestOn ?",
+            "Salir", null,
+            positiveAction = {
+                System.exit(0)
+            },
+            negativeAction = null
+        )
+    }
 }
