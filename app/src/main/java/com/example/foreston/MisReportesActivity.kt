@@ -8,7 +8,6 @@ import android.view.Gravity
 import android.view.View
 import android.widget.*
 import com.example.foreston.databinding.ActivityMisReportesBinding
-import com.github.mikephil.charting.data.RadarEntry
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.DecimalFormat
 

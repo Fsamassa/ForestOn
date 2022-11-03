@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foreston.R
 import com.example.foreston.databinding.ActivityRecyclerParcelasBinding
 import com.example.foreston.recyclerParcelas.adapter.ParcelasAdapter
+import com.example.foreston.utils.GeneralUtils
 import com.google.firebase.firestore.*
 
 class RecyclerParcelasActivity : AppCompatActivity() {

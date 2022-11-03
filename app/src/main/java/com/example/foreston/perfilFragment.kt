@@ -32,7 +32,7 @@ class perfilFragment : Fragment() {
     private var imagen_url : String = ""
     companion object{
         val IMAGE_REQUEST_code = 100
-            }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -6,10 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".HuellaFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical" >
+
         <TextView
             android:id="@+id/tvTituloBonos"
             android:layout_width="match_parent"
@@ -39,10 +43,10 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-   <!--     <HorizontalScrollView
+        <HorizontalScrollView
             android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">-->
+            android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvTablaBonosParcelas"
@@ -85,9 +89,20 @@
                             android:id="@+id/tvBonosAnuales"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="100dp"
+                            android:layout_marginStart="50dp"
                             android:gravity="center"
                             android:text="Bonos Anuales"
+                            android:textColor="@color/barra_menu"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvEdadPromedio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="50dp"
+                            android:gravity="center"
+                            android:text="Edad ejemplares"
                             android:textColor="@color/barra_menu"
                             android:textSize="25sp"
                             android:textStyle="bold" />
@@ -95,6 +110,7 @@
                 </TableLayout>
             </ScrollView>
         </androidx.cardview.widget.CardView>
-        <!--</HorizontalScrollView>-->
+        </HorizontalScrollView>
     </LinearLayout>
+    </ScrollView>
 </FrameLayout>

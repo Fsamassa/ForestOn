@@ -372,7 +372,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
                 }
             }
-            "Papel - Papel Misionero SA"-> {
+            "Papelera (Papel Misionero SA)"-> {
                 docRef.get().addOnSuccessListener{
                     val precioUnitario = it.get("chips")
                     binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()

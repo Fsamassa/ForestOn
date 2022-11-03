@@ -33,9 +33,9 @@
             android:title="Mis Reportes" />
 
         <item
-            android:id="@+id/btnItemHuella"
+            android:id="@+id/btnItemBono"
             android:icon="@drawable/ic_co2_menu"
-            android:title="Huella de carbono" />
+            android:title="Bonos de Carbono" />
 
         <item
             android:id="@+id/btnItemBuscarSocio"

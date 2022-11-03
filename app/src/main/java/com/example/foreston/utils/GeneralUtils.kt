@@ -8,6 +8,8 @@ import android.os.HandlerThread
 import android.view.PixelCopy
 import com.example.foreston.R
 import com.google.ar.sceneform.ArSceneView
+import java.text.DecimalFormat
+import kotlin.math.round
 
 object GeneralUtils {
 
@@ -81,6 +83,27 @@ object GeneralUtils {
             e.printStackTrace()
         }
     }
+
+    fun formatearNumerosGrandes(valor : Double): String? {
+        val df = DecimalFormat("#,##0.00")
+        return df.format(valor)
+    }
+    fun formatearDecimales(valor : Double): String? {
+        val df = DecimalFormat("#0.00")
+        return df.format(valor)
+    }
+    fun quitarDecimales(valor : Double): String? {
+        val df = DecimalFormat("##")
+        return df.format(valor)
+    }
+    fun pasarEdadanios(meses : String): String? {
+        var edadAnios = meses.toDouble() / 12
+        val mesesRestantes = (edadAnios % 1) * 12
+        edadAnios = edadAnios - (edadAnios % 1)
+
+        return "${edadAnios.toInt()} años y ${(round(mesesRestantes)).toInt()} meses"
+    }
+
 }
 
 

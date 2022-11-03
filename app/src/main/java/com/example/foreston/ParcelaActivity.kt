@@ -75,9 +75,9 @@ class ParcelaActivity : AppCompatActivity() {
                 binding.etUbicacion.text = direccion.toString()
                 binding.etHectareas.text = hectareas.toString()
                 binding.etCantidadArboles.text = cantidadArboles.toString()
-                binding.etVolumen.text = "$volumen m3"
-                binding.etPeso.text = "$pesoToneladas toneladas"
-                binding.etCarbono.text = "$co2 toneladas"
+                binding.etVolumen.text = "${GeneralUtils.formatearDecimales(volumen.toString().toDouble())} m3"
+                binding.etPeso.text = "${GeneralUtils.formatearDecimales(pesoToneladas)} toneladas"
+                binding.etCarbono.text = "${GeneralUtils.formatearDecimales(co2.toString().toDouble())} toneladas"
 
                 // Datos de las dimensiones de los arboles
 
@@ -88,25 +88,23 @@ class ParcelaActivity : AppCompatActivity() {
                 val circunferencia = it.get("circunferencia_arboles")
                 val fecha = it.get("fecha_escaneo")
 
-                val edadAniosLong = edadMeses.toString().toLong()
-                val edadAniosFloat = edadAniosLong.toFloat() / 12
-                val df = DecimalFormat("##.##")
-                val edadAnios = df.format(edadAniosFloat)
+                val anios = GeneralUtils.pasarEdadanios(edadMeses.toString())
 
                 binding.etDiametro.text = "$diametro cm"
                 binding.etEspecie.text = especie.toString()
-                binding.etEdad.text = "$edadAnios años"
+                binding.etEdad.text = "$anios"
                 binding.etAltura.text = "$altura metros"
-                binding.etCircunferencia.text = "$circunferencia cm"
+                binding.etCircunferencia.text = "${circunferencia.toString().removeSuffix(".0")} cm"
                 binding.etFecha.text = fecha.toString()
 
                 // Datos económicos
 
                 val industria = it.get("tipo_industria")
                 val rentabilidad = it.get("valoracion_total")
+                val rentabilidadFormateada = GeneralUtils.formatearNumerosGrandes(rentabilidad.toString().toDouble())
 
                 binding.etIndustria.text = industria.toString()
-                binding.etRentabilidad.text = "$ $rentabilidad"
+                binding.etRentabilidad.text = "$ $rentabilidadFormateada"
             }
     }
 

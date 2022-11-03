@@ -144,15 +144,36 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intento1)
             }
             R.id.btnItemParcelas -> {
+                // TODO Poner validación para cuando no tiene parcelas para que no entre
+                /*
+                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+                val email = prefs.getString("Email", null)
+
+                GeneralUtils.mostrarAlerta(
+                        this,
+                        "Para ver tu Forestación debes ingresar alguna alguna parcela desde el" +
+                                " menú lateral \"Ingresar Información\" o utilizando el escaner de árboles"
+                )
+
+                 */
+
                 val intent= Intent(this, RecyclerParcelasActivity::class.java)
                 startActivity(intent)
+
             }
             R.id.btnItemReportes -> {
                 val intent = Intent(this, MisReportesActivity::class.java)
                 startActivity(intent)}
-            R.id.btnItemHuella -> {
+            R.id.btnItemBono -> {
+                val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
+                val email = prefs.getString("Email", null)
+
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.frameLayout, HuellaFragment())
+                val fragmentHuella = HuellaFragment()
+                fragmentHuella.arguments = Bundle().apply {
+                    putString("EMAIL_USUARIO", email)
+                }
+                fragmentTransaction.replace(R.id.frameLayout, fragmentHuella)
                 fragmentTransaction.commit()
             }
             R.id.btnItemBuscarSocio -> {
@@ -168,14 +189,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 intent.setData(Uri.parse(MANUAL_URL))
                 startActivity(intent)}
             R.id.btncertificaciones ->{
-
-                //mostrarAlerta("Implementar fragment para ver certificaciones","Certi")
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
                 var email = prefs.getString("Email", null)
                 val intent= Intent(this, CertificacionesActivity::class.java)
                 intent.putExtra("email",email)
                 startActivity(intent)
-
             }
             R.id.btnItemConfig -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
@@ -183,7 +201,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 val fragmentTransaction = supportFragmentManager.beginTransaction()
                 fragmentTransaction.replace(R.id.frameLayout, perfilFragment())
                 fragmentTransaction.commit()
-
             }
             R.id.btnItemLogout -> {
                 val prefs = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE)
@@ -302,7 +319,6 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
-
             GeneralUtils.mostrarAlertaDecision(
                 this,
                 "¿ Deseas salir de ForestOn ?",
