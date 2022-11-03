@@ -27,9 +27,9 @@
 
             <ImageView
                 android:id="@+id/ivFoto2"
-                android:layout_width="350dp"
-                android:layout_height="300dp"
-                android:background="@drawable/capturebonofinal2"
+                android:layout_width="wrap_content"
+                android:layout_height="350dp"
+                android:background="@drawable/ciclo_bono_carbono"
                 android:layout_marginEnd="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

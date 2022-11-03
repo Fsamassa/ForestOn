@@ -20,8 +20,8 @@ class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener
     private lateinit var auten: FirebaseAuth
     private lateinit var binding: ActivityInformacionBinding
     private lateinit var item : String
-    private lateinit var especie : String
-    private lateinit var diametro : String
+    private var especie : String = "Seleccion de especie"
+    private var diametro : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,43 +31,44 @@ class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener
         auten = FirebaseAuth.getInstance()
 
         binding.btncargarcampo.setOnClickListener {
-/*
-            val intent = Intent(this, ParcelaActivity::class.java)
-            intent.putExtra("email",binding.mailInfoForestal.text.toString())
-            startActivity(intent)
-            finish()
-*/
 
-            when (especie){
-                "Eucalipto - Eucalyptus Grandis" -> {
-                    val intent = Intent(this, InfoScaneadaActivity::class.java)
-                    intent.putExtra("diametro", diametro.removeSuffix(" cm"))
-                    intent.putExtra("especie", "Eucalyptus Grandis")
-                    startActivity(intent)
-                    finish()
-                }
-                "Eucalipto - Eucalyptus Globulus" -> {
-                    val intent = Intent(this, InfoScaneadaActivity::class.java)
-                    intent.putExtra("diametro", diametro.removeSuffix(" cm"))
-                    intent.putExtra("especie", "Eucalyptus Globulus")
-                    startActivity(intent)
-                    finish()
-                   }
-                "Pino - Pinus ponderosa" -> {
-                    GeneralUtils.mostrarAlerta(this,
-                        "Lo sentimos, la especie $especie será implementada proximanente.\nPor favor elija otra de las disponibles",
-                        null)
+            if (diametro == ""){
+                GeneralUtils.mostrarAlerta(this,
+                    "No has seleccionado un diametro, elige alguno para continuar.",
+                    null)
+            }else{
+                when (especie){
+                    "Eucalipto - Eucalyptus Grandis" -> {
+                        val intent = Intent(this, InfoScaneadaActivity::class.java)
+                        intent.putExtra("diametro", diametro.removeSuffix(" cm"))
+                        intent.putExtra("especie", "Eucalyptus Grandis")
+                        startActivity(intent)
+                        finish()
+                    }
+                    "Eucalipto - Eucalyptus Globulus" -> {
+                        val intent = Intent(this, InfoScaneadaActivity::class.java)
+                        intent.putExtra("diametro", diametro.removeSuffix(" cm"))
+                        intent.putExtra("especie", "Eucalyptus Globulus")
+                        startActivity(intent)
+                        finish()
+                    }
+                    "Pino - Pinus ponderosa" -> {
+                        GeneralUtils.mostrarAlerta(this,
+                            "Lo sentimos, la especie $especie será implementada proximanente.\nPor favor elija otra de las disponibles",
+                            null)
 
-                }
-                "Álamo - Populus Simonii" -> {
-                    GeneralUtils.mostrarAlerta(this,
-                        "Lo sentimos, la especie $especie será implementada proximanente.\nPor favor elija otra de las disponibles",
-                        null)
-                }
-                else -> {
-                    GeneralUtils.mostrarAlerta(this,
-                        "Debes seleccionar una especie de árbol para continuar.",
-                        null)
+                    }
+                    "Álamo - Populus Simonii" -> {
+                        GeneralUtils.mostrarAlerta(this,
+                            "Lo sentimos, la especie $especie será implementada proximanente.\nPor favor elija otra de las disponibles",
+                            null)
+                    }
+                    "Seleccion de especie" -> {
+
+                        GeneralUtils.mostrarAlerta(this,
+                            "Debes seleccionar una especie de árbol para continuar.",
+                            null)
+                    }
                 }
             }
 
@@ -76,14 +77,6 @@ class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener
         seleccionEspecieArbol()
         seleccionDiametroArbol()
         setuptable()
-
-        /*   if (uid != null) {
-            db.collection("users").document(uid.toString()).get().addOnSuccessListener {
-                binding.mailInfoForestal.setText(it.get("email")as String?)
-
-            }}else{
-                println(uid.toString())
-            }*/
     }
 
     private fun seleccionDiametroArbol() {
@@ -145,26 +138,11 @@ class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener
     }
 
     private fun setuptable() {
-
-      /*  val tableRow0 = TableRow(this)
-        val textView0 = TextView(this)
-        textView0.text = "Nombre de Parcela  "
-        textView0.setTextColor(Color.BLACK)
-
-        tableRow0.addView(textView0)
-
-        val textview1 = TextView(this)
-        textview1.text = "   Detalle"
-        textview1.setTextColor(Color.BLACK)
-        tableRow0.addView(textview1)
-
-        binding.tableLayout.addView(tableRow0)*/
-
         val prefs = this.getSharedPreferences(
             getString(R.string.archivo_preferencias),
             Context.MODE_PRIVATE
         )
-        var email = prefs.getString("Email", null)
+        val email = prefs.getString("Email", null)
 
         if (email != null) {
             db.collection("users").document(email).collection("parcelas").get()
