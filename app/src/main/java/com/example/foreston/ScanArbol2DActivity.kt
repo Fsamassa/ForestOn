@@ -52,7 +52,7 @@ class ScanArbol2DActivity : AppCompatActivity(), AdapterView.OnItemClickListener
 
         arFragment.setOnTapArPlaneListener { hitResult, plane, motionEvent ->
             val anchor = hitResult.createAnchor()
-                Texture.builder().setSource(this, R.drawable.textura_eucalipto).build().thenAccept {
+                Texture.builder().setSource(this, R.drawable.textura_eucalipto3).build().thenAccept {
                         texture ->
                     MaterialFactory.makeOpaqueWithTexture(this, texture).thenAccept { material ->
                         renderable = ShapeFactory.makeCylinder( diametro, altura , Vector3(0f, 0f, 0f), material)
@@ -62,6 +62,9 @@ class ScanArbol2DActivity : AppCompatActivity(), AdapterView.OnItemClickListener
                         transformableNode.setParent(anchorNode)
                         arFragment.arSceneView.scene.addChild(anchorNode)
                         transformableNode.select()
+
+                        renderable.isShadowReceiver = false
+                        renderable.isShadowCaster = false
                     }
                 }
         }

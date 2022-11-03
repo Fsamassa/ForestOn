@@ -5,16 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".GraficoInicialFragment">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/grafIndustrias"
+            android:layout_marginTop="20dp"
             android:layout_width="390dp"
-            android:layout_height="500dp" />
+            android:layout_height="600dp"
+            android:hint="torta"/>
 
 
 <!--
@@ -60,6 +56,5 @@
             android:layout_height="wrap_content"
             android:text="Button" />
             -->
-    </LinearLayout>
 
 </FrameLayout>

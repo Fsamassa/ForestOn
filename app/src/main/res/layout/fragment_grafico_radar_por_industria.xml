@@ -7,7 +7,7 @@
 
     <com.github.mikephil.charting.charts.RadarChart
         android:id="@+id/grafRadar"
-        android:layout_width="390dp"
+        android:layout_width="400dp"
         android:layout_height="500dp" />
 
 </FrameLayout>

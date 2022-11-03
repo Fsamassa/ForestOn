@@ -33,8 +33,9 @@
             />
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/grafBar"
-            android:layout_width="390dp"
-            android:layout_height="500dp" />
+            android:layout_width="409dp"
+            android:layout_height="450dp"
+            android:hint="barras"/>
 
     </LinearLayout>
 

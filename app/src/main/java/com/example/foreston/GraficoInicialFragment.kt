@@ -79,7 +79,7 @@ class GraficoInicialFragment : Fragment() {
                     binding.grafIndustrias.isDrawHoleEnabled = true
                     binding.grafIndustrias.setUsePercentValues(true)
                     binding.grafIndustrias.setEntryLabelTextSize(12f)
-                    binding.grafIndustrias.setEntryLabelColor(R.color.black)
+                    binding.grafIndustrias.setEntryLabelColor(resources.getColor(R.color.black))
                     binding.grafIndustrias.setCenterText("Rentabilidad por Industria")
                     binding.grafIndustrias.setCenterTextSize(20f)
                     binding.grafIndustrias.getDescription().setEnabled(false)
@@ -90,6 +90,7 @@ class GraficoInicialFragment : Fragment() {
                     l.orientation = Legend.LegendOrientation.VERTICAL
                     l.setDrawInside(false)
                     l.isEnabled = true
+                    l.textSize = 14f
 
                     val entries: ArrayList<PieEntry> = ArrayList()
                     entries.add(PieEntry(listaIndustrias.get(0).toFloat(), "Aserr. en Monte en Pie"))
@@ -116,8 +117,7 @@ class GraficoInicialFragment : Fragment() {
                     data.setDrawValues(true)
                     data.setValueFormatter(PercentFormatter(binding.grafIndustrias))
                     data.setValueTextSize(12f)
-                    data.setValueTextColor(R.color.black)
-
+                    data.setValueTextColor( resources.getColor(R.color.black))
                     binding.grafIndustrias.setData(data)
                     binding.grafIndustrias.invalidate()
                     binding.grafIndustrias.animateY(1400, Easing.EaseInOutQuad)
@@ -127,7 +127,7 @@ class GraficoInicialFragment : Fragment() {
                 "INDUSTRIAS_VALOR" -> {
                     binding.grafIndustrias.isDrawHoleEnabled = true
                     binding.grafIndustrias.setEntryLabelTextSize(12f)
-                    binding.grafIndustrias.setEntryLabelColor(R.color.black)
+                    binding.grafIndustrias.setEntryLabelColor(resources.getColor(R.color.black))
                     binding.grafIndustrias.setCenterText("Rentabilidad por Industria")
                     binding.grafIndustrias.setCenterTextSize(20f)
                     binding.grafIndustrias.getDescription().setEnabled(false)
@@ -138,6 +138,7 @@ class GraficoInicialFragment : Fragment() {
                     l.orientation = Legend.LegendOrientation.VERTICAL
                     l.setDrawInside(false)
                     l.isEnabled = true
+                    l.textSize = 14f
 
                     val entries: ArrayList<PieEntry> = ArrayList()
                     entries.add(PieEntry(listaIndustrias.get(0).toFloat(), "Aserr. en Monte en Pie"))
@@ -164,7 +165,7 @@ class GraficoInicialFragment : Fragment() {
                     data.setDrawValues(true)
                     data.setValueFormatter(PercentFormatter(binding.grafIndustrias))
                     data.setValueTextSize(12f)
-                    data.setValueTextColor(R.color.black)
+                    data.setValueTextColor( resources.getColor(R.color.black))
 
                     binding.grafIndustrias.setData(data)
                     binding.grafIndustrias.invalidate()

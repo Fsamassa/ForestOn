@@ -58,20 +58,22 @@ class GraficoRadarPorIndustriaFragment : Fragment() {
             when (tipoGrafico){
                 "RADAR_INDUSTRIAS" -> {
 
-                    /*
-                    entries.add(RadarEntry(5f, unidadesPorDiametro.get(0).toFloat()))
-                    entries.add(RadarEntry(10f, unidadesPorDiametro.get(1).toFloat()))
-                    entries.add(RadarEntry(15f, unidadesPorDiametro.get(2).toFloat()))
-                    entries.add(RadarEntry(20f, unidadesPorDiametro.get(3).toFloat()))
-                    entries.add(RadarEntry(25f, unidadesPorDiametro.get(4).toFloat()))
-                    entries.add(RadarEntry(30f, unidadesPorDiametro.get(5).toFloat()))
-                    entries.add(RadarEntry(35f, unidadesPorDiametro.get(6).toFloat()))
-                    entries.add(RadarEntry(40f, unidadesPorDiametro.get(7).toFloat()))
-                    entries.add(RadarEntry(45f, unidadesPorDiametro.get(8).toFloat()))
-                    entries.add(RadarEntry(50f, unidadesPorDiametro.get(9).toFloat()))
+/*
+                    entries.add(RadarEntry(5f, listaIndustrias.get(0).toFloat()))
+                    entries.add(RadarEntry(10f, listaIndustrias.get(1).toFloat()))
+                    entries.add(RadarEntry(15f, listaIndustrias.get(2).toFloat()))
+                    entries.add(RadarEntry(20f, listaIndustrias.get(3).toFloat()))
+                    entries.add(RadarEntry(25f, listaIndustrias.get(4).toFloat()))
+                    entries.add(RadarEntry(30f, listaIndustrias.get(5).toFloat()))
+                    entries.add(RadarEntry(35f, listaIndustrias.get(6).toFloat()))
+                    entries.add(RadarEntry(40f, listaIndustrias.get(7).toFloat()))
+                    entries.add(RadarEntry(45f, listaIndustrias.get(8).toFloat()))
+                    entries.add(RadarEntry(50f, listaIndustrias.get(9).toFloat()))
 
-                     */
-                    val radarDataSet = RadarDataSet(entries, "Distribución")
+ */
+
+
+                    val radarDataSet = RadarDataSet(entries, "Distribución económica")
                     radarDataSet.color = resources.getColor(R.color.blue_semi_transparent)
                     radarDataSet.lineWidth = 2f
                     radarDataSet.setValueTextColor(resources.getColor(R.color.seleccion_azul))
@@ -89,10 +91,11 @@ class GraficoRadarPorIndustriaFragment : Fragment() {
                         "Subprod.")
 
                     binding.grafRadar.description.text = "Distribución rentabilidad por Industria"
+                    binding.grafRadar.description.setPosition(900f, 1200f)
                     binding.grafRadar.description.textSize = 18f
 
                     binding.grafRadar.xAxis.valueFormatter = IndexAxisValueFormatter(etiquetas)
-                    binding.grafRadar.xAxis.textSize = 10f
+                    binding.grafRadar.xAxis.textSize = 12f
                     binding.grafRadar.animateX(1000)
                     binding.grafRadar.data = radarData
 

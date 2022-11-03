@@ -78,7 +78,6 @@ class GraficoDiametrosPorIndustriaFragment : Fragment() {
                             val entradaGlobulus: ArrayList<RadarEntry> = ArrayList()
                             for(num in 10..19) {
                                 entradaGlobulus.add(RadarEntry( unidadesPorDiametro.get(num).toFloat()))
-                                println("unidades del globulus ${unidadesPorDiametro.get(num).toFloat()}")
                             }
                             val radarDataSet2 = RadarDataSet(entradaGlobulus, "Eucalytus Globulus")
                             radarDataSet2.color = resources.getColor(R.color.seleccion_verde)
@@ -112,14 +111,12 @@ class GraficoDiametrosPorIndustriaFragment : Fragment() {
 
                     radarData.addDataSet(radarDataSet)
 
-                    //val etiquetas = arrayOf("Aserradero", "Aserradero - podado", "Celulosa", "Papel","Subproductos", "Tijeras y Tutores", "Cosaneros y Rodrigones")
                     val etiquetas = arrayOf(
                         "1 a 5 cm",
                         "6 a 10 cm",
                         "11 a 15 cm",
                         "16 a 20 cm",
                         "21 a 25 cm",
-                        "26 a 30 cm",
                         "26 a 30 cm",
                         "31 a 35 cm",
                         "36 a 40 cm",
@@ -128,6 +125,10 @@ class GraficoDiametrosPorIndustriaFragment : Fragment() {
 
                     binding.grafRadar.xAxis.valueFormatter = IndexAxisValueFormatter(etiquetas)
                     binding.grafRadar.xAxis.textSize = 15f
+
+                    binding.grafRadar.description.setPosition(850f, 1050f)
+                    binding.grafRadar.description.textSize = 18f
+
                     binding.grafRadar.animateX(1000)
                     binding.grafRadar.data = radarData
 

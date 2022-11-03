@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.foreston.databinding.FragmentGraficoDiametrosBinding
 import com.example.foreston.databinding.FragmentGraficoInicialBinding
+import com.example.foreston.utils.GeneralUtils
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.*
@@ -62,13 +63,13 @@ class GraficoDiametrosFragment : Fragment() {
                 "BARRAS_VALOR" -> {
                     when (especie){
                         "Eucalyptus Grandis" -> {
-                            binding.tvCantArboles.text = "Distribución de $totalEspecie ejemplares de $especie"
+                            binding.tvCantArboles.text = "Distribución de ${GeneralUtils.formatearNumerosGrandes(totalEspecie.toDouble())} \n ejemplares de $especie"
                         }
                         "Eucalyptus Globulus" -> {
-                            binding.tvCantArboles.text = "Distribución de $totalEspecie ejemplares de $especie"
+                            binding.tvCantArboles.text = "Distribución de ${GeneralUtils.formatearNumerosGrandes(totalEspecie.toDouble())} \n ejemplares de $especie"
                         }
                         "TODOS" -> {
-                            binding.tvCantArboles.text = "Distribución general de $totalEspecie ejemplares"
+                            binding.tvCantArboles.text = "Distribución general de ${GeneralUtils.formatearNumerosGrandes(totalEspecie.toDouble())} ejemplares"
                         }
                     }
 
@@ -91,8 +92,8 @@ class GraficoDiametrosFragment : Fragment() {
                         colors.add(color)
                     }
                     barDataSet.colors = colors
-                    barDataSet.valueTextColor = R.color.black
-                    barDataSet.setValueTextSize(22f)
+                    barDataSet.valueTextColor = resources.getColor(R.color.seleccion_azul)
+                    barDataSet.setValueTextSize(20f)
 
                     val barData : BarData = BarData(barDataSet)
 
