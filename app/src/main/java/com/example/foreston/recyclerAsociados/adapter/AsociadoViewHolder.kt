@@ -9,6 +9,7 @@ import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.example.foreston.databinding.ItemAsociado2Binding
 import com.example.foreston.recyclerAsociados.Asociado
+import com.example.foreston.utils.GeneralUtils
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -69,7 +70,7 @@ class AsociadoViewHolder(view: View):RecyclerView.ViewHolder(view){
             }
 
 
-            binding.co2consumido.text=cant_totalCarbono.toString()
+            binding.co2consumido.text = GeneralUtils.formatearDecimales(cant_totalCarbono)
             binding.HAdeCampo.text=cant_hectareas.toString()
         }
 
