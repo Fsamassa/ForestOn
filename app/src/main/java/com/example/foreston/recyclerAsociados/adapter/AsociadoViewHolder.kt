@@ -74,12 +74,8 @@ class AsociadoViewHolder(view: View):RecyclerView.ViewHolder(view){
             binding.HAdeCampo.text=cant_hectareas.toString()
         }
 
-
-
         binding.ivAsociadoFoto.setOnClickListener{
-            //Toast.makeText(binding.ivAsociadoFoto.context, "Quieres conectar con "+asociadoModel.nombre+" ?", Toast.LENGTH_SHORT).show()
-          val dialogBuilder = AlertDialog.Builder(binding.cantidadPValor.context)
-
+            val dialogBuilder = AlertDialog.Builder(binding.cantidadPValor.context)
             dialogBuilder.setMessage("Datos de "+asociadoModel.nombre?.uppercase()+" "+asociadoModel.apellido?.uppercase()+"\n\nEmail: "+asociadoModel.email
             +"\nTeléfono : "+asociadoModel.telefono
             +"\nDirección: "+asociadoModel.direccion)
@@ -91,8 +87,7 @@ class AsociadoViewHolder(view: View):RecyclerView.ViewHolder(view){
 
             val alert = dialogBuilder.create()
             alert.show()
-            // Acá iria logica para que se conecten y se asocien, mostrar algun grafico o dato de ejemplo si se junta los campos de ambos.
-    }
+        }
 
 
     }

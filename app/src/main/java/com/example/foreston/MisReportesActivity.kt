@@ -31,6 +31,8 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener,
 
     private var listaDiametrosGrandis: ArrayList<Int> = ArrayList()
     private var listaDiametrosGlobulus: ArrayList<Int> = ArrayList()
+    private var listaDiametrosCompletaGrandis: ArrayList<Int> = ArrayList()
+    private var listaDiametrosCompletaGlobulus: ArrayList<Int> = ArrayList()
     private var listaIndustrias = doubleArrayOf(0.0,0.0,0.0,0.0,0.0,0.0,0.0)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -306,7 +308,8 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener,
                 nuevoGraficoFragment.arguments = Bundle().apply {
                     putString("TIPO_GRAFICO", "BARRAS_VALOR")
                     putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
-                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGrandis)
+      //              putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGrandis)
+                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosCompletaGrandis)
                     putString("ESPECIE", "Eucalyptus Grandis")
                 }
 
@@ -321,7 +324,8 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener,
                 nuevoGraficoFragment.arguments = Bundle().apply {
                     putString("TIPO_GRAFICO", "BARRAS_VALOR")
                     putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
-                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGlobulus)
+                 //   putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosGlobulus)
+                    putIntegerArrayList("LISTA_DIAMETROS", listaDiametrosCompletaGlobulus)
                     putString("ESPECIE", "Eucalyptus Globulus")
                 }
 
@@ -335,10 +339,9 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener,
 
                 val listaDiametrosTotal: ArrayList<Int> = ArrayList()
 
-                for(num in 0..9) {
-                    listaDiametrosTotal.add(num,listaDiametrosGrandis.get(num) + listaDiametrosGlobulus.get(num))
+                for(num in 0..49) {
+                    listaDiametrosTotal.add(num,listaDiametrosCompletaGrandis.get(num) + listaDiametrosCompletaGlobulus.get(num))
                 }
-
                 nuevoGraficoFragment.arguments = Bundle().apply {
                     putString("TIPO_GRAFICO", "BARRAS_VALOR")
                     putInt("ARBOLES_TOTALES", arbolesTotalesGlobal )
@@ -391,12 +394,10 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener,
                 for(num in 0..9) {
                     sumador = listaDiametrosGrandis.get(num)
                     listaDiametrosAmbos.add(num, sumador )
-                    sumador = 0
                 }
                 for(num in 0..9) {
                     sumador = listaDiametrosGlobulus.get(num)
                     listaDiametrosAmbos.add(num + 10, sumador)
-                    sumador = 0
                 }
                 nuevoGraficoFragment.arguments = Bundle().apply {
                     putString("TIPO_GRAFICO", "RADAR_ARBOLES")
@@ -441,71 +442,85 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener,
 
         when (especie){
             "Eucalyptus Grandis" -> {
+                listaDiametrosCompletaGrandis[diametroInt - 1] += cantidadInt
 
                 when(diametroInt){
                     in 1..5 -> { sumador = listaDiametrosGrandis.get(0) + cantidadInt
-                        listaDiametrosGrandis.add(0, sumador )}
+                        listaDiametrosGrandis[0] = sumador
+                    }
 
                     in 6..10 -> { sumador = listaDiametrosGrandis.get(1) + cantidadInt
-                        listaDiametrosGrandis.add(1, sumador )}
+                        listaDiametrosGrandis[1] = sumador
+                    }
 
                     in 11..15 -> {sumador = listaDiametrosGrandis.get(2) + cantidadInt
-                        listaDiametrosGrandis.add(2, sumador )}
+                        listaDiametrosGrandis[2] = sumador
+                    }
 
                     in 16..20 -> {sumador = listaDiametrosGrandis.get(3) + cantidadInt
-                        listaDiametrosGrandis.add(3, sumador )}
+                        listaDiametrosGrandis[3] = sumador
+                    }
 
                     in 21..25 -> { sumador = listaDiametrosGrandis.get(4) + cantidadInt
-                        listaDiametrosGrandis.add(4, sumador )}
+                        listaDiametrosGrandis[4] = sumador
+                    }
 
                     in 26..30 -> { sumador = listaDiametrosGrandis.get(5) + cantidadInt
-                        listaDiametrosGrandis.add(5, sumador )}
+                        listaDiametrosGrandis[5] = sumador
+                    }
 
                     in 31..35 -> { sumador = listaDiametrosGrandis.get(6) + cantidadInt
-                        listaDiametrosGrandis.add(6, sumador )}
+                        listaDiametrosGrandis[6] = sumador
+                    }
 
                     in 36..40 -> { sumador = listaDiametrosGrandis.get(7) + cantidadInt
-                        listaDiametrosGrandis.add(7, sumador )}
+                        listaDiametrosGrandis[7] = sumador
+                    }
 
                     in 41..45 -> { sumador = listaDiametrosGrandis.get(8) + cantidadInt
-                        listaDiametrosGrandis.add(8, sumador )}
+                        listaDiametrosGrandis[8] = sumador
+                    }
 
                     in 46..50 -> { sumador = listaDiametrosGrandis.get(9) + cantidadInt
-                        listaDiametrosGrandis.add(9, sumador )}
+                        listaDiametrosGrandis[9] = sumador
+
+                    }
                 }
             }
             "Eucalyptus Globulus" ->{
+                listaDiametrosCompletaGlobulus[diametroInt - 1] += cantidadInt
 
                 when(diametroInt){
                     in 1..5 -> { sumador = listaDiametrosGlobulus.get(0) + cantidadInt
-                        listaDiametrosGlobulus.add(0, sumador )}
+                        listaDiametrosGlobulus[0] = sumador
+                    }
 
                     in 6..10 -> { sumador = listaDiametrosGlobulus.get(1) + cantidadInt
-                        listaDiametrosGlobulus.add(1, sumador )}
+                        listaDiametrosGlobulus[1] = sumador}
 
                     in 11..15 -> {sumador = listaDiametrosGlobulus.get(2) + cantidadInt
-                        listaDiametrosGlobulus.add(2, sumador )}
+                        listaDiametrosGlobulus[2] = sumador}
 
                     in 16..20 -> {sumador = listaDiametrosGlobulus.get(3) + cantidadInt
-                        listaDiametrosGlobulus.add(3, sumador )}
+                        listaDiametrosGlobulus[3] = sumador}
 
                     in 21..25 -> { sumador = listaDiametrosGlobulus.get(4) + cantidadInt
-                        listaDiametrosGlobulus.add(4, sumador )}
+                        listaDiametrosGlobulus[4] = sumador}
 
                     in 26..30 -> { sumador = listaDiametrosGlobulus.get(5) + cantidadInt
-                        listaDiametrosGlobulus.add(5, sumador )}
+                        listaDiametrosGlobulus[5] = sumador}
 
                     in 31..35 -> { sumador = listaDiametrosGlobulus.get(6) + cantidadInt
-                        listaDiametrosGlobulus.add(6, sumador )}
+                        listaDiametrosGlobulus[6] = sumador}
 
                     in 36..40 -> { sumador = listaDiametrosGlobulus.get(7) + cantidadInt
-                        listaDiametrosGlobulus.add(7, sumador )}
+                        listaDiametrosGlobulus[7] = sumador}
 
                     in 41..45 -> { sumador = listaDiametrosGlobulus.get(8) + cantidadInt
-                        listaDiametrosGlobulus.add(8, sumador )}
+                        listaDiametrosGlobulus[8] = sumador}
 
                     in 46..50 -> { sumador = listaDiametrosGlobulus.get(9) + cantidadInt
-                        listaDiametrosGlobulus.add(9, sumador )}
+                        listaDiametrosGlobulus[9] = sumador}
                 }
             }
         }
@@ -582,6 +597,10 @@ class MisReportesActivity : AppCompatActivity(), OnFragmentGraphicListener,
         for(num in 0..9) {
             listaDiametrosGrandis.add(num,0)
             listaDiametrosGlobulus.add(num,0)
+        }
+        for(num in 0..49) {
+            listaDiametrosCompletaGrandis.add(num,0)
+            listaDiametrosCompletaGlobulus.add(num,0)
         }
     }
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
 import android.view.ViewGroup
 import com.example.foreston.databinding.FragmentGraficoDiametrosBinding
 import com.example.foreston.databinding.FragmentGraficoInicialBinding
@@ -55,25 +56,36 @@ class GraficoDiametrosFragment : Fragment() {
 
             var totalEspecie = 0f
 
-            for(num in 0..9) {
+            for(num in 0..49) {
                 totalEspecie += unidadesPorDiametro.get(num).toFloat()
             }
+            val totalEspecieFormateado = GeneralUtils.formatearNumerosGrandes(totalEspecie.toDouble())
+            val arbolesTotalesFormateado = GeneralUtils.formatearNumerosGrandes(arbolesTotales!!.toDouble())
 
             when (tipoGrafico){
                 "BARRAS_VALOR" -> {
                     when (especie){
                         "Eucalyptus Grandis" -> {
-                            binding.tvCantArboles.text = "Distribución de ${GeneralUtils.formatearNumerosGrandes(totalEspecie.toDouble())} \n ejemplares de $especie"
+                            binding.tvCantArboles.text =
+                                "Distribución de $totalEspecieFormateado \n ejemplares de $especie"
+                            binding.tvEscala.text =
+                                " $totalEspecieFormateado de $arbolesTotalesFormateado ejemplares totales"
                         }
                         "Eucalyptus Globulus" -> {
-                            binding.tvCantArboles.text = "Distribución de ${GeneralUtils.formatearNumerosGrandes(totalEspecie.toDouble())} \n ejemplares de $especie"
+                            binding.tvCantArboles.text =
+                                "Distribución de $totalEspecieFormateado \n ejemplares de $especie"
+                            binding.tvEscala.text =
+                                " - $totalEspecieFormateado de $arbolesTotalesFormateado ejemplares totales"
                         }
                         "TODOS" -> {
-                            binding.tvCantArboles.text = "Distribución general de ${GeneralUtils.formatearNumerosGrandes(totalEspecie.toDouble())} ejemplares"
+                            binding.tvCantArboles.text = "Distribución general de $arbolesTotalesFormateado ejemplares"
+                            binding.tvEscala.visibility = GONE
+
                         }
                     }
 
                     val entries: ArrayList<BarEntry> = ArrayList()
+                    /*
                     entries.add(BarEntry(5f, unidadesPorDiametro.get(0).toFloat()))
                     entries.add(BarEntry(10f, unidadesPorDiametro.get(1).toFloat()))
                     entries.add(BarEntry(15f, unidadesPorDiametro.get(2).toFloat()))
@@ -85,6 +97,11 @@ class GraficoDiametrosFragment : Fragment() {
                     entries.add(BarEntry(45f, unidadesPorDiametro.get(8).toFloat()))
                     entries.add(BarEntry(50f, unidadesPorDiametro.get(9).toFloat()))
 
+                     */
+                    for(num in 0..49) {
+                        entries.add(BarEntry(num.toFloat() + 1, unidadesPorDiametro.get(num).toFloat()))
+                    }
+
                     val barDataSet = BarDataSet(entries, "Unidades por diametro")
 
                     val colors: ArrayList<Int> = ArrayList()
@@ -93,13 +110,13 @@ class GraficoDiametrosFragment : Fragment() {
                     }
                     barDataSet.colors = colors
                     barDataSet.valueTextColor = resources.getColor(R.color.seleccion_azul)
-                    barDataSet.setValueTextSize(20f)
+                    barDataSet.setValueTextSize(18f)
 
                     val barData : BarData = BarData(barDataSet)
 
                     binding.grafBar.setFitBars(true)
                     binding.grafBar.data = barData
-                    binding.grafBar.description.text = "Escala: 5 cm"
+                    binding.grafBar.description.text = "Ejemplares por diametro"
                     binding.grafBar.description.textSize = 14f
 
                     binding.grafBar.animateY(2000)

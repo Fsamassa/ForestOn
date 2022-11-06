@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.foreston.databinding.FragmentGraficoDiametrosPorIndustriaBinding
+import com.example.foreston.utils.GeneralUtils
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
@@ -55,23 +56,25 @@ class GraficoDiametrosPorIndustriaFragment : Fragment() {
                 totalEspecie += unidadesPorDiametro.get(num).toFloat()
                 entries.add(RadarEntry( unidadesPorDiametro.get(num).toFloat()))
             }
+            val totalEspecieFormateado = GeneralUtils.formatearNumerosGrandes(totalEspecie.toDouble())
+            val arbolesTotalesFormateado = GeneralUtils.formatearNumerosGrandes(arbolesTotales!!.toDouble())
 
             when (tipoGrafico){
 
                 "RADAR_ARBOLES" -> {
                     when (especie){
                         "Eucalyptus Grandis" -> {
-                            binding.tvCantArboles.text = "Distribución de $totalEspecie ejemplares de $especie"
+                            binding.tvCantArboles.text = "Distribución de $totalEspecieFormateado ejemplares de $especie"
                             binding.grafRadar.description.text = "Distribución Eucalyptus Grandis"
                             binding.grafRadar.description.textSize = 14f
                         }
                         "Eucalyptus Globulus" -> {
-                            binding.tvCantArboles.text = "Distribución de $totalEspecie ejemplares de $especie"
+                            binding.tvCantArboles.text = "Distribución de $totalEspecieFormateado ejemplares de $especie"
                             binding.grafRadar.description.text = "Distribución Eucalyptus Globulus"
                             binding.grafRadar.description.textSize = 14f
                         }
                         "AMBOS" -> {
-                            binding.tvCantArboles.text = "Distribución general de $arbolesTotales ejemplares"
+                            binding.tvCantArboles.text = "Distribución general de $arbolesTotalesFormateado ejemplares"
                             binding.grafRadar.description.text = "Distribución comparativa entre especies"
                             binding.grafRadar.description.textSize = 14f
 
@@ -103,10 +106,21 @@ class GraficoDiametrosPorIndustriaFragment : Fragment() {
 
                      */
 
-                    val radarDataSet = RadarDataSet(entries, "Eucalytus Grandis")
-                    radarDataSet.color = resources.getColor(R.color.seleccion_azul)
+                    val etiqueta: String
+                    val color: Int
+
+                    if (especie == "Eucalyptus Globulus"){
+                        etiqueta = "Eucalyptus Globulus"
+                        color = resources.getColor(R.color.seleccion_verde)
+                    }else{
+                        etiqueta = "Eucalyptus Grandis"
+                        color = resources.getColor(R.color.seleccion_azul)
+                    }
+
+                    val radarDataSet = RadarDataSet(entries, etiqueta)
+                    radarDataSet.color = color
                     radarDataSet.lineWidth = 2f
-                    radarDataSet.setValueTextColor(resources.getColor(R.color.seleccion_azul))
+                    radarDataSet.setValueTextColor(color)
                     radarDataSet.valueTextSize = 14f
 
                     radarData.addDataSet(radarDataSet)
@@ -126,7 +140,12 @@ class GraficoDiametrosPorIndustriaFragment : Fragment() {
                     binding.grafRadar.xAxis.valueFormatter = IndexAxisValueFormatter(etiquetas)
                     binding.grafRadar.xAxis.textSize = 15f
 
-                    binding.grafRadar.description.setPosition(850f, 1050f)
+                    if (especie == "AMBOS"){
+                        binding.grafRadar.description.setPosition(935f, 1050f)
+                    }else{
+                        binding.grafRadar.description.setPosition(850f, 1050f)
+                    }
+
                     binding.grafRadar.description.textSize = 18f
 
                     binding.grafRadar.animateX(1000)
