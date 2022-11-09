@@ -109,8 +109,57 @@
                     </TableRow>
                 </TableLayout>
             </ScrollView>
+
         </androidx.cardview.widget.CardView>
         </HorizontalScrollView>
+        <TextView
+            android:id="@+id/tvTituloGrafico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:text="Incremento anual estimado"
+            android:textColor="@color/contor_general"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSubTituloGrafico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            android:text="Calculo estimado hasta alcanzar la edad adulta de cada ejemplar (20 años)."
+            android:textColor="@color/texto_inicio"
+            android:textSize="14sp"
+             />
+        <TextView
+            android:id="@+id/tvAcumuladoTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            android:text="Proyección estimada a 20 años: 0 ton"
+            android:textColor="@color/seleccion_verde"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/lineChart"
+                    android:layout_width="500dp"
+                    android:layout_height="450dp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
     </LinearLayout>
     </ScrollView>
 </FrameLayout>

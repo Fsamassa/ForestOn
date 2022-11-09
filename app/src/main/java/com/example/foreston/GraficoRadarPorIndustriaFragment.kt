@@ -76,6 +76,8 @@ class GraficoRadarPorIndustriaFragment : Fragment() {
                     val radarDataSet = RadarDataSet(entries, "Distribución económica")
                     radarDataSet.color = resources.getColor(R.color.blue_semi_transparent)
                     radarDataSet.lineWidth = 2f
+                    radarDataSet.setDrawFilled(true)
+                    radarDataSet.fillColor = resources.getColor(R.color.blue_semi_transparent)
                     radarDataSet.setValueTextColor(resources.getColor(R.color.seleccion_azul))
                     radarDataSet.valueTextSize = 14f
 

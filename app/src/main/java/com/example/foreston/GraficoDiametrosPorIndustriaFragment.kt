@@ -87,6 +87,8 @@ class GraficoDiametrosPorIndustriaFragment : Fragment() {
                             radarDataSet2.lineWidth = 2f
                             radarDataSet2.setValueTextColor(resources.getColor(R.color.seleccion_verde))
                             radarDataSet2.valueTextSize = 14f
+                            radarDataSet2.setDrawFilled(true)
+                            radarDataSet2.fillColor = resources.getColor(R.color.seleccion_verde)
                             radarData.addDataSet(radarDataSet2)
                         }
                     }
@@ -118,6 +120,11 @@ class GraficoDiametrosPorIndustriaFragment : Fragment() {
                     }
 
                     val radarDataSet = RadarDataSet(entries, etiqueta)
+                    radarDataSet.setDrawFilled(true)
+                    if (etiqueta != "Eucalyptus Globulus"){
+                        radarDataSet.fillColor = resources.getColor(R.color.seleccion_azul)
+                    }
+
                     radarDataSet.color = color
                     radarDataSet.lineWidth = 2f
                     radarDataSet.setValueTextColor(color)
