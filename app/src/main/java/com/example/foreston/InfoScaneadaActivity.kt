@@ -218,7 +218,7 @@ class InfoScaneadaActivity : AppCompatActivity() {
             "fecha_escaneo" to  binding.etFecha.text.toString(),
             "hectareas" to binding.etHectareaParcela.text.toString(),
             "tipo_industria" to "",
-            "valoracion_total" to "",
+            "valoracion_total" to "0.0",
 
         ))
         flagDatosGuardados = true
