@@ -9,25 +9,25 @@
         android:orientation="vertical"
         tools:context=".InformacionActivity">
 
-        <Space
+    <Space
             android:layout_width="wrap_content"
             android:layout_height="8dp" />
 
-        <TextView
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Cargar Información"
             android:textColor="#000"
             android:textSize="25sp" />
-        <View
+    <View
             android:id="@+id/vHorizontal2"
             android:layout_width="215dp"
             android:layout_height="2dp"
             android:layout_gravity="center_horizontal"
             android:background="@color/black_semi_transparent" />
 
-        <TextView
+    <TextView
             android:id="@+id/tvDatosIniciales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:textColor="@color/contor_general"
             android:textSize="24sp" />
 
-        <TextView
+    <TextView
             android:id="@+id/tvDiametroEstimado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             android:textStyle="bold"
             android:textColor="@color/barra_menu" />
 
-        <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDropDown2"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="wrap_content"
@@ -58,7 +58,6 @@
             app:startIconDrawable="@drawable/ic_diametro_seleccion_24"
             app:startIconTint="@color/purple_700"
             app:endIconTint="@color/purple_700">
-
         <AutoCompleteTextView
             android:id="@+id/acDiametros"
             android:layout_width="350dp"
@@ -72,9 +71,9 @@
             android:text="Diámetros"
             android:textColor="#000000"
             android:textStyle="bold" />
-        </com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilDropDown"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
             android:layout_width="wrap_content"
@@ -102,64 +101,93 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/btncargarcampo"
+    <Button
+        android:id="@+id/btncargarcampo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_button_inicio"
+        android:text="Nueva Parcela"
+        app:backgroundTint="@null" />
+    <View
+        android:id="@+id/vHorizontal1"
+        android:layout_width="400dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/black_semi_transparent" />
+    <TextView
+        android:id="@+id/campos_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Parcelas Actuales:"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:textSize="24sp" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvTablaGeneral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/custom_button_inicio"
-            android:text="Nueva Parcela"
-            app:backgroundTint="@null" />
-        <View
-            android:id="@+id/vHorizontal1"
-            android:layout_width="400dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@color/black_semi_transparent" />
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp"
+            app:barrierMargin="20dp"
+            app:cardBackgroundColor="#E0F7FA"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp">
 
-        <TextView
-            android:id="@+id/campos_titulo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Parcelas Actuales:"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:textSize="24sp" />
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TableLayout
-            android:id="@+id/tableLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:stretchColumns="1"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
 
-            <TableRow
-                android:background="@color/botones_inicio"
-                android:padding="10dp"
-                android:layout_width="wrap_content"
-                android:scrollbarAlwaysDrawVerticalTrack="true">
-                <TextView
-                    android:layout_width="wrap_content"
+                <TableLayout
+                    android:id="@+id/tableLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:text="Nombre"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="80dp"
-                    android:textColor="@color/white"
-                    android:text="Dirección" />
-            </TableRow>
-        </TableLayout>
-    </ScrollView>
+                    >
+
+                    <TableRow
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:dividerPadding="4dp"
+                        android:elevation="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/barra_menu"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:text="Nombre"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="    "
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="40dp"
+                            android:textColor="@color/barra_menu"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:text="Dirección" />
+                    </TableRow>
+                </TableLayout>
+            </ScrollView>
+        </androidx.cardview.widget.CardView>
+    </HorizontalScrollView>
 </androidx.appcompat.widget.LinearLayoutCompat>
 
             <!-- <TableRow>

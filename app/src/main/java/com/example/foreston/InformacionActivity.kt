@@ -150,20 +150,21 @@ class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener
 
                     for (document in task) {
 
-                        val tblrow0= TableRow(this)
-                        tblrow0.setPadding(5,10,5,10)
+                        val tblrow0 = TableRow(this)
+                        tblrow0.setPadding(25,10,5,10)
 
                         val tv0 = TextView(this)
-                        tv0.text = document.data.get("nombre_parcela").toString().uppercase()
-                        tv0.gravity = Gravity.CENTER
+                        tv0.text = document.data.get("nombre_parcela").toString()
                         tblrow0.addView(tv0)
 
-                        val tv1=TextView(this)
-                        tv1.text=document.data.get("direccion").toString()
-                        tv1.gravity=Gravity.CENTER
+                        val tvEspacio = TextView(this)
+                        tvEspacio.text = "       "
+                        tblrow0.addView(tvEspacio)
+
+                        val tv1 = TextView(this)
+                        tv1.text = document.data.get("direccion").toString()
                         tblrow0.addView(tv1)
                         binding.tableLayout.addView(tblrow0)
-                        //Log.d(TAG, "DocumentSnapshot data: ${document.data}")
                     }
                 }
 
