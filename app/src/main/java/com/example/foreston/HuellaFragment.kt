@@ -58,6 +58,8 @@ class HuellaFragment : Fragment() {
 
                     var carbonoTotal = 0.0
                     var edadTotal = 0
+                    var edadPorArbolTotal = 0
+                    var arbolesTotales = 0
                     var cantParcelas = 0
                     var indiceParcela = 0
 
@@ -92,9 +94,12 @@ class HuellaFragment : Fragment() {
                             //y cuando llega a 20 dejo de sumarle "crecimiento"
                         listaEdadPorParcela.add(indiceParcela, ((240 - edadArbol.toInt()) / 12) )
 
-
                         val volumen = document.data.get("volumen_total").toString()
                         val cantArboles = document.data.get("cant_arboles").toString()
+
+                        edadPorArbolTotal += edadArbol.toInt() * cantArboles.toInt()
+                        arbolesTotales += cantArboles.toInt()
+
                         listaVolumenPorParcela.add(indiceParcela, volumen.toFloat())
                         listaCoefCantArbol.add(indiceParcela, cantArboles.toFloat() / 1000)
                         indiceParcela++
@@ -142,7 +147,9 @@ class HuellaFragment : Fragment() {
                     var promedio = 0
 
                     if (cantParcelas != 0){
-                        promedio = edadTotal / cantParcelas
+                      //  promedio = edadTotal / cantParcelas
+                       // promedioEdad.text = "${GeneralUtils.pasarEdadanios(promedio.toString())}"
+                        promedio = edadPorArbolTotal / arbolesTotales
                         promedioEdad.text = "${GeneralUtils.pasarEdadanios(promedio.toString())}"
                         promedioEdad.textSize = 20.0F
                         promedioEdad.gravity = Gravity.CENTER
