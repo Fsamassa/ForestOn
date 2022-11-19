@@ -89,8 +89,8 @@ class GraficoRadarPorIndustriaFragment : Fragment() {
                         "As. Planta",
                         "Celulosa",
                         "Papel",
-                        "Postes",
-                        "Subprod.")
+                        "Subprod.",
+                        "Postes")
 
                     binding.grafRadar.description.text = "Distribución rentabilidad por Industria"
                     binding.grafRadar.description.setPosition(900f, 1200f)
