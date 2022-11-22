@@ -78,7 +78,7 @@ class HuellaFragment : Fragment() {
 
                         val columna2 = TextView(context)
                         val carbono = document.data.get("carbono_total").toString()
-                        columna2.text = "${GeneralUtils.formatearDecimales(carbono.toDouble())} ton"
+                        columna2.text = "${GeneralUtils.formatearDecimales(carbono.toDouble())}"
                         columna2.textSize = 15.0F
                         columna2.gravity = Gravity.CENTER
                         tablaContenedora.addView(columna2)
@@ -123,7 +123,7 @@ class HuellaFragment : Fragment() {
                     tablaContenedora.addView(columnaTotal)
 
                     val totalCarbono  = TextView(context)
-                    totalCarbono.text = "${GeneralUtils.formatearNumerosGrandes(carbonoTotal)} ton"
+                    totalCarbono.text = "${GeneralUtils.formatearNumerosGrandes(carbonoTotal)} bonos"
                     totalCarbono.textSize = 20.0F
                     totalCarbono.gravity = Gravity.CENTER
                     totalCarbono.typeface = Typeface.DEFAULT_BOLD
