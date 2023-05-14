@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="15dp"
-            android:text="Calculo estimado hasta alcanzar la edad adulta de cada ejemplar (20 años)."
+            android:text="Cálculo estimado hasta alcanzar la edad adulta de cada ejemplar (20 años)."
             android:textColor="@color/texto_inicio"
             android:textSize="14sp"
              />

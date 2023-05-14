@@ -80,7 +80,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
 
                 GeneralUtils.mostrarAlertaDecision(
                     this,
-                    "La industria seleccionada no es la óptima para este diametro, ¿Deseas guardar los datos de todas formas?",
+                    "La industria seleccionada no es la óptima para este diámetro, ¿Deseas guardar los datos de todas formas?",
                     "Guardar", "Cancelar",
                     positiveAction = {
                         val maildeUsuario = getSharedPreferences(getString(R.string.archivo_preferencias), Context.MODE_PRIVATE).getString(getString(R.string.Email), null)
@@ -162,7 +162,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     docRef.get().addOnSuccessListener{
                         val precioUnitario = it.get("diametro_18cm")
                         binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                        binding.etRespuestaApto.text = "Si"
+                        binding.etRespuestaApto.text = "Sí"
                         binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                         valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                         binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -172,7 +172,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                         docRef.get().addOnSuccessListener{
                             val precioUnitario = it.get("diametro_entre_12_y_17")
                             binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                            binding.etRespuestaApto.text = "Si"
+                            binding.etRespuestaApto.text = "Sí"
                             binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                             valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                             binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -183,7 +183,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                             binding.etPrecioUnitario.text = "$ 0"
                             binding.etPrecioTotal.text = "$ 0"
                             valoracionFinal = 0.0
-                            binding.etRespuestaApto.text = "Diametro insuficiente - Restan " + diferenciaDiametro + " centímetros."
+                            binding.etRespuestaApto.text = "Diámetro insuficiente - Restan " + diferenciaDiametro + " centímetros."
                             binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                         }
                     }
@@ -215,7 +215,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                             docRef.get().addOnSuccessListener{
                                 val precioUnitario = it.get("diametro_entre_19_y_25")
                                 binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                                binding.etRespuestaApto.text = "Si"
+                                binding.etRespuestaApto.text = "Sí"
                                 binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                                 binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
                             }
@@ -224,7 +224,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                                 docRef.get().addOnSuccessListener{
                                     val precioUnitario = it.get("diametro_entre_7_y_14")
                                     binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                                    binding.etRespuestaApto.text = "Si"
+                                    binding.etRespuestaApto.text = "Sí"
                                     binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                                     binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
                                 }
@@ -233,7 +233,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                                 binding.etPrecioUnitario.text = "$ 0"
                                 binding.etPrecioTotal.text = "$ 0"
                                 valoracionFinal = 0.0
-                                binding.etRespuestaApto.text = "Diametro insuficiente - Restan " + diferenciaDiametro + " centímetros."
+                                binding.etRespuestaApto.text = "Diámetro insuficiente - Restan " + diferenciaDiametro + " centímetros."
                                 binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                             }
                         }
@@ -246,7 +246,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     docRef.get().addOnSuccessListener{
                         val precioUnitario = it.get("diametro_mayor_25")
                         binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                        binding.etRespuestaApto.text = "Si"
+                        binding.etRespuestaApto.text = "Sí"
                         binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                         valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                         binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -256,7 +256,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     binding.etPrecioUnitario.text = "$ 0"
                     binding.etPrecioTotal.text = "$ 0"
                     valoracionFinal = 0.0
-                    binding.etRespuestaApto.text = "Diametro insuficiente - Restan " + diferenciaDiametro + " centímetros."
+                    binding.etRespuestaApto.text = "Diámetro insuficiente - Restan " + diferenciaDiametro + " centímetros."
                     binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                 }
             }
@@ -265,7 +265,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     docRef.get().addOnSuccessListener{
                         val precioUnitario = it.get("diametro_mayor_25")
                         binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                        binding.etRespuestaApto.text = "Si"
+                        binding.etRespuestaApto.text = "Sí"
                         binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                         valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                         binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -275,7 +275,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                         docRef.get().addOnSuccessListener{
                             val precioUnitario = it.get("diametro_entre_14_18")
                             binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                            binding.etRespuestaApto.text = "Si"
+                            binding.etRespuestaApto.text = "Sí"
                             binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                             valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                             binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -285,7 +285,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                             docRef.get().addOnSuccessListener{
                                 val precioUnitario = it.get("diametro_entre_18_25")
                                 binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                                binding.etRespuestaApto.text = "Si"
+                                binding.etRespuestaApto.text = "Sí"
                                 binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                                 valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                                 binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -296,7 +296,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                                 binding.etPrecioUnitario.text = "$ 0"
                                 binding.etPrecioTotal.text = "$ 0"
                                 valoracionFinal = 0.0
-                                binding.etRespuestaApto.text = "Diametro insuficiente - Restan " + diferenciaDiametro + " centímetros."
+                                binding.etRespuestaApto.text = "Diámetro insuficiente - Restan " + diferenciaDiametro + " centímetros."
                                 binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                             }
                         }
@@ -309,7 +309,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     docRef.get().addOnSuccessListener{
                         val precioUnitario = it.get("diametro_mayor_25")
                         binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                        binding.etRespuestaApto.text = "Si"
+                        binding.etRespuestaApto.text = "Sí"
                         binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                         valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                         binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -318,7 +318,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     val diferenciaDiametro = 25 - diametroAvalidar
                     binding.etPrecioUnitario.text = "$ 0"
                     binding.etPrecioTotal.text = "$ 0"
-                    binding.etRespuestaApto.text = "Diametro insuficiente - Restan " + diferenciaDiametro + " centímetros."
+                    binding.etRespuestaApto.text = "Diámetro insuficiente - Restan " + diferenciaDiametro + " centímetros."
                     binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                 }
             }
@@ -326,7 +326,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                 docRef.get().addOnSuccessListener{
                     val precioUnitario = it.get("aserrin")
                     binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                    binding.etRespuestaApto.text = "Si"
+                    binding.etRespuestaApto.text = "Sí"
                     binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                     valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                     binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -336,7 +336,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                 docRef.get().addOnSuccessListener{
                     val precioUnitario = it.get("chips_m3")
                     binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                    binding.etRespuestaApto.text = "Si"
+                    binding.etRespuestaApto.text = "Sí"
                     binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                     valoracionFinal = volumenTotalGlobal * precioUnitario.toString().toInt()
                     binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(volumenTotalGlobal * precioUnitario.toString().toInt())
@@ -346,7 +346,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                 docRef.get().addOnSuccessListener{
                     val precioUnitario = it.get("tronco_pulpable")
                     binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                    binding.etRespuestaApto.text = "Si"
+                    binding.etRespuestaApto.text = "Sí"
                     binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                     valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                     binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -356,7 +356,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                 docRef.get().addOnSuccessListener{
                     val precioUnitario = it.get("chips")
                     binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                    binding.etRespuestaApto.text = "Si"
+                    binding.etRespuestaApto.text = "Sí"
                     binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                     valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                     binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -366,7 +366,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                 docRef.get().addOnSuccessListener{
                     val precioUnitario = it.get("costanero")
                     binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                    binding.etRespuestaApto.text = "Si"
+                    binding.etRespuestaApto.text = "Sí"
                     binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                     valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                     binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -376,7 +376,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                 docRef.get().addOnSuccessListener{
                     val precioUnitario = it.get("chips")
                     binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                    binding.etRespuestaApto.text = "Si"
+                    binding.etRespuestaApto.text = "Sí"
                     binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                     valoracionFinal = pesoTotalGlobal * precioUnitario.toString().toInt()
                     binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(pesoTotalGlobal * precioUnitario.toString().toInt())
@@ -387,7 +387,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     docRef.get().addOnSuccessListener{
                         val precioUnitario = it.get("diametro_entre_5_13_unidad")
                         binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                        binding.etRespuestaApto.text = "Si"
+                        binding.etRespuestaApto.text = "Sí"
                         binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                         valoracionFinal = cantArbolesGlobal * precioUnitario.toString().toDouble()
                         binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(cantArbolesGlobal * precioUnitario.toString().toDouble())
@@ -398,14 +398,14 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                         binding.etPrecioUnitario.text = "$ 0"
                         binding.etPrecioTotal.text = "$ 0"
                         valoracionFinal = 0.0
-                        binding.etRespuestaApto.text = "Diametro excedido por " + diferenciaDiametro + " centímetros."
+                        binding.etRespuestaApto.text = "Diámetro excedido por " + diferenciaDiametro + " centímetros."
                         binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                     }else{
                         val diferenciaDiametro = 14 - diametroAvalidar
                         binding.etPrecioUnitario.text = "$ 0"
                         binding.etPrecioTotal.text = "$ 0"
                         valoracionFinal = 0.0
-                        binding.etRespuestaApto.text = "Diametro insuficiente - Restan " + diferenciaDiametro + " centímetros."
+                        binding.etRespuestaApto.text = "Diámetro insuficiente - Restan " + diferenciaDiametro + " centímetros."
                         binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                     }
                 }
@@ -415,7 +415,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     docRef.get().addOnSuccessListener{
                         val precioUnitario = it.get("diametro_entre_3_5")
                         binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                        binding.etRespuestaApto.text = "Si"
+                        binding.etRespuestaApto.text = "Sí"
                         binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                         valoracionFinal = cantArbolesGlobal * precioUnitario.toString().toDouble()
                         binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(cantArbolesGlobal * precioUnitario.toString().toDouble())
@@ -426,13 +426,13 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                         binding.etPrecioUnitario.text = "$ 0"
                         binding.etPrecioTotal.text = "$ 0"
                         valoracionFinal = 0.0
-                        binding.etRespuestaApto.text = "Diametro excedido por " + diferenciaDiametro + " centímetros."
+                        binding.etRespuestaApto.text = "Diámetro excedido por " + diferenciaDiametro + " centímetros."
                         binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                     }else{
                         binding.etPrecioUnitario.text = "$ 0"
                         binding.etPrecioTotal.text = "$ 0"
                         valoracionFinal = 0.0
-                        binding.etRespuestaApto.text = "Diametro insuficiente - Resta 1 cm. "
+                        binding.etRespuestaApto.text = "Diámetro insuficiente - Resta 1 cm. "
                         binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                     }
                 }
@@ -442,7 +442,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     docRef.get().addOnSuccessListener{
                         val precioUnitario = it.get("diametro_9_unidad")
                         binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
-                        binding.etRespuestaApto.text = "Si"
+                        binding.etRespuestaApto.text = "Sí"
                         binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))
                         valoracionFinal = cantArbolesGlobal * precioUnitario.toString().toDouble()
                         binding.etPrecioTotal.text = "$ " + formatearNumerosGrandes(cantArbolesGlobal * precioUnitario.toString().toDouble())
@@ -453,14 +453,14 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                         binding.etPrecioUnitario.text = "$ 0"
                         binding.etPrecioTotal.text = "$ 0"
                         valoracionFinal = 0.0
-                        binding.etRespuestaApto.text = "Diametro excedido por " + diferenciaDiametro + " centímetros."
+                        binding.etRespuestaApto.text = "Diámetro excedido por " + diferenciaDiametro + " centímetros."
                         binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                     }else{
                         val diferenciaDiametro = 9 - diametroAvalidar
                         binding.etPrecioUnitario.text = "$ 0"
                         binding.etPrecioTotal.text = "$ 0"
                         valoracionFinal = 0.0
-                        binding.etRespuestaApto.text = "Diametro insuficiente - Restan " + diferenciaDiametro + " centímetros."
+                        binding.etRespuestaApto.text = "Diámetro insuficiente - Restan " + diferenciaDiametro + " centímetros."
                         binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                     }
                 }

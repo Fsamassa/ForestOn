@@ -50,7 +50,7 @@ class IngresoActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         }else{
-                            mostrarAlerta("Logueo con cuenta GOOGLE fallida. Contactese con Admin.")
+                            mostrarAlerta("Logueo con cuenta GOOGLE fallida. Contáctese con Admin.")
                         }
                     }
                 }
@@ -58,7 +58,7 @@ class IngresoActivity : AppCompatActivity() {
                 mostrarAlerta("Error en la obtención de las credenciales de la Cuenta GOOGLE.")
             }
         }else{
-            mostrarAlerta("Error buscando cuentas de GOOGLE. Contactese con Admin.")
+            mostrarAlerta("Error buscando cuentas de GOOGLE. Contáctese con Admin.")
         }
     }
 
@@ -172,7 +172,7 @@ class IngresoActivity : AppCompatActivity() {
                                 startActivity(intent)
                                 finish()
                             }else{
-                                mostrarAlerta("Logueo con cuenta GOOGLE fallida. Contactese con Admin.")
+                                mostrarAlerta("Logueo con cuenta GOOGLE fallida. Contáctese con Admin.")
                             }
                         }
                     }

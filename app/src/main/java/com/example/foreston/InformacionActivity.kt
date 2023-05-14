@@ -34,7 +34,7 @@ class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener
 
             if (diametro == ""){
                 GeneralUtils.mostrarAlerta(this,
-                    "No has seleccionado un diametro, elige alguno para continuar.",
+                    "No has seleccionado un diámetro, elige alguno para continuar.",
                     null)
             }else{
                 when (especie){
@@ -54,13 +54,13 @@ class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener
                     }
                     "Pino - Pinus ponderosa" -> {
                         GeneralUtils.mostrarAlerta(this,
-                            "Lo sentimos, la especie $especie será implementada proximanente.\nPor favor elija otra de las disponibles",
+                            "Lo sentimos, la especie $especie será implementada próximamente.\nPor favor elija otra de las disponibles.",
                             null)
 
                     }
                     "Álamo - Populus Simonii" -> {
                         GeneralUtils.mostrarAlerta(this,
-                            "Lo sentimos, la especie $especie será implementada proximanente.\nPor favor elija otra de las disponibles",
+                            "Lo sentimos, la especie $especie será implementada próximamente.\nPor favor elija otra de las disponibles.",
                             null)
                     }
                     "Seleccion de especie" -> {
@@ -114,7 +114,7 @@ class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener
                 especie = "Eucalipto - Eucalyptus Globulus"
             }
             "Pino - Pinus ponderosa" -> {
-                val mensajeToast = Toast.makeText(this, "Lo sentimos, especie proximanente ha ser implementada! \n Por favor elija otra de las disponibles",
+                val mensajeToast = Toast.makeText(this, "Lo sentimos, especie proximámente ha ser implementada! \n Por favor elija otra de las disponibles",
                     Toast.LENGTH_LONG)
                 mensajeToast.setGravity(Gravity.CENTER,0 ,0)
                 mensajeToast.show()
@@ -122,7 +122,7 @@ class InformacionActivity : AppCompatActivity(), AdapterView.OnItemClickListener
                 especie = "Pino - Pinus ponderosa"
             }
             "Álamo - Populus Simonii" -> {
-                val mensajeToast = Toast.makeText(this, "Lo sentimos, especie proximanente ha ser implementada! \n Por favor elija otra de las disponibles",
+                val mensajeToast = Toast.makeText(this, "Lo sentimos, especie proximámente ha ser implementada! \n Por favor elija otra de las disponibles",
                     Toast.LENGTH_LONG)
                 mensajeToast.setGravity(Gravity.CENTER,0 ,0)
                 mensajeToast.show()

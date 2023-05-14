@@ -95,7 +95,7 @@
         <item>Aserradero - En Playa de Monte - podado</item>
         <item>Aserradero - En Planta industrial</item>
         <item>Aserradero - En Planta industrial - podado</item>
-        <item>Aserrin - En Planta industrial</item>
+        <item>Aserrín - En Planta industrial</item>
         <item>Celulosa (C. B. Sta Fe)</item>
         <item>Celulosa (Arauco Argentina SA)</item>
         <item>Chips - En Planta industrial</item>
@@ -121,7 +121,7 @@
 
 
     <string name="info_forestacion">La forestación es la conversión, por actividad humana directa, de tierras que carecían de bosque,
-        durante un periodo de al menos 50 años, en tierras forestales mediante plantación, siembra o fomento antrópico de semilleros naturales.</string>
+        durante un período de al menos 50 años, en tierras forestales mediante plantación, siembra o fomento antrópico de semilleros naturales.</string>
     <string name="info_reforestacion">Se considera reforestación la conversión por actividad humana directa de tierras no boscosas en boscosas mediante plantación,
         siembra o fomento antrópico de semilleros naturales, en tierras que estuvieron forestadas pero que actualmente están deforestadas. </string>
     <string name="info_deforestacion">La deforestación es la conversión de tierras boscosas en no forestales por actividad humana directa,

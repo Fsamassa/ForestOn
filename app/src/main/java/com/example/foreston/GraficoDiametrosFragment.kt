@@ -102,7 +102,7 @@ class GraficoDiametrosFragment : Fragment() {
                         entries.add(BarEntry(num.toFloat() + 1, unidadesPorDiametro.get(num).toFloat()))
                     }
 
-                    val barDataSet = BarDataSet(entries, "Unidades por diametro")
+                    val barDataSet = BarDataSet(entries, "Unidades por diámetro")
 
                     val colors: ArrayList<Int> = ArrayList()
                     for (color in ColorTemplate.MATERIAL_COLORS) {
@@ -116,7 +116,7 @@ class GraficoDiametrosFragment : Fragment() {
 
                     binding.grafBar.setFitBars(true)
                     binding.grafBar.data = barData
-                    binding.grafBar.description.text = "Ejemplares por diametro"
+                    binding.grafBar.description.text = "Ejemplares por diámetro"
                     binding.grafBar.description.textSize = 14f
 
                     binding.grafBar.animateY(2000)

@@ -160,7 +160,7 @@ class InfoScaneadaActivity : AppCompatActivity() {
                 mensajeToast.show()
             }else{
                 if (binding.etPesoTotal.text.isNullOrBlank()){
-                    val mensajeToast = Toast.makeText(this, "Ingresar cantidad de árboles y generar calculos necesarios para guardar nueva parcela.", Toast.LENGTH_LONG)
+                    val mensajeToast = Toast.makeText(this, "Ingresar cantidad de árboles y generar cálculos necesarios para guardar nueva parcela.", Toast.LENGTH_LONG)
                     mensajeToast.setGravity(Gravity.CENTER,0 ,0)
                     mensajeToast.show()
                 }else{
@@ -296,7 +296,7 @@ class InfoScaneadaActivity : AppCompatActivity() {
                 binding.etPeso.text           = "Peso     : " + peso + " kg"
                 binding.etVolumen.text        = "Volumen  : " + volumen + " m3"
                 binding.etCircunferencia.text = "Circunf. : " + circunferencia + " cm"
-                binding.etOxigeno.text        = "Oxigeno  : " + oxigeno + " ton"
+                binding.etOxigeno.text        = "Oxígeno  : " + oxigeno + " ton"
                 binding.etCarbono.text        = "Carbono  : " + carbono + " ton"
                 binding.etEdad.text           = "Edad     : " + edadMeses + " Meses ("+edadAnios+" años)"
 

@@ -7,4 +7,4 @@
         android:textColor="@color/contor_general"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:text="Un Diametro" />
+        android:text="Un Diámetro" />

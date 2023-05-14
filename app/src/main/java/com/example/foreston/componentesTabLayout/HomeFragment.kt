@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
 
             when(position){
                 0 -> {
-                    tab.text = "Forestacion"
+                    tab.text = "Forestación"
                     tab.setIcon(R.drawable.ic_arboles)
                 }
                 1 -> {

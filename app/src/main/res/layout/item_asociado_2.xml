@@ -114,9 +114,9 @@
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
         app:layout_constraintTop_toBottomOf="@+id/cantCo2"
-        android:text="Hectareas: "
+        android:text="Hectáreas: "
         android:textStyle="bold"
-        tools:text="Hectareas: "
+        tools:text="Hectáreas: "
         tools:ignore="MissingConstraints" />
 
     <TextView

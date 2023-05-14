@@ -205,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
-                android:text="Diametro aproximado "
+                android:text="Diámetro aproximado "
                 android:textColor="#000"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -306,7 +306,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Fecha de medición y calculo"
+                android:text="Fecha de medición y cálculo"
                 android:textColor="#000"
                 android:textSize="20sp"
                 android:textStyle="bold" />

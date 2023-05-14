@@ -147,7 +147,7 @@
         app:layout_constraintStart_toEndOf="@+id/ivAsociadoFoto"
         app:layout_constraintTop_toBottomOf="@+id/tvEmail"
         android:text="Teléfono: "
-        tools:text="Telefono: " />
+        tools:text="Teléfono: " />
 
     <TextView
         android:id="@+id/tvTelefono"
