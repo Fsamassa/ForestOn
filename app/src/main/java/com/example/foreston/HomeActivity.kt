@@ -53,9 +53,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var ingresoSeleccionado = 1
 
     // urls test
-    private var INTA_URL: String = "https://inta.gob.ar/sites/default/files/inta_concordia_planilla_de_precios_forestales_junio_2022.pdf"
+  //  private var INTA_URL: String = "https://inta.gob.ar/sites/default/files/inta_concordia_planilla_de_precios_forestales_junio_2022.pdf"
+    //   private var MANUAL_URL: String = "https://inta.gob.ar/sites/default/files/script-tmp-manual_para_productores_de_eucaliptos_de_la_mesopotam.pdf"
+    private var INTA_URL: String = "https://sites.google.com/view/preciosforestales-inta/inicio"
     private var BONOS_URL: String = "http://www.ceads.org.ar/mercado-de-bonos-de-carbono-voluntario-vs-regulado/"
-    private var MANUAL_URL: String = "https://inta.gob.ar/sites/default/files/script-tmp-manual_para_productores_de_eucaliptos_de_la_mesopotam.pdf"
+    private var MANUAL_URL: String = "https://sites.google.com/view/manual-productores-eucalipto/inicio"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

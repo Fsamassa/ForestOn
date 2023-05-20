@@ -76,7 +76,7 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
 
             if (binding.etPrecioUnitario.text.isNullOrBlank() ||
                 binding.etPrecioTotal.text.isNullOrBlank() ||
-                binding.etRespuestaApto.text != "Si") {
+                binding.etRespuestaApto.text != "Sí") {
 
                 GeneralUtils.mostrarAlertaDecision(
                     this,
@@ -322,9 +322,14 @@ class DatosEconomicosParcelaActivity : AppCompatActivity(), AdapterView.OnItemCl
                     binding.etRespuestaApto.setTextColor(getColor(R.color.seleccion_rojo))
                 }
             }
-            "Aserrin - En Planta industrial"-> {
+            "Aserrín - En Planta industrial"-> {
                 docRef.get().addOnSuccessListener{
+                    /*
                     val precioUnitario = it.get("aserrin")
+                    Dejo hardcodeado esto porque prefiero tener la "í" en el literal ya que no lo toma
+                    por mas que agregue la coleccion en firestore
+                    */
+                    val precioUnitario = 650
                     binding.etPrecioUnitario.text = "$ " + precioUnitario.toString()
                     binding.etRespuestaApto.text = "Sí"
                     binding.etRespuestaApto.setTextColor(getColor(R.color.purple_700))

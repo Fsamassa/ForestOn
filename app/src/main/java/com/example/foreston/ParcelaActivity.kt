@@ -43,10 +43,12 @@ class ParcelaActivity : AppCompatActivity() {
             "Cancelar",
                 positiveAction = {
                     db.collection("users").document(emailUser).collection("parcelas").document(nombreParcela)
-                        .delete().addOnSuccessListener {
-                            GeneralUtils.mostrarAlerta(
+                        .delete().addOnSuccessListener{
+                         /*   GeneralUtils.mostrarAlerta(
                                 this,
                                 "Parcela eliminada satisfactoriamente")
+
+                          */
                         }
                     val intent= Intent(this, RecyclerParcelasActivity::class.java)
                     startActivity(intent)
